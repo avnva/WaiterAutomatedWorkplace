@@ -11,8 +11,13 @@ namespace АРМ_курсовая
 {
     public class AccountData
     {
-        private string name;
+        private string login;
         private string password;
+        public AccountData(string _login, string _password)
+        {
+            Login = _login;
+            Password = _password;
+        }
 
         [JsonProperty("password_hash")]
         public byte[] Hash { get; set; }
@@ -39,10 +44,10 @@ namespace АРМ_курсовая
         }
 
         [JsonProperty("login")]
-        public string Name
+        public string Login
         {
-            get { return name; }
-            set { name = value; }
+            get { return login; }
+            set { login = value; }
         }
 
         [JsonProperty("password")]
@@ -59,10 +64,6 @@ namespace АРМ_курсовая
             }
         }
 
-        public AccountData(string _name, string _password)
-        {
-            Name = _name;
-            Password = _password;
-        }
+       
     }
 }

@@ -28,28 +28,30 @@ namespace АРМ_курсовая
             get { return CurrentWaiter; }
         }
 
+        private void linkSignIn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Hide();
+            SignInForm signinform = new SignInForm(CurrentWaiter);
+            signinform.Show();
+        }
+
         private void btLogIn_Click(object sender, EventArgs e)
         {
             if (ViewModel.CheckWaiter(tbUserName.Text, tbPassword.Text, out CurrentWaiter))
             {
-                this.Hide();
+                Hide();
                 MainForm mainForm = new MainForm(CurrentWaiter);
-                mainForm.Show();
+                mainForm.ShowDialog();
+                Close();
             }
             else
             {
-                MessageBox.Show("Ошибка авторизации!",
-                    "Введен неверный логин или пароль.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Введен неверный логин или пароль.",
+                    "Ошибка авторизации!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
 
-        private void linkSignIn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            this.Hide();
-            SignInForm signinform = new SignInForm();
-            signinform.Show();
-        }
+
     }
 }
 

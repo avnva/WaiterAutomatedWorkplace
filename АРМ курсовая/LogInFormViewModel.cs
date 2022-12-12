@@ -12,22 +12,21 @@ namespace АРМ_курсовая
 {
     public class LogInFormViewModel
     {
-        public LogIn login;
+        public LogIn logIn;
 
-        public bool CheckWaiter(string name, string password, out Waiter waiter)
+        public bool CheckWaiter(string login, string password, out Waiter waiter)
         {
-            return login.CheckWaiter(name, password, out waiter);
+            return logIn.CheckWaiter(login, password, out waiter);
         }
 
         public LogInFormViewModel()
         {
             try
             {
-                login = new LogIn();
+                logIn = new LogIn();
             }
             catch (FileNotFoundException ex)
             {
-
                 MessageBox.Show(ex.Message, "Критическая ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(1);
             }

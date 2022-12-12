@@ -47,7 +47,7 @@
             this.lbUserName.ForeColor = System.Drawing.SystemColors.Control;
             this.lbUserName.Location = new System.Drawing.Point(55, 157);
             this.lbUserName.Name = "lbUserName";
-            this.lbUserName.Size = new System.Drawing.Size(76, 30);
+            this.lbUserName.Size = new System.Drawing.Size(114, 45);
             this.lbUserName.TabIndex = 1;
             this.lbUserName.Text = "Логин:";
             // 
@@ -58,7 +58,7 @@
             this.lbUserPassword.ForeColor = System.Drawing.SystemColors.Control;
             this.lbUserPassword.Location = new System.Drawing.Point(55, 232);
             this.lbUserPassword.Name = "lbUserPassword";
-            this.lbUserPassword.Size = new System.Drawing.Size(80, 25);
+            this.lbUserPassword.Size = new System.Drawing.Size(121, 40);
             this.lbUserPassword.TabIndex = 2;
             this.lbUserPassword.Text = "Пароль:";
             this.lbUserPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -68,7 +68,7 @@
             this.tbUserName.Location = new System.Drawing.Point(60, 190);
             this.tbUserName.MaxLength = 20;
             this.tbUserName.Name = "tbUserName";
-            this.tbUserName.Size = new System.Drawing.Size(220, 29);
+            this.tbUserName.Size = new System.Drawing.Size(220, 39);
             this.tbUserName.TabIndex = 3;
             this.tbUserName.WordWrap = false;
             // 
@@ -78,7 +78,7 @@
             this.tbPassword.MaxLength = 20;
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '*';
-            this.tbPassword.Size = new System.Drawing.Size(220, 29);
+            this.tbPassword.Size = new System.Drawing.Size(220, 39);
             this.tbPassword.TabIndex = 4;
             // 
             // linkSignIn
@@ -88,7 +88,7 @@
             this.linkSignIn.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(240)))));
             this.linkSignIn.Location = new System.Drawing.Point(121, 354);
             this.linkSignIn.Name = "linkSignIn";
-            this.linkSignIn.Size = new System.Drawing.Size(98, 21);
+            this.linkSignIn.Size = new System.Drawing.Size(148, 32);
             this.linkSignIn.TabIndex = 5;
             this.linkSignIn.TabStop = true;
             this.linkSignIn.Text = "Регистрация";
@@ -121,6 +121,7 @@
             this.btLogIn.TabIndex = 6;
             this.btLogIn.Text = "Войти";
             this.btLogIn.UseVisualStyleBackColor = false;
+            this.btLogIn.Click += new System.EventHandler(this.btLogIn_Click);
             // 
             // label1
             // 
@@ -129,13 +130,13 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(58, 125);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(223, 30);
+            this.label1.Size = new System.Drawing.Size(339, 45);
             this.label1.TabIndex = 7;
             this.label1.Text = "Вход в учетную запись";
             // 
             // LogInForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));

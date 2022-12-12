@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountData.cs" />
+    <Compile Include="CurrentSession.cs" />
     <Compile Include="Dish.cs" />
     <Compile Include="LogIn.cs" />
     <Compile Include="LogInForm.cs">
@@ -81,6 +82,7 @@
     <Compile Include="SignInForm.Designer.cs">
       <DependentUpon>SignInForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SignInFormViewModel.cs" />
     <Compile Include="Waiter.cs" />
     <EmbeddedResource Include="LogInForm.resx">
       <DependentUpon>LogInForm.cs</DependentUpon>
