@@ -7,9 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using АРМ_курсовая.Properties;
-using АРМ_курсовая.Resources;
 
 namespace АРМ_курсовая
 {
@@ -28,16 +25,9 @@ namespace АРМ_курсовая
             get { return CurrentWaiter; }
         }
 
-        private void linkSignIn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Hide();
-            SignInForm signinform = new SignInForm(CurrentWaiter);
-            signinform.Show();
-        }
-
         private void btLogIn_Click(object sender, EventArgs e)
         {
-            if (ViewModel.CheckWaiter(tbUserName.Text, tbPassword.Text, out CurrentWaiter))
+            if (ViewModel.CheckWaiter(tbLogin.Text, tbPassword.Text, out CurrentWaiter))
             {
                 Hide();
                 MainForm mainForm = new MainForm(CurrentWaiter);
@@ -51,7 +41,11 @@ namespace АРМ_курсовая
             }
         }
 
-
+        private void linkSignIn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Hide();
+            SignInForm signinform = new SignInForm(CurrentWaiter);
+            signinform.Show();
+        }
     }
 }
-

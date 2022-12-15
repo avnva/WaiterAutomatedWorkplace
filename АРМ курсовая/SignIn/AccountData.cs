@@ -63,7 +63,5 @@ namespace АРМ_курсовая
                 password = null;
             }
         }
-
-       
     }
 }

@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignInForm));
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbNewName = new System.Windows.Forms.Label();
             this.tbNewName = new System.Windows.Forms.TextBox();
             this.lbNewPassword = new System.Windows.Forms.Label();
             this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.btSignIn = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,17 +51,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Регистрация";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(165, 15);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(180, 169);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // lbNewName
             // 
             this.lbNewName.AutoSize = true;
@@ -70,9 +59,9 @@
             this.lbNewName.Location = new System.Drawing.Point(82, 242);
             this.lbNewName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNewName.Name = "lbNewName";
-            this.lbNewName.Size = new System.Drawing.Size(204, 45);
+            this.lbNewName.Size = new System.Drawing.Size(231, 45);
             this.lbNewName.TabIndex = 5;
-            this.lbNewName.Text = "Введите имя:";
+            this.lbNewName.Text = "Введите логин:";
             // 
             // tbNewName
             // 
@@ -85,7 +74,6 @@
             this.tbNewName.Size = new System.Drawing.Size(329, 39);
             this.tbNewName.TabIndex = 4;
             this.tbNewName.WordWrap = false;
-
             // 
             // lbNewPassword
             // 
@@ -130,6 +118,17 @@
             this.btSignIn.Text = "Зарегистрироваться";
             this.btSignIn.UseVisualStyleBackColor = false;
             this.btSignIn.Click += new System.EventHandler(this.btSignIn_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(165, 15);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(180, 169);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // SignInForm
             // 

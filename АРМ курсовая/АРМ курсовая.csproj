@@ -50,17 +50,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountData.cs" />
-    <Compile Include="CurrentSession.cs" />
-    <Compile Include="Dish.cs" />
-    <Compile Include="LogIn.cs" />
-    <Compile Include="LogInForm.cs">
+    <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LogInForm.Designer.cs">
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SignIn\AccountData.cs" />
+    <Compile Include="CurrentSession.cs" />
+    <Compile Include="Dish.cs" />
+    <Compile Include="LogIn\LogIn.cs" />
+    <Compile Include="LogIn\LogInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogIn\LogInForm.Designer.cs">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LogInFormViewModel.cs" />
+    <Compile Include="LogIn\LogInFormViewModel.cs" />
+    <Compile Include="MainFormViewModel.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -76,15 +83,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SignInForm.cs">
+    <Compile Include="SignIn\SignInForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SignInForm.Designer.cs">
+    <Compile Include="SignIn\SignInForm.Designer.cs">
       <DependentUpon>SignInForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SignInFormViewModel.cs" />
+    <Compile Include="SignIn\SignInFormViewModel.cs" />
     <Compile Include="Waiter.cs" />
-    <EmbeddedResource Include="LogInForm.resx">
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogIn\LogInForm.resx">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
@@ -95,7 +105,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SignInForm.resx">
+    <EmbeddedResource Include="SignIn\SignInForm.resx">
       <DependentUpon>SignInForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -113,28 +123,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\logout.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\lock-24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\banknotes.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\purchase-order.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\edit-property.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\exclamation.png" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

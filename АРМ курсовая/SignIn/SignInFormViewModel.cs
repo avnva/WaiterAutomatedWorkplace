@@ -32,6 +32,7 @@ namespace АРМ_курсовая
             {
                 currentSession = new CurrentSession(waiter);
             }
+
             currentSession.AddWaiter(waiter);
         }
 

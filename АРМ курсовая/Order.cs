@@ -15,7 +15,7 @@ namespace АРМ_курсовая.Resources
         private float discount;
         public List<Quest> quest;
 
-        Order() 
+        public Order() 
         {
             isTaken = false;
             countQuests = 0;
@@ -23,7 +23,7 @@ namespace АРМ_курсовая.Resources
             discount = 0;
             quest = new List<Quest>();
         }
-        Order(bool isTaken, int countQuests, float totalBill, float discount_, List<Quest> quest_)
+        public Order(bool isTaken, int countQuests, float totalBill, float discount_, List<Quest> quest_)
         {
             this.isTaken = isTaken;
             this.countQuests = countQuests;

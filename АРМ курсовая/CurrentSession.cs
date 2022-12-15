@@ -13,7 +13,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace АРМ_курсовая
 {
-    internal class CurrentSession
+    public class CurrentSession
     {
         public List<Waiter> Waiters;
         public Waiter CurrentWaiter;
@@ -56,17 +56,13 @@ namespace АРМ_курсовая
         public void AddWaiter(Waiter waiter)
         {
             bool flag = true;
-            //Load();
-            if (Waiters != null)
+            foreach (Waiter i in Waiters)
             {
-                foreach (Waiter i in Waiters)
+                if (waiter.accountdata.Login == i.accountdata.Login ||
+                waiter.accountdata.Hash.SequenceEqual(i.accountdata.Hash))
                 {
-                    if (waiter.accountdata.Login == i.accountdata.Login ||
-                    waiter.accountdata.Hash.SequenceEqual(i.accountdata.Hash))
-                    {
-                        flag = false;
-                        break;
-                    }
+                    flag = false;
+                    break;
                 }
             }
             if (flag)
