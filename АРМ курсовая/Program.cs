@@ -11,6 +11,8 @@ namespace АРМ_курсовая
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
+        public static Form PreviousPage;
+
         [STAThread]
         static void Main()
         {

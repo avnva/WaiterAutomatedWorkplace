@@ -14,9 +14,17 @@ namespace АРМ_курсовая
     {
         public LogIn logIn;
 
-        public bool CheckWaiter(string login, string password, out Waiter waiter)
+        public CurrentSession currentSession;
+
+        public LogInFormViewModel(Account CurrentAccount)
         {
-            return logIn.CheckWaiter(login, password, out waiter);
+            currentSession.Load();
+            currentSession = new CurrentSession(CurrentAccount);
+        }
+
+        public bool CheckAccount(string login, string password, out Account currentAccount)
+        {
+            return logIn.CheckAccount(login, password, out currentAccount);
         }
 
         public LogInFormViewModel()
@@ -24,6 +32,7 @@ namespace АРМ_курсовая
             try
             {
                 logIn = new LogIn();
+                currentSession = new CurrentSession();
             }
             catch (FileNotFoundException ex)
             {

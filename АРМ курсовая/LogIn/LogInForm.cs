@@ -13,25 +13,34 @@ namespace АРМ_курсовая
     public partial class LogInForm : Form
     {
         public LogInFormViewModel ViewModel = new LogInFormViewModel();
-        public Waiter CurrentWaiter;
+        public Account CurrentAccount;
 
         public LogInForm()
         {
             InitializeComponent();
+            Program.PreviousPage = this;
         }
 
-        public Waiter GetCurrentWaiter
+        public Account GetCurrentAccount
         {
-            get { return CurrentWaiter; }
+            get { return CurrentAccount; }
         }
 
         private void btLogIn_Click(object sender, EventArgs e)
         {
-            if (ViewModel.CheckWaiter(tbLogin.Text, tbPassword.Text, out CurrentWaiter))
+            if (ViewModel.CheckAccount(tbLogin.Text, tbPassword.Text, out CurrentAccount))
             {
-                Hide();
-                MainForm mainForm = new MainForm(CurrentWaiter);
-                mainForm.ShowDialog();
+                
+                if (CurrentAccount.Role == Role.Waiter) 
+                {
+                    MainFormWaiter waiterForm = new MainFormWaiter(CurrentAccount);
+                    waiterForm.ShowDialog();
+                }
+                else
+                {
+                    MainFormAdmin adminForm = new MainFormAdmin(CurrentAccount, null);
+                    adminForm.ShowDialog();
+                }
                 Close();
             }
             else
@@ -44,7 +53,7 @@ namespace АРМ_курсовая
         private void linkSignIn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Hide();
-            SignInForm signinform = new SignInForm(CurrentWaiter);
+            SignInForm signinform = new SignInForm(CurrentAccount, false);
             signinform.Show();
         }
     }

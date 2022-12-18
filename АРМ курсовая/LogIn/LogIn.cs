@@ -13,14 +13,14 @@ namespace АРМ_курсовая
 {
     public class LogIn
     {
-        private List<Waiter> Waiters = new List<Waiter>();
+        private List<Account> Accounts = new List<Account>();
         String path = @"C:\Users\Admin\source\repos\3 семестр\WaiterAutomatedWorkplace\dataFiles\WaitersData.json";
 
         public LogIn()
         {
             if (File.Exists(path))
             {
-                Waiters = JsonConvert.DeserializeObject<List<Waiter>>(File.ReadAllText(path));
+                Accounts = JsonConvert.DeserializeObject<List<Account>>(File.ReadAllText(path));
             }
             else
             {
@@ -29,10 +29,10 @@ namespace АРМ_курсовая
 
         }
 
-        public bool CheckWaiter(string login, string password, out Waiter a)
+        public bool CheckAccount(string login, string password, out Account a)
         {
             bool flag = false;
-            a = null;
+            a = null;//
 
             byte[] Hash;
             UnicodeEncoding ue = new UnicodeEncoding();
@@ -40,12 +40,12 @@ namespace АРМ_курсовая
             SHA256 shHash = SHA256.Create();
             Hash = shHash.ComputeHash(bytes);
 
-            foreach (Waiter waiter in Waiters)
+            foreach (Account account in Accounts)
             {
-                if (waiter.accountdata.Login == login && waiter.accountdata.Hash.SequenceEqual(Hash))
+                if (account.Login == login && account.Hash.SequenceEqual(Hash))
                 {
                     flag = true;
-                    a = waiter;
+                    a = account;//
                     break;
                 }
                 else

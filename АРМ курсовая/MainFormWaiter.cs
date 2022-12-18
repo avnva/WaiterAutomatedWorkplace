@@ -11,16 +11,18 @@ using АРМ_курсовая.Resources;
 
 namespace АРМ_курсовая
 {
-    public partial class MainForm : Form
+    public partial class MainFormWaiter : Form
     {
-        public MainFormViewModel ViewModel;
-        public Waiter CurrentWaiter;
-        
-        public MainForm(Waiter CurrentWaiter)
+        public MainFormWaiterViewModel ViewModel;
+        public Account CurrentAccount;
+        public Order NewOrder;
+
+
+        public MainFormWaiter(Account CurrentAccount)
         {
             InitializeComponent();
-            ViewModel = new MainFormViewModel(CurrentWaiter);
-            this.lblLogin.Text = $"{ViewModel.currentSession.CurrentWaiter.accountdata.Login}";
+
+            this.lblLogin.Text = $"{CurrentAccount.Login}";
         }
 
         private void btCloseShift_Click(object sender, EventArgs e)
@@ -29,12 +31,13 @@ namespace АРМ_курсовая
             LogInForm loginform = new LogInForm();
             loginform.ShowDialog();
             Close();
-            
         }
 
         private void btAddQuest_Click(object sender, EventArgs e)
         {
-            
+
+            //MainFormWaiterViewModel ViewModel = new MainFormWaiterViewModel(NewOrder);
+            //MainFormWaiterViewModel.AddOrder(NewOrder);
         }
 
         private void pnlTables_Paint(object sender, PaintEventArgs e)

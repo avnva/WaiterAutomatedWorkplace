@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,27 +11,43 @@ namespace АРМ_курсовая.Resources
 {
     public class Order
     {
-        public bool isTaken;
-        public int countQuests;
-        public float totalBill;
-        private float discount;
-        public List<Quest> quest;
+        [JsonProperty("status")]
+        public bool isTaken { get; set; }
 
-        public Order() 
+        [JsonProperty("bill")]
+        public float totalBill { get; set; }
+
+        [JsonProperty("discount")]
+        public float discount { get; set; }
+
+        [JsonProperty("quests")]
+        public List<Quest> Quests { get; set; }
+
+        public int countQuests;
+        public List<Quest> quest;
+        public Quest CurrentQuest;
+        //public Waiter CurrentWaiter;
+        //public List <Quest> Quests;
+
+        public Order()
         {
             isTaken = false;
             countQuests = 0;
             totalBill = 0;
             discount = 0;
-            quest = new List<Quest>();
+            quest = null;
+            Quests = new List<Quest>();
         }
-        public Order(bool isTaken, int countQuests, float totalBill, float discount_, List<Quest> quest_)
+        public Order(Quest _currentQuest)
         {
+            Quests = new List<Quest>();
+            CurrentQuest = _currentQuest;
             this.isTaken = isTaken;
-            this.countQuests = countQuests;
+            //this.countQuests = _countQuests;
             this.totalBill = totalBill;
-            Discount = discount_;
-            Quest = quest_;
+            //Discount = discount_;
+            //Quest = quest_;
+            //quests = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText("QuestsData.json"));
         }
         private float Discount
         {
@@ -50,16 +68,15 @@ namespace АРМ_курсовая.Resources
             set { quest = value; }
         }
 
-        public void AddQuest()
+        public void AddQuest(Quest quest)
         {
-            quest.Add(new Quest());
+            Quests.Add(quest);
 
         }
 
-        public void DeleteQuest()
+        public void DeleteQuest(Quest quest)
         {
-            quest.Remove(new Quest());
-
+            Quests.Remove(quest);
         }
 
         private void ChangeStatus()

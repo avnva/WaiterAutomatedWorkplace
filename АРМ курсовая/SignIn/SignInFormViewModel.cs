@@ -16,24 +16,31 @@ namespace АРМ_курсовая
 
         public SignInFormViewModel()
         {
-            currentSession = new CurrentSession();
+            try
+            {
+                currentSession = new CurrentSession();
+            }
+            catch (FileNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "Критическая ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(1);
+            }
         }
 
-        public SignInFormViewModel(Waiter CurrentWaiter)
+        public SignInFormViewModel(Account CurrentAccount)
         {
-            currentSession = new CurrentSession(CurrentWaiter);
+            currentSession = new CurrentSession(CurrentAccount);
         }
 
 
-        public void AddWaiter(Waiter waiter)
+        public void AddAccount(Account account)
         {
             currentSession.Load();
-            if (currentSession.Waiters == null)
+            if (currentSession.Accounts == null)
             {
-                currentSession = new CurrentSession(waiter);
+                currentSession = new CurrentSession(account);
             }
-
-            currentSession.AddWaiter(waiter);
+            currentSession.AddAccount(account);
         }
 
     }

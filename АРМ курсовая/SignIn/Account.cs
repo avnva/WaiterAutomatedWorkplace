@@ -9,14 +9,24 @@ using System.Threading.Tasks;
 
 namespace АРМ_курсовая
 {
-    public class AccountData
+    public enum Role : byte
+    {
+        //[Description("Worker can add, delete and find applicants")]
+        Waiter = 0,
+        //[Description("Admin can add, delete workers, add, delete and find applicants")]
+        Admin = 1
+    };
+    public class Account
     {
         private string login;
         private string password;
-        public AccountData(string _login, string _password)
+        private Role role;
+
+        public Account(string _login, string _password, Role _role)
         {
             Login = _login;
             Password = _password;
+            Role = _role;
         }
 
         [JsonProperty("password_hash")]
@@ -62,6 +72,13 @@ namespace АРМ_курсовая
                 if (value != null) HashPassword();
                 password = null;
             }
+        }
+
+        [JsonProperty("role")]
+        public Role Role
+        {
+            get { return role; }
+            set { role = value; }
         }
     }
 }

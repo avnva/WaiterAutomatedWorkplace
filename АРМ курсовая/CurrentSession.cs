@@ -15,22 +15,22 @@ namespace АРМ_курсовая
 {
     public class CurrentSession
     {
-        public List<Waiter> Waiters;
-        public Waiter CurrentWaiter;
+        public List<Account> Accounts;
+        public Account CurrentAccount;
+        public 
         String path = @"C:\Users\Admin\source\repos\3 семестр\WaiterAutomatedWorkplace\dataFiles\WaitersData.json";
 
         public CurrentSession()
         {
-            Waiters = new List<Waiter>();
-
+            Accounts = new List<Account>();
         }
 
-        public CurrentSession(Waiter _currentWaiter)
+        public CurrentSession(Account _currentAccount)
         {
-            Waiters = new List<Waiter>();
-            CurrentWaiter = _currentWaiter;
+            Accounts = new List<Account>();
+            CurrentAccount = _currentAccount;
         }
-        private void LoadChanges<T>(out T obj, string filename)
+        public void LoadChanges<T>(out T obj, string filename, string path)
         {
             if (File.Exists(filename))
             {
@@ -46,20 +46,20 @@ namespace АРМ_курсовая
         }
         public void Load()
         {
-            LoadChanges(out Waiters, path);
+            LoadChanges(out Accounts, path, path);
         }
-        private void SaveChanges<T>(T obj, string filename)
+        public void SaveChanges<T>(T obj, string filename)
         {
             var textJson = JsonConvert.SerializeObject(obj);
             File.WriteAllText(filename, textJson);
         }
-        public void AddWaiter(Waiter waiter)
+        public void AddAccount(Account currentAccount)
         {
             bool flag = true;
-            foreach (Waiter i in Waiters)
+            foreach (Account i in Accounts)
             {
-                if (waiter.accountdata.Login == i.accountdata.Login ||
-                waiter.accountdata.Hash.SequenceEqual(i.accountdata.Hash))
+                if (currentAccount.Login == i.Login ||
+                currentAccount.Hash.SequenceEqual(i.Hash))
                 {
                     flag = false;
                     break;
@@ -67,14 +67,27 @@ namespace АРМ_курсовая
             }
             if (flag)
             {
-                CurrentWaiter = waiter;
-                Waiters.Add(CurrentWaiter);
-                SaveChanges(Waiters, path);
+                CurrentAccount = currentAccount;
+                Accounts.Add(CurrentAccount);
+                SaveChanges(Accounts, path);
             }
             else
                 throw new ArgumentException("Такой логин уже используется.");
         }
-      
+
+        public bool DeleteAccount(Account account)
+        {
+            bool flag = false;
+            for (int i = 0; i < Accounts.Count; i++)
+            {
+                if (Accounts[i].Equals(account))
+                {
+                    flag = Accounts.Remove(Accounts[i]);
+                }
+            }
+            if (flag) SaveChanges(Accounts, path);
+            return flag;
+        }
 
     }
 }
