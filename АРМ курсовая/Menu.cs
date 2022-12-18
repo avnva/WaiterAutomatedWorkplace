@@ -12,7 +12,6 @@ namespace АРМ_курсовая
         public List<Dish> Dishes;
         public Dish CurrentDish;
         CurrentSession СurrentSession = new CurrentSession();
-        String path1 = @"C:\Users\Admin\source\repos\3 семестр\WaiterAutomatedWorkplace\dataFiles\DishesData.json";
 
         public Menu()
         {
@@ -30,7 +29,7 @@ namespace АРМ_курсовая
                 bool flag = true;
                 foreach (Dish i in Dishes)
                 {
-                    if (dish.DishName == i.DishName)
+                    if (dish.Name == i.Name && dish.Cost == i.Cost)
                     {
                         flag = false;
                         break;
@@ -39,14 +38,32 @@ namespace АРМ_курсовая
                 if (flag)
                 {
                     Dishes.Add(dish);
-                    СurrentSession.SaveChanges(Dishes, path1);
+                    СurrentSession.SaveChanges(Dishes, "DishesData.json");
                 }
                 else
-                    throw new ArgumentException("Не удалось добавить блюдо, так как блюдо с таким названием уже есть.");
+                    throw new ArgumentException("Не удалось добавить блюдо, так как такое блюдо уже существует.");
         }
-        public void Load1()
+        public void EditDish(Dish dish, int number)
         {
-            СurrentSession.LoadChanges(out Dishes, path1, path1);
+            for (int i = 0; i < Dishes.Count; i++)
+            {
+                if (i == number - 1)
+                {
+                    if (Dishes[i].Name != dish.Name || Dishes[i].Cost != dish.Cost || Dishes[i].Category != dish.Category)
+                    {
+                        Dishes[i].Name = dish.Name;
+                        Dishes[i].Cost = dish.Cost;
+                        Dishes[i].Category = dish.Category;
+                        СurrentSession.SaveChanges(Dishes, "DishesData.json");
+                    }
+                    else
+                        throw new ArgumentException("Такое блюдо уже существует!");
+                }
+            }    
+        }
+        public void Load()
+        {
+            СurrentSession.LoadChanges(out Dishes, "DishesData.json");
         }
     }
 }

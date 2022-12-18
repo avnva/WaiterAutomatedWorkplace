@@ -30,7 +30,7 @@ namespace АРМ_курсовая
         {
             if (ViewModel.CheckAccount(tbLogin.Text, tbPassword.Text, out CurrentAccount))
             {
-                
+                Hide();
                 if (CurrentAccount.Role == Role.Waiter) 
                 {
                     MainFormWaiter waiterForm = new MainFormWaiter(CurrentAccount);

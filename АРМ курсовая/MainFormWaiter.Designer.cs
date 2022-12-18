@@ -87,7 +87,7 @@
             this.lbl.ForeColor = System.Drawing.Color.White;
             this.lbl.Location = new System.Drawing.Point(6, 24);
             this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(78, 38);
+            this.lbl.Size = new System.Drawing.Size(53, 25);
             this.lbl.TabIndex = 2;
             this.lbl.Text = "Имя:\r\n";
             // 
@@ -98,7 +98,7 @@
             this.lbShiftOpen.ForeColor = System.Drawing.Color.White;
             this.lbShiftOpen.Location = new System.Drawing.Point(40, 61);
             this.lbShiftOpen.Name = "lbShiftOpen";
-            this.lbShiftOpen.Size = new System.Drawing.Size(170, 32);
+            this.lbShiftOpen.Size = new System.Drawing.Size(115, 21);
             this.lbShiftOpen.TabIndex = 3;
             this.lbShiftOpen.Text = "Смена открыта";
             // 
@@ -123,7 +123,7 @@
             this.lblLogin.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblLogin.Location = new System.Drawing.Point(78, 24);
             this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(35, 38);
+            this.lblLogin.Size = new System.Drawing.Size(24, 25);
             this.lblLogin.TabIndex = 4;
             this.lblLogin.Text = "...";
             // 
@@ -318,6 +318,7 @@
             this.pnlTables.Name = "pnlTables";
             this.pnlTables.Size = new System.Drawing.Size(746, 587);
             this.pnlTables.TabIndex = 6;
+            this.pnlTables.Visible = false;
             this.pnlTables.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlTables_Paint);
             // 
             // label1
@@ -326,7 +327,7 @@
             this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 16F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(267, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(212, 45);
+            this.label1.Size = new System.Drawing.Size(145, 30);
             this.label1.TabIndex = 51;
             this.label1.Text = "Карта столов";
             // 
@@ -694,12 +695,12 @@
             this.btTable1.Text = "1";
             this.btTable1.UseVisualStyleBackColor = false;
             // 
-            // MainForm
+            // MainFormWaiter
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(45)))));
-            this.ClientSize = new System.Drawing.Size(978, 611);
+            this.ClientSize = new System.Drawing.Size(984, 611);
             this.Controls.Add(this.pnlTables);
             this.Controls.Add(this.pnAboutQuests);
             this.Controls.Add(this.Panel);
@@ -711,7 +712,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1000, 650);
-            this.Name = "MainForm";
+            this.Name = "MainFormWaiter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ресторан \"San Pizzerino\"";
             this.pnInformation.ResumeLayout(false);

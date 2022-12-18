@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormAdmin));
             this.label2 = new System.Windows.Forms.Label();
             this.btExit = new System.Windows.Forms.Button();
@@ -40,29 +45,47 @@
             this.btEditDishInMenu = new System.Windows.Forms.Button();
             this.btRemoveDishFromMenu = new System.Windows.Forms.Button();
             this.btAddDishToMenu = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.pnlAddDish = new System.Windows.Forms.Panel();
+            this.btMakeChanges = new System.Windows.Forms.Button();
+            this.lblEdit = new System.Windows.Forms.Label();
             this.numCost = new System.Windows.Forms.NumericUpDown();
-            this.btBack = new System.Windows.Forms.Button();
             this.btAddNewDish = new System.Windows.Forms.Button();
             this.cbCategory = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tbNewNameDish = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblAdd = new System.Windows.Forms.Label();
+            this.pnlEditDish = new System.Windows.Forms.Panel();
+            this.btDeleteDish = new System.Windows.Forms.Button();
+            this.btEdit = new System.Windows.Forms.Button();
+            this.numEditDish = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dataGVDishes = new System.Windows.Forms.DataGridView();
+            this.btBack = new System.Windows.Forms.Button();
+            this.lblNumberDish = new System.Windows.Forms.Label();
+            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dishForBindingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlMain.SuspendLayout();
             this.pnlEditWorkers.SuspendLayout();
             this.pnlEditMenu.SuspendLayout();
             this.pnlAddDish.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCost)).BeginInit();
+            this.pnlEditDish.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numEditDish)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGVDishes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dishForBindingBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(5, 9);
+            this.label2.Location = new System.Drawing.Point(324, 5);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(150, 19);
             this.label2.TabIndex = 1;
@@ -73,7 +96,7 @@
             this.btExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.btExit.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btExit.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btExit.Location = new System.Drawing.Point(125, 420);
+            this.btExit.Location = new System.Drawing.Point(113, 420);
             this.btExit.Name = "btExit";
             this.btExit.Size = new System.Drawing.Size(230, 54);
             this.btExit.TabIndex = 5;
@@ -86,9 +109,10 @@
             this.pnlMain.Controls.Add(this.pnlEditWorkers);
             this.pnlMain.Controls.Add(this.btExit);
             this.pnlMain.Controls.Add(this.pnlEditMenu);
-            this.pnlMain.Location = new System.Drawing.Point(0, 31);
+            this.pnlMain.Controls.Add(this.label1);
+            this.pnlMain.Location = new System.Drawing.Point(12, 32);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(480, 486);
+            this.pnlMain.Size = new System.Drawing.Size(457, 487);
             this.pnlMain.TabIndex = 6;
             // 
             // pnlEditWorkers
@@ -98,9 +122,9 @@
             this.pnlEditWorkers.Controls.Add(this.btAddWorker);
             this.pnlEditWorkers.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.pnlEditWorkers.ForeColor = System.Drawing.Color.Azure;
-            this.pnlEditWorkers.Location = new System.Drawing.Point(10, 224);
+            this.pnlEditWorkers.Location = new System.Drawing.Point(5, 224);
             this.pnlEditWorkers.Name = "pnlEditWorkers";
-            this.pnlEditWorkers.Size = new System.Drawing.Size(460, 190);
+            this.pnlEditWorkers.Size = new System.Drawing.Size(446, 190);
             this.pnlEditWorkers.TabIndex = 5;
             this.pnlEditWorkers.TabStop = false;
             this.pnlEditWorkers.Text = "Редактировать сотрудников:";
@@ -112,7 +136,7 @@
             this.btDeleteCurrentAccount.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btDeleteCurrentAccount.Location = new System.Drawing.Point(5, 135);
             this.btDeleteCurrentAccount.Name = "btDeleteCurrentAccount";
-            this.btDeleteCurrentAccount.Size = new System.Drawing.Size(450, 50);
+            this.btDeleteCurrentAccount.Size = new System.Drawing.Size(436, 50);
             this.btDeleteCurrentAccount.TabIndex = 4;
             this.btDeleteCurrentAccount.Text = "Удалить текущий аккаунт";
             this.btDeleteCurrentAccount.UseVisualStyleBackColor = false;
@@ -125,10 +149,11 @@
             this.btDeleteWorker.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btDeleteWorker.Location = new System.Drawing.Point(5, 83);
             this.btDeleteWorker.Name = "btDeleteWorker";
-            this.btDeleteWorker.Size = new System.Drawing.Size(450, 50);
+            this.btDeleteWorker.Size = new System.Drawing.Size(436, 50);
             this.btDeleteWorker.TabIndex = 3;
             this.btDeleteWorker.Text = "Удалить сотрудника";
             this.btDeleteWorker.UseVisualStyleBackColor = false;
+            this.btDeleteWorker.Click += new System.EventHandler(this.btDeleteWorker_Click);
             // 
             // btAddWorker
             // 
@@ -137,7 +162,7 @@
             this.btAddWorker.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btAddWorker.Location = new System.Drawing.Point(5, 31);
             this.btAddWorker.Name = "btAddWorker";
-            this.btAddWorker.Size = new System.Drawing.Size(450, 50);
+            this.btAddWorker.Size = new System.Drawing.Size(436, 50);
             this.btAddWorker.TabIndex = 2;
             this.btAddWorker.Text = "Добавить сотрудника";
             this.btAddWorker.UseVisualStyleBackColor = false;
@@ -150,9 +175,9 @@
             this.pnlEditMenu.Controls.Add(this.btAddDishToMenu);
             this.pnlEditMenu.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.pnlEditMenu.ForeColor = System.Drawing.Color.Azure;
-            this.pnlEditMenu.Location = new System.Drawing.Point(10, 33);
+            this.pnlEditMenu.Location = new System.Drawing.Point(5, 33);
             this.pnlEditMenu.Name = "pnlEditMenu";
-            this.pnlEditMenu.Size = new System.Drawing.Size(460, 190);
+            this.pnlEditMenu.Size = new System.Drawing.Size(446, 190);
             this.pnlEditMenu.TabIndex = 4;
             this.pnlEditMenu.TabStop = false;
             this.pnlEditMenu.Text = "Редактировать меню ресторана:";
@@ -164,10 +189,11 @@
             this.btEditDishInMenu.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btEditDishInMenu.Location = new System.Drawing.Point(5, 135);
             this.btEditDishInMenu.Name = "btEditDishInMenu";
-            this.btEditDishInMenu.Size = new System.Drawing.Size(450, 50);
+            this.btEditDishInMenu.Size = new System.Drawing.Size(436, 50);
             this.btEditDishInMenu.TabIndex = 4;
             this.btEditDishInMenu.Text = "Отредактировать блюдо";
             this.btEditDishInMenu.UseVisualStyleBackColor = false;
+            this.btEditDishInMenu.Click += new System.EventHandler(this.btEditDishInMenu_Click);
             // 
             // btRemoveDishFromMenu
             // 
@@ -176,10 +202,11 @@
             this.btRemoveDishFromMenu.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btRemoveDishFromMenu.Location = new System.Drawing.Point(5, 83);
             this.btRemoveDishFromMenu.Name = "btRemoveDishFromMenu";
-            this.btRemoveDishFromMenu.Size = new System.Drawing.Size(450, 50);
+            this.btRemoveDishFromMenu.Size = new System.Drawing.Size(436, 50);
             this.btRemoveDishFromMenu.TabIndex = 3;
             this.btRemoveDishFromMenu.Text = "Удалить блюдо";
             this.btRemoveDishFromMenu.UseVisualStyleBackColor = false;
+            this.btRemoveDishFromMenu.Click += new System.EventHandler(this.btRemoveDishFromMenu_Click);
             // 
             // btAddDishToMenu
             // 
@@ -188,34 +215,70 @@
             this.btAddDishToMenu.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btAddDishToMenu.Location = new System.Drawing.Point(5, 31);
             this.btAddDishToMenu.Name = "btAddDishToMenu";
-            this.btAddDishToMenu.Size = new System.Drawing.Size(450, 50);
+            this.btAddDishToMenu.Size = new System.Drawing.Size(436, 50);
             this.btAddDishToMenu.TabIndex = 2;
             this.btAddDishToMenu.Text = "Добавить блюдо";
             this.btAddDishToMenu.UseVisualStyleBackColor = false;
             this.btAddDishToMenu.Click += new System.EventHandler(this.btAddDishToMenu_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(125, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(218, 30);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Выберите действие:";
+            // 
             // pnlAddDish
             // 
+            this.pnlAddDish.Controls.Add(this.lblNumberDish);
+            this.pnlAddDish.Controls.Add(this.btMakeChanges);
+            this.pnlAddDish.Controls.Add(this.lblEdit);
             this.pnlAddDish.Controls.Add(this.numCost);
-            this.pnlAddDish.Controls.Add(this.btBack);
             this.pnlAddDish.Controls.Add(this.btAddNewDish);
             this.pnlAddDish.Controls.Add(this.cbCategory);
-            this.pnlAddDish.Controls.Add(this.label1);
             this.pnlAddDish.Controls.Add(this.label6);
             this.pnlAddDish.Controls.Add(this.label5);
             this.pnlAddDish.Controls.Add(this.tbNewNameDish);
             this.pnlAddDish.Controls.Add(this.label4);
-            this.pnlAddDish.Controls.Add(this.label3);
-            this.pnlAddDish.Location = new System.Drawing.Point(4, 27);
+            this.pnlAddDish.Controls.Add(this.lblAdd);
+            this.pnlAddDish.Location = new System.Drawing.Point(9, 29);
             this.pnlAddDish.Name = "pnlAddDish";
-            this.pnlAddDish.Size = new System.Drawing.Size(474, 478);
-            this.pnlAddDish.TabIndex = 7;
+            this.pnlAddDish.Size = new System.Drawing.Size(465, 493);
+            this.pnlAddDish.TabIndex = 10;
             this.pnlAddDish.Visible = false;
+            // 
+            // btMakeChanges
+            // 
+            this.btMakeChanges.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.btMakeChanges.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btMakeChanges.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btMakeChanges.Location = new System.Drawing.Point(127, 416);
+            this.btMakeChanges.Name = "btMakeChanges";
+            this.btMakeChanges.Size = new System.Drawing.Size(211, 50);
+            this.btMakeChanges.TabIndex = 11;
+            this.btMakeChanges.Text = "Внести изменения";
+            this.btMakeChanges.UseVisualStyleBackColor = false;
+            this.btMakeChanges.Visible = false;
+            this.btMakeChanges.Click += new System.EventHandler(this.btMakeChanges_Click);
+            // 
+            // lblEdit
+            // 
+            this.lblEdit.AutoSize = true;
+            this.lblEdit.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblEdit.Location = new System.Drawing.Point(98, 6);
+            this.lblEdit.Name = "lblEdit";
+            this.lblEdit.Size = new System.Drawing.Size(225, 30);
+            this.lblEdit.TabIndex = 10;
+            this.lblEdit.Text = "Изменение блюда №";
+            this.lblEdit.Visible = false;
             // 
             // numCost
             // 
             this.numCost.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numCost.Location = new System.Drawing.Point(226, 105);
+            this.numCost.Location = new System.Drawing.Point(227, 105);
             this.numCost.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -234,18 +297,6 @@
             0,
             0,
             0});
-            // 
-            // btBack
-            // 
-            this.btBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.btBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btBack.Image = ((System.Drawing.Image)(resources.GetObject("btBack.Image")));
-            this.btBack.Location = new System.Drawing.Point(3, 4);
-            this.btBack.Name = "btBack";
-            this.btBack.Size = new System.Drawing.Size(42, 28);
-            this.btBack.TabIndex = 8;
-            this.btBack.UseVisualStyleBackColor = false;
-            this.btBack.Click += new System.EventHandler(this.btBack_Click);
             // 
             // btAddNewDish
             // 
@@ -275,16 +326,6 @@
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(211, 29);
             this.cbCategory.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(132, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 30);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Выберите действие:";
             // 
             // label6
             // 
@@ -324,25 +365,215 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "Введите название:";
             // 
-            // label3
+            // lblAdd
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(139, 2);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(211, 30);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Добавление блюда:";
+            this.lblAdd.AutoSize = true;
+            this.lblAdd.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblAdd.Location = new System.Drawing.Point(139, 2);
+            this.lblAdd.Name = "lblAdd";
+            this.lblAdd.Size = new System.Drawing.Size(211, 30);
+            this.lblAdd.TabIndex = 0;
+            this.lblAdd.Text = "Добавление блюда:";
+            // 
+            // pnlEditDish
+            // 
+            this.pnlEditDish.Controls.Add(this.btDeleteDish);
+            this.pnlEditDish.Controls.Add(this.btEdit);
+            this.pnlEditDish.Controls.Add(this.numEditDish);
+            this.pnlEditDish.Controls.Add(this.label8);
+            this.pnlEditDish.Controls.Add(this.label7);
+            this.pnlEditDish.Controls.Add(this.dataGVDishes);
+            this.pnlEditDish.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pnlEditDish.Location = new System.Drawing.Point(4, 29);
+            this.pnlEditDish.Name = "pnlEditDish";
+            this.pnlEditDish.Size = new System.Drawing.Size(472, 490);
+            this.pnlEditDish.TabIndex = 11;
+            // 
+            // btDeleteDish
+            // 
+            this.btDeleteDish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.btDeleteDish.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btDeleteDish.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btDeleteDish.Location = new System.Drawing.Point(18, 424);
+            this.btDeleteDish.Name = "btDeleteDish";
+            this.btDeleteDish.Size = new System.Drawing.Size(210, 42);
+            this.btDeleteDish.TabIndex = 6;
+            this.btDeleteDish.Text = "Удалить";
+            this.btDeleteDish.UseVisualStyleBackColor = false;
+            this.btDeleteDish.Visible = false;
+            // 
+            // btEdit
+            // 
+            this.btEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.btEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btEdit.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btEdit.Location = new System.Drawing.Point(249, 424);
+            this.btEdit.Name = "btEdit";
+            this.btEdit.Size = new System.Drawing.Size(210, 42);
+            this.btEdit.TabIndex = 5;
+            this.btEdit.Text = "Внести изменения";
+            this.btEdit.UseVisualStyleBackColor = false;
+            this.btEdit.Visible = false;
+            this.btEdit.Click += new System.EventHandler(this.btEdit_Click);
+            // 
+            // numEditDish
+            // 
+            this.numEditDish.Location = new System.Drawing.Point(293, 388);
+            this.numEditDish.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numEditDish.Name = "numEditDish";
+            this.numEditDish.Size = new System.Drawing.Size(151, 29);
+            this.numEditDish.TabIndex = 4;
+            this.numEditDish.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(4, 383);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(248, 30);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Выберите номер блюда:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(144, 4);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(188, 30);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Изменение меню:";
+            // 
+            // dataGVDishes
+            // 
+            this.dataGVDishes.AllowUserToAddRows = false;
+            this.dataGVDishes.AllowUserToDeleteRows = false;
+            this.dataGVDishes.AutoGenerateColumns = false;
+            this.dataGVDishes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGVDishes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGVDishes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.dataGVDishes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGVDishes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGVDishes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGVDishes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.categoryDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.costDataGridViewTextBoxColumn});
+            this.dataGVDishes.DataSource = this.dishForBindingBindingSource;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGVDishes.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGVDishes.GridColor = System.Drawing.Color.Azure;
+            this.dataGVDishes.Location = new System.Drawing.Point(2, 35);
+            this.dataGVDishes.Name = "dataGVDishes";
+            this.dataGVDishes.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGVDishes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGVDishes.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGVDishes.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.dataGVDishes.Size = new System.Drawing.Size(470, 343);
+            this.dataGVDishes.TabIndex = 1;
+            // 
+            // btBack
+            // 
+            this.btBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.btBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btBack.Image = ((System.Drawing.Image)(resources.GetObject("btBack.Image")));
+            this.btBack.Location = new System.Drawing.Point(4, 2);
+            this.btBack.Name = "btBack";
+            this.btBack.Size = new System.Drawing.Size(37, 24);
+            this.btBack.TabIndex = 12;
+            this.btBack.UseVisualStyleBackColor = false;
+            this.btBack.Click += new System.EventHandler(this.btBack_Click);
+            // 
+            // lblNumberDish
+            // 
+            this.lblNumberDish.AutoSize = true;
+            this.lblNumberDish.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblNumberDish.Location = new System.Drawing.Point(322, 6);
+            this.lblNumberDish.Name = "lblNumberDish";
+            this.lblNumberDish.Size = new System.Drawing.Size(28, 30);
+            this.lblNumberDish.TabIndex = 12;
+            this.lblNumberDish.Text = "...";
+            this.lblNumberDish.Visible = false;
+            // 
+            // categoryDataGridViewTextBoxColumn
+            // 
+            this.categoryDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
+            this.categoryDataGridViewTextBoxColumn.HeaderText = "Категория";
+            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
+            this.categoryDataGridViewTextBoxColumn.ReadOnly = true;
+            this.categoryDataGridViewTextBoxColumn.Width = 142;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Название";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 142;
+            // 
+            // costDataGridViewTextBoxColumn
+            // 
+            this.costDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
+            this.costDataGridViewTextBoxColumn.HeaderText = "Цена";
+            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
+            this.costDataGridViewTextBoxColumn.ReadOnly = true;
+            this.costDataGridViewTextBoxColumn.Width = 142;
+            // 
+            // dishForBindingBindingSource
+            // 
+            this.dishForBindingBindingSource.DataSource = typeof(АРМ_курсовая.DishForBinding);
             // 
             // MainFormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(45)))));
-            this.ClientSize = new System.Drawing.Size(482, 529);
+            this.ClientSize = new System.Drawing.Size(481, 530);
+            this.Controls.Add(this.btBack);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.pnlEditDish);
             this.Controls.Add(this.pnlAddDish);
             this.Controls.Add(this.pnlMain);
-            this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.ForeColor = System.Drawing.Color.Azure;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -352,11 +583,17 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ресторан \"San Pizzerino\"";
             this.pnlMain.ResumeLayout(false);
+            this.pnlMain.PerformLayout();
             this.pnlEditWorkers.ResumeLayout(false);
             this.pnlEditMenu.ResumeLayout(false);
             this.pnlAddDish.ResumeLayout(false);
             this.pnlAddDish.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCost)).EndInit();
+            this.pnlEditDish.ResumeLayout(false);
+            this.pnlEditDish.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numEditDish)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGVDishes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dishForBindingBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -374,16 +611,30 @@
         private System.Windows.Forms.Button btEditDishInMenu;
         private System.Windows.Forms.Button btRemoveDishFromMenu;
         private System.Windows.Forms.Button btAddDishToMenu;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.BindingSource dishForBindingBindingSource;
         private System.Windows.Forms.Panel pnlAddDish;
         private System.Windows.Forms.NumericUpDown numCost;
-        private System.Windows.Forms.Button btBack;
         private System.Windows.Forms.Button btAddNewDish;
         private System.Windows.Forms.ComboBox cbCategory;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbNewNameDish;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblAdd;
+        private System.Windows.Forms.Panel pnlEditDish;
+        private System.Windows.Forms.DataGridView dataGVDishes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn costDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btEdit;
+        private System.Windows.Forms.NumericUpDown numEditDish;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btDeleteDish;
+        private System.Windows.Forms.Button btBack;
+        private System.Windows.Forms.Button btMakeChanges;
+        private System.Windows.Forms.Label lblEdit;
+        private System.Windows.Forms.Label lblNumberDish;
     }
 }

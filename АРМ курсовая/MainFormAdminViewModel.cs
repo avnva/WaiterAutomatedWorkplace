@@ -12,7 +12,7 @@ namespace АРМ_курсовая
     public class MainFormAdminViewModel
     {
         public CurrentSession currentSession;
-        Menu menu;
+        public Menu menu;
         public MainFormAdminViewModel()
         {
             try
@@ -31,6 +31,7 @@ namespace АРМ_курсовая
             currentSession = new CurrentSession(CurrentAccount);
             currentSession.Load();
             menu = new Menu(CurrentDish);
+            menu.Load();
         }
 
         //public MainFormAdminViewModel(Account CurrentAccount)
@@ -59,12 +60,17 @@ namespace АРМ_курсовая
         }
         public void AddDish(Dish dish)
         {
-            menu.Load1();
+            menu.Load();
             if (menu.Dishes== null)
             {
                 menu = new Menu(dish);
             }
             menu.AddDish(dish);
+        }
+
+        public void EditDish(Dish dish, int number)
+        {
+            menu.EditDish(dish, number);
         }
     }
 }

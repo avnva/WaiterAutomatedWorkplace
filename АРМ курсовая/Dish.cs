@@ -11,27 +11,27 @@ namespace АРМ_курсовая
 {
     public class Dish
     {
-        private string dishName;
+        private string name;
         private int cost;
         private string category; 
         public Dish() 
         { 
-            dishName= string.Empty;
+            name = string.Empty;
             cost= 0;
             category= string.Empty;
         }
         public Dish(string _name, int _cost, string _category )
         {
-            DishName = _name;
+            Name = _name;
             cost = _cost;
             category = _category;
         }
 
         [JsonProperty("dishName")]
-        public string DishName
+        public string Name
         {
-            get { return dishName; }
-            set { dishName = value; }
+            get { return name; }
+            set { name = value; }
         }
 
         [JsonProperty("cost")]

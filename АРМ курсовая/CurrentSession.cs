@@ -17,8 +17,6 @@ namespace АРМ_курсовая
     {
         public List<Account> Accounts;
         public Account CurrentAccount;
-        public 
-        String path = @"C:\Users\Admin\source\repos\3 семестр\WaiterAutomatedWorkplace\dataFiles\WaitersData.json";
 
         public CurrentSession()
         {
@@ -30,11 +28,11 @@ namespace АРМ_курсовая
             Accounts = new List<Account>();
             CurrentAccount = _currentAccount;
         }
-        public void LoadChanges<T>(out T obj, string filename, string path)
+        public void LoadChanges<T>(out T obj, string filename)
         {
             if (File.Exists(filename))
             {
-                var textfile = File.ReadAllText(path);
+                var textfile = File.ReadAllText(filename);
                 obj = JsonConvert.DeserializeObject<T>(textfile);
             }
             else
@@ -46,7 +44,7 @@ namespace АРМ_курсовая
         }
         public void Load()
         {
-            LoadChanges(out Accounts, path, path);
+            LoadChanges(out Accounts, "WorkersData.json");
         }
         public void SaveChanges<T>(T obj, string filename)
         {
@@ -69,7 +67,7 @@ namespace АРМ_курсовая
             {
                 CurrentAccount = currentAccount;
                 Accounts.Add(CurrentAccount);
-                SaveChanges(Accounts, path);
+                SaveChanges(Accounts, "WorkersData.json");
             }
             else
                 throw new ArgumentException("Такой логин уже используется.");
@@ -85,7 +83,7 @@ namespace АРМ_курсовая
                     flag = Accounts.Remove(Accounts[i]);
                 }
             }
-            if (flag) SaveChanges(Accounts, path);
+            if (flag) SaveChanges(Accounts, "WorkersData.json");
             return flag;
         }
 

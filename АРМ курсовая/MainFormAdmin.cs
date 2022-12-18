@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace АРМ_курсовая
 {
@@ -21,15 +22,67 @@ namespace АРМ_курсовая
             Program.PreviousPage = this;
             ViewModel = new MainFormAdminViewModel(currentAccount, dish);
             CurrentAccount = currentAccount;
+            //dataGVDishes.DataSource = dishForBindingBindingSource;
+            pnlEditDish.Visible = false;
+            pnlMain.Visible = true;
+            pnlAddDish.Visible = false;
+            btBack.Visible = false;
+            UpdateDGMenu();
         }
-
+        private void UpdateDGMenu()
+        {
+            dataGVDishes.DataSource = dishForBindingBindingSource;
+            //ViewModel.currentSession.Dishes.Sort(new CompareApplicantsByID());
+            foreach (Dish _dish in ViewModel.menu.Dishes)
+            {
+                dishForBindingBindingSource.Add(new DishForBinding(_dish.Category, _dish.Name, _dish.Cost));
+            }
+        }
+        private void btAddDishToMenu_Click(object sender, EventArgs e)
+        {
+            pnlMain.Visible = false;
+            pnlAddDish.Visible = true;
+            pnlEditDish.Visible = false;
+            btBack.Visible = true;
+            lblEdit.Visible = false;
+            lblAdd.Visible = true;
+            lblNumberDish.Visible = false;
+            btMakeChanges.Visible = false;
+            btAddNewDish.Visible = true;
+            tbNewNameDish.Text = "";
+            numCost.Value = 1;
+            cbCategory.SelectedItem = null;
+        }
+        private void btRemoveDishFromMenu_Click(object sender, EventArgs e)
+        {
+            btBack.Visible = true;
+            pnlEditDish.Visible = true;
+            pnlMain.Visible = false;
+            pnlAddDish.Visible = false;
+            btEdit.Visible = false;
+            btDeleteDish.Visible = true;
+            btMakeChanges.Visible = false;
+            btAddNewDish.Visible = true;
+        }
+        private void btEditDishInMenu_Click(object sender, EventArgs e)
+        {
+            btBack.Visible = true;
+            pnlEditDish.Visible = true;
+            pnlMain.Visible = false;
+            pnlAddDish.Visible = false;
+            btEdit.Visible = true;
+            btDeleteDish.Visible = false;
+        }
         private void btAddWorker_Click(object sender, EventArgs e)
         {
             Hide();
             SignInForm signinform = new SignInForm(Account, true);
             signinform.ShowDialog();
         }
+        private void btDeleteWorker_Click(object sender, EventArgs e)
+        {
 
+        }
         private void btDeleteCurrentAccount_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Вы уверены, что хотите удалить этот аккаунт?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
@@ -40,7 +93,6 @@ namespace АРМ_курсовая
                 loginform.ShowDialog();
             }
         }
-
         private void btExit_Click(object sender, EventArgs e)
         {
             Hide();
@@ -48,20 +100,23 @@ namespace АРМ_курсовая
             loginform.ShowDialog();
             Close();
         }
-
-        private void btAddDishToMenu_Click(object sender, EventArgs e)
+        private void btBack_Click(object sender, EventArgs e)
         {
-            pnlMain.Visible = false;
-            pnlAddDish.Visible = true;
-
+            pnlMain.Visible = true;
+            pnlAddDish.Visible = false;
+            pnlEditDish.Visible = false;
+            btBack.Visible = false;
         }
+
 
         private void btAddNewDish_Click(object sender, EventArgs e)
         {
             try
             {
                 ViewModel.AddDish(new Dish(tbNewNameDish.Text, Convert.ToInt32(numCost.Value), cbCategory.SelectedItem.ToString()));
-                MessageBox.Show("Блюдо было успешно добавлено.", "Меню", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Блюдо было успешно добавлено.", "Изменение меню", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dishForBindingBindingSource.Clear();
+                UpdateDGMenu();
             }
             catch (ArgumentException ex)
             {
@@ -69,10 +124,49 @@ namespace АРМ_курсовая
             }
         }
 
-        private void btBack_Click(object sender, EventArgs e)
+        private void btEdit_Click(object sender, EventArgs e)
         {
-            pnlMain.Visible = true;
-            pnlAddDish.Visible = false;
+            try
+            {
+                Convert.ToInt32(numEditDish.Value);
+                Dish i = ViewModel.menu.Dishes[Convert.ToInt32(numEditDish.Value) - 1];
+                pnlMain.Visible = false;
+                pnlAddDish.Visible = true;
+                pnlEditDish.Visible = false;
+                btBack.Visible = false;
+                btMakeChanges.Visible = true;
+                btAddNewDish.Visible = false;
+                lblEdit.Visible = true;
+                lblAdd.Visible = false;
+                btBack.Visible = true;
+                lblNumberDish.Visible = true;
+
+                tbNewNameDish.Text = i.Name;
+                numCost.Value = i.Cost;
+                cbCategory.SelectedItem = i.Category;
+                lblNumberDish.Text = numEditDish.Value.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Такое блюдо не существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btMakeChanges_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int numberDish =  Convert.ToInt32(lblNumberDish.Text);
+                //////////////////////Строка ниже
+                ViewModel.EditDish(new Dish(tbNewNameDish.Text, Convert.ToInt32(numCost.Value), cbCategory.SelectedItem.ToString()), numberDish);
+                MessageBox.Show("Блюдо было успешно изменено.", "Изменение меню", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dishForBindingBindingSource.Clear();
+                UpdateDGMenu();
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }
