@@ -22,13 +22,15 @@ namespace АРМ_курсовая
             Program.PreviousPage = this;
             ViewModel = new MainFormAdminViewModel(currentAccount, dish);
             CurrentAccount = currentAccount;
-            //dataGVDishes.DataSource = dishForBindingBindingSource;
             pnlEditDish.Visible = false;
             pnlMain.Visible = true;
             pnlAddDish.Visible = false;
             btBack.Visible = false;
             UpdateDGMenu();
+
         }
+
+        //обновление базы данных
         private void UpdateDGMenu()
         {
             dataGVDishes.DataSource = dishForBindingBindingSource;
@@ -37,7 +39,18 @@ namespace АРМ_курсовая
             {
                 dishForBindingBindingSource.Add(new DishForBinding(_dish.Category, _dish.Name, _dish.Cost));
             }
+            dataGVDishes.RowPrePaint += dataGridView_RowPrePaint;
+            dataGVDishes.RowHeadersWidth = 55;
         }
+
+        //установка номеров строк
+        private void dataGridView_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            object headValue = ((DataGridView)sender).Rows[e.RowIndex].HeaderCell.Value;
+            if (headValue == null || !headValue.Equals((e.RowIndex + 1).ToString()))
+                ((DataGridView)sender).Rows[e.RowIndex].HeaderCell.Value = ((e.RowIndex + 1).ToString());
+        }
+
         private void btAddDishToMenu_Click(object sender, EventArgs e)
         {
             pnlMain.Visible = false;
@@ -166,6 +179,16 @@ namespace АРМ_курсовая
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btDeleteDish_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы уверены, что хотите удалить блюдо?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                ViewModel.DeleteDish(Convert.ToInt32(numEditDish.Value));
+                dishForBindingBindingSource.Clear();
+                UpdateDGMenu();
             }
         }
     }

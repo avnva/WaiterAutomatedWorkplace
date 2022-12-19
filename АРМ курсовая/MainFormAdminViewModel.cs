@@ -70,7 +70,22 @@ namespace АРМ_курсовая
 
         public void EditDish(Dish dish, int number)
         {
+            menu.Load();
             menu.EditDish(dish, number);
+        }
+        public void DeleteDish(int number)
+        {
+            menu.Load();
+            try
+            {
+                menu.DeleteDish(number - 1);
+                MessageBox.Show("Блюдо было успешно удалено", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch 
+            {
+                MessageBox.Show("Такое блюдо не существует!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }

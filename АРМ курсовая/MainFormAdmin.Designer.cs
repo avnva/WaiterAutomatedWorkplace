@@ -47,6 +47,7 @@
             this.btAddDishToMenu = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlAddDish = new System.Windows.Forms.Panel();
+            this.lblNumberDish = new System.Windows.Forms.Label();
             this.btMakeChanges = new System.Windows.Forms.Button();
             this.lblEdit = new System.Windows.Forms.Label();
             this.numCost = new System.Windows.Forms.NumericUpDown();
@@ -65,7 +66,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.dataGVDishes = new System.Windows.Forms.DataGridView();
             this.btBack = new System.Windows.Forms.Button();
-            this.lblNumberDish = new System.Windows.Forms.Label();
             this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -250,6 +250,17 @@
             this.pnlAddDish.TabIndex = 10;
             this.pnlAddDish.Visible = false;
             // 
+            // lblNumberDish
+            // 
+            this.lblNumberDish.AutoSize = true;
+            this.lblNumberDish.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblNumberDish.Location = new System.Drawing.Point(322, 6);
+            this.lblNumberDish.Name = "lblNumberDish";
+            this.lblNumberDish.Size = new System.Drawing.Size(28, 30);
+            this.lblNumberDish.TabIndex = 12;
+            this.lblNumberDish.Text = "...";
+            this.lblNumberDish.Visible = false;
+            // 
             // btMakeChanges
             // 
             this.btMakeChanges.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
@@ -401,6 +412,7 @@
             this.btDeleteDish.Text = "Удалить";
             this.btDeleteDish.UseVisualStyleBackColor = false;
             this.btDeleteDish.Visible = false;
+            this.btDeleteDish.Click += new System.EventHandler(this.btDeleteDish_Click);
             // 
             // btEdit
             // 
@@ -457,12 +469,14 @@
             // 
             this.dataGVDishes.AllowUserToAddRows = false;
             this.dataGVDishes.AllowUserToDeleteRows = false;
+            this.dataGVDishes.AllowUserToResizeColumns = false;
+            this.dataGVDishes.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.dataGVDishes.AutoGenerateColumns = false;
-            this.dataGVDishes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGVDishes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGVDishes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGVDishes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.dataGVDishes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(65)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Azure;
@@ -485,11 +499,11 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGVDishes.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGVDishes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.dataGVDishes.GridColor = System.Drawing.Color.Azure;
-            this.dataGVDishes.Location = new System.Drawing.Point(2, 35);
+            this.dataGVDishes.Location = new System.Drawing.Point(3, 35);
             this.dataGVDishes.Name = "dataGVDishes";
-            this.dataGVDishes.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Azure;
@@ -506,7 +520,7 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGVDishes.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGVDishes.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.dataGVDishes.Size = new System.Drawing.Size(470, 343);
+            this.dataGVDishes.Size = new System.Drawing.Size(462, 343);
             this.dataGVDishes.TabIndex = 1;
             // 
             // btBack
@@ -521,43 +535,33 @@
             this.btBack.UseVisualStyleBackColor = false;
             this.btBack.Click += new System.EventHandler(this.btBack_Click);
             // 
-            // lblNumberDish
-            // 
-            this.lblNumberDish.AutoSize = true;
-            this.lblNumberDish.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblNumberDish.Location = new System.Drawing.Point(322, 6);
-            this.lblNumberDish.Name = "lblNumberDish";
-            this.lblNumberDish.Size = new System.Drawing.Size(28, 30);
-            this.lblNumberDish.TabIndex = 12;
-            this.lblNumberDish.Text = "...";
-            this.lblNumberDish.Visible = false;
-            // 
             // categoryDataGridViewTextBoxColumn
             // 
             this.categoryDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
+            this.categoryDataGridViewTextBoxColumn.Frozen = true;
             this.categoryDataGridViewTextBoxColumn.HeaderText = "Категория";
             this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
             this.categoryDataGridViewTextBoxColumn.ReadOnly = true;
-            this.categoryDataGridViewTextBoxColumn.Width = 142;
+            this.categoryDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // nameDataGridViewTextBoxColumn
             // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Название";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 142;
+            this.nameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // costDataGridViewTextBoxColumn
             // 
-            this.costDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.costDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
             this.costDataGridViewTextBoxColumn.HeaderText = "Цена";
             this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
             this.costDataGridViewTextBoxColumn.ReadOnly = true;
-            this.costDataGridViewTextBoxColumn.Width = 142;
+            this.costDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // dishForBindingBindingSource
             // 
@@ -571,9 +575,9 @@
             this.ClientSize = new System.Drawing.Size(481, 530);
             this.Controls.Add(this.btBack);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlEditDish);
             this.Controls.Add(this.pnlAddDish);
-            this.Controls.Add(this.pnlMain);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.ForeColor = System.Drawing.Color.Azure;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -624,9 +628,6 @@
         private System.Windows.Forms.Label lblAdd;
         private System.Windows.Forms.Panel pnlEditDish;
         private System.Windows.Forms.DataGridView dataGVDishes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn costDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btEdit;
         private System.Windows.Forms.NumericUpDown numEditDish;
         private System.Windows.Forms.Label label8;
@@ -636,5 +637,8 @@
         private System.Windows.Forms.Button btMakeChanges;
         private System.Windows.Forms.Label lblEdit;
         private System.Windows.Forms.Label lblNumberDish;
+        private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn costDataGridViewTextBoxColumn;
     }
 }

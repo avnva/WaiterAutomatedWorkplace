@@ -29,7 +29,7 @@ namespace АРМ_курсовая
                 bool flag = true;
                 foreach (Dish i in Dishes)
                 {
-                    if (dish.Name == i.Name && dish.Cost == i.Cost)
+                    if (dish.Name == i.Name)
                     {
                         flag = false;
                         break;
@@ -61,7 +61,14 @@ namespace АРМ_курсовая
                 }
             }    
         }
-        public void Load()
+
+        public void DeleteDish(int number)
+        {
+            Dishes.RemoveAt(number);
+            СurrentSession.SaveChanges(Dishes, "DishesData.json");
+        }
+
+            public void Load()
         {
             СurrentSession.LoadChanges(out Dishes, "DishesData.json");
         }
