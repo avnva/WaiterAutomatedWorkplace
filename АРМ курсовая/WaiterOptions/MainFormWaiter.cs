@@ -23,6 +23,8 @@ namespace АРМ_курсовая
             InitializeComponent();
 
             this.lblLogin.Text = $"{CurrentAccount.Login}";
+            pnlTables.Visible = false;
+            ViewModel = new MainFormWaiterViewModel();
         }
 
         private void btCloseShift_Click(object sender, EventArgs e)
@@ -35,7 +37,7 @@ namespace АРМ_курсовая
 
         private void btAddQuest_Click(object sender, EventArgs e)
         {
-
+            pnlTables.Visible = true;
             //MainFormWaiterViewModel ViewModel = new MainFormWaiterViewModel(NewOrder);
             //MainFormWaiterViewModel.AddOrder(NewOrder);
         }
@@ -44,8 +46,27 @@ namespace АРМ_курсовая
         {
             Button[] tables = this.pnlTables.Controls.OfType<Button>().ToArray<Button>();
             Sort_tables(tables);
+            foreach (var item in pnlTables.Controls) //обходим все элементы формы
+            {
+                if (item is Button) // проверяем, что это кнопка
+                {
+                    ((Button)item).Click += TablesBtn_Click; //приводим к типу и устанавливаем обработчик события  
+                }
+            }
         }
+        private void TablesBtn_Click(object sender, EventArgs e)
+        {
+            Button click = sender as Button;
+            // if quests != 0 - за столом уже есть гости, вы уверены, что хотите добавить еще?
+            string message = $"Стол № {click.Text}\n" +
+                $"Статус: {ViewModel.tables[Convert.ToInt32(click.TabIndex)].status}\n" +
+                $"Количество мест: {ViewModel.tables[Convert.ToInt32(click.TabIndex)].numberOfSeats}\n" +
+                $"Добавить гостя?";
+            if (MessageBox.Show(message, "Информация", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            {
 
+            }
+        }
         private void Sort_tables(Button[] tables)
         {
             Button temp = null;

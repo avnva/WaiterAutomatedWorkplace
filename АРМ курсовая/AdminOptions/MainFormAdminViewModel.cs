@@ -73,6 +73,7 @@ namespace АРМ_курсовая
             menu.Load();
             menu.EditDish(dish, number);
         }
+
         public void DeleteDish(int number)
         {
             menu.Load();

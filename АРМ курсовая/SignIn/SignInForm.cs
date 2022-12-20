@@ -25,8 +25,13 @@ namespace АРМ_курсовая
         {
             try
             {
-                Account current = new Account(tbNewName.Text, tbNewPassword.Text, rbAdmin.Checked ? Role.Admin : Role.Waiter);
-                ViewModel.AddAccount(current);
+                if (rbAdmin.Visible)
+                {
+                    ViewModel.AddAccount(new Account(tbNewName.Text, tbNewPassword.Text, rbAdmin.Checked ? Role.Admin : Role.Waiter));
+                }
+                else
+                    ViewModel.AddAccount(new Account(tbNewName.Text, tbNewPassword.Text, Role.Waiter));
+
                 MessageBox.Show("Аккаунт успешно зарегистрирован.", "Регистрация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 Program.PreviousPage.Show();

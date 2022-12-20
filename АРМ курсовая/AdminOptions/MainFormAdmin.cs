@@ -25,8 +25,10 @@ namespace АРМ_курсовая
             pnlEditDish.Visible = false;
             pnlMain.Visible = true;
             pnlAddDish.Visible = false;
+            pnlDeleteWorker.Visible = false;
             btBack.Visible = false;
             UpdateDGMenu();
+            cbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
 
         }
 
@@ -56,6 +58,7 @@ namespace АРМ_курсовая
             pnlMain.Visible = false;
             pnlAddDish.Visible = true;
             pnlEditDish.Visible = false;
+            pnlDeleteWorker.Visible = false;
             btBack.Visible = true;
             lblEdit.Visible = false;
             lblAdd.Visible = true;
@@ -76,6 +79,7 @@ namespace АРМ_курсовая
             btDeleteDish.Visible = true;
             btMakeChanges.Visible = false;
             btAddNewDish.Visible = true;
+            pnlDeleteWorker.Visible = false;
         }
         private void btEditDishInMenu_Click(object sender, EventArgs e)
         {
@@ -85,6 +89,7 @@ namespace АРМ_курсовая
             pnlAddDish.Visible = false;
             btEdit.Visible = true;
             btDeleteDish.Visible = false;
+            pnlDeleteWorker.Visible = false;
         }
         private void btAddWorker_Click(object sender, EventArgs e)
         {
@@ -94,7 +99,13 @@ namespace АРМ_курсовая
         }
         private void btDeleteWorker_Click(object sender, EventArgs e)
         {
-
+            btBack.Visible = true;
+            pnlEditDish.Visible = true;
+            pnlMain.Visible = false;
+            pnlAddDish.Visible = false;
+            btEdit.Visible = true;
+            btDeleteDish.Visible = false;
+            pnlDeleteWorker.Visible = true;
         }
         private void btDeleteCurrentAccount_Click(object sender, EventArgs e)
         {
@@ -119,6 +130,7 @@ namespace АРМ_курсовая
             pnlAddDish.Visible = false;
             pnlEditDish.Visible = false;
             btBack.Visible = false;
+            pnlDeleteWorker.Visible = false;
         }
 
 
@@ -146,6 +158,7 @@ namespace АРМ_курсовая
                 pnlMain.Visible = false;
                 pnlAddDish.Visible = true;
                 pnlEditDish.Visible = false;
+                pnlDeleteWorker.Visible = false;
                 btBack.Visible = false;
                 btMakeChanges.Visible = true;
                 btAddNewDish.Visible = false;
@@ -189,6 +202,14 @@ namespace АРМ_курсовая
                 ViewModel.DeleteDish(Convert.ToInt32(numEditDish.Value));
                 dishForBindingBindingSource.Clear();
                 UpdateDGMenu();
+            }
+        }
+
+        private void btDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы уверены, что хотите удалить этот аккаунт?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                ViewModel.DeleteAccount(tbLogin.Text);
             }
         }
     }

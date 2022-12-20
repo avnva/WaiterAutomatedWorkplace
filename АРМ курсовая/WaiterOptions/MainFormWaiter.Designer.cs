@@ -327,9 +327,9 @@
             this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 16F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(267, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 30);
+            this.label1.Size = new System.Drawing.Size(169, 30);
             this.label1.TabIndex = 51;
-            this.label1.Text = "Карта столов";
+            this.label1.Text = "Выберите стол:";
             // 
             // btTable16
             // 
@@ -340,7 +340,7 @@
             this.btTable16.Location = new System.Drawing.Point(673, 464);
             this.btTable16.Name = "btTable16";
             this.btTable16.Size = new System.Drawing.Size(53, 51);
-            this.btTable16.TabIndex = 47;
+            this.btTable16.TabIndex = 16;
             this.btTable16.Text = "16";
             this.btTable16.UseVisualStyleBackColor = false;
             // 
@@ -353,7 +353,7 @@
             this.btTable19.Location = new System.Drawing.Point(673, 251);
             this.btTable19.Name = "btTable19";
             this.btTable19.Size = new System.Drawing.Size(53, 51);
-            this.btTable19.TabIndex = 50;
+            this.btTable19.TabIndex = 19;
             this.btTable19.Text = "19";
             this.btTable19.UseVisualStyleBackColor = false;
             // 
@@ -366,7 +366,7 @@
             this.btTable18.Location = new System.Drawing.Point(673, 321);
             this.btTable18.Name = "btTable18";
             this.btTable18.Size = new System.Drawing.Size(53, 51);
-            this.btTable18.TabIndex = 49;
+            this.btTable18.TabIndex = 18;
             this.btTable18.Text = "18";
             this.btTable18.UseVisualStyleBackColor = false;
             // 
@@ -379,7 +379,7 @@
             this.btTable17.Location = new System.Drawing.Point(673, 392);
             this.btTable17.Name = "btTable17";
             this.btTable17.Size = new System.Drawing.Size(53, 51);
-            this.btTable17.TabIndex = 48;
+            this.btTable17.TabIndex = 17;
             this.btTable17.Text = "17";
             this.btTable17.UseVisualStyleBackColor = false;
             // 
@@ -392,7 +392,7 @@
             this.btTable22.Location = new System.Drawing.Point(430, 158);
             this.btTable22.Name = "btTable22";
             this.btTable22.Size = new System.Drawing.Size(53, 51);
-            this.btTable22.TabIndex = 44;
+            this.btTable22.TabIndex = 22;
             this.btTable22.Text = "22";
             this.btTable22.UseVisualStyleBackColor = false;
             // 
@@ -405,7 +405,7 @@
             this.btTable5.Location = new System.Drawing.Point(497, 26);
             this.btTable5.Name = "btTable5";
             this.btTable5.Size = new System.Drawing.Size(83, 72);
-            this.btTable5.TabIndex = 42;
+            this.btTable5.TabIndex = 4;
             this.btTable5.Text = "5";
             this.btTable5.UseVisualStyleBackColor = false;
             // 
@@ -418,7 +418,7 @@
             this.btTable6.Location = new System.Drawing.Point(643, 26);
             this.btTable6.Name = "btTable6";
             this.btTable6.Size = new System.Drawing.Size(83, 72);
-            this.btTable6.TabIndex = 43;
+            this.btTable6.TabIndex = 6;
             this.btTable6.Text = "6";
             this.btTable6.UseVisualStyleBackColor = false;
             // 
@@ -431,7 +431,7 @@
             this.btTable28.Location = new System.Drawing.Point(591, 150);
             this.btTable28.Name = "btTable28";
             this.btTable28.Size = new System.Drawing.Size(88, 51);
-            this.btTable28.TabIndex = 46;
+            this.btTable28.TabIndex = 28;
             this.btTable28.Text = "28";
             this.btTable28.UseVisualStyleBackColor = false;
             // 
@@ -444,7 +444,7 @@
             this.btTable27.Location = new System.Drawing.Point(523, 210);
             this.btTable27.Name = "btTable27";
             this.btTable27.Size = new System.Drawing.Size(88, 51);
-            this.btTable27.TabIndex = 45;
+            this.btTable27.TabIndex = 27;
             this.btTable27.Text = "27";
             this.btTable27.UseVisualStyleBackColor = false;
             // 
@@ -457,7 +457,7 @@
             this.btTable20.Location = new System.Drawing.Point(275, 293);
             this.btTable20.Name = "btTable20";
             this.btTable20.Size = new System.Drawing.Size(53, 51);
-            this.btTable20.TabIndex = 36;
+            this.btTable20.TabIndex = 20;
             this.btTable20.Text = "20";
             this.btTable20.UseVisualStyleBackColor = false;
             // 
@@ -470,7 +470,7 @@
             this.btTable21.Location = new System.Drawing.Point(352, 223);
             this.btTable21.Name = "btTable21";
             this.btTable21.Size = new System.Drawing.Size(53, 51);
-            this.btTable21.TabIndex = 37;
+            this.btTable21.TabIndex = 21;
             this.btTable21.Text = "21";
             this.btTable21.UseVisualStyleBackColor = false;
             // 
@@ -483,7 +483,7 @@
             this.btTable11.Location = new System.Drawing.Point(209, 521);
             this.btTable11.Name = "btTable11";
             this.btTable11.Size = new System.Drawing.Size(53, 51);
-            this.btTable11.TabIndex = 31;
+            this.btTable11.TabIndex = 11;
             this.btTable11.Text = "11";
             this.btTable11.UseVisualStyleBackColor = false;
             // 
@@ -496,7 +496,7 @@
             this.btTable23.Location = new System.Drawing.Point(221, 403);
             this.btTable23.Name = "btTable23";
             this.btTable23.Size = new System.Drawing.Size(88, 51);
-            this.btTable23.TabIndex = 38;
+            this.btTable23.TabIndex = 23;
             this.btTable23.Text = "23";
             this.btTable23.UseVisualStyleBackColor = false;
             // 
@@ -509,7 +509,7 @@
             this.btTable12.Location = new System.Drawing.Point(297, 521);
             this.btTable12.Name = "btTable12";
             this.btTable12.Size = new System.Drawing.Size(53, 51);
-            this.btTable12.TabIndex = 32;
+            this.btTable12.TabIndex = 12;
             this.btTable12.Text = "12";
             this.btTable12.UseVisualStyleBackColor = false;
             // 
@@ -522,7 +522,7 @@
             this.btTable13.Location = new System.Drawing.Point(385, 521);
             this.btTable13.Name = "btTable13";
             this.btTable13.Size = new System.Drawing.Size(53, 51);
-            this.btTable13.TabIndex = 33;
+            this.btTable13.TabIndex = 13;
             this.btTable13.Text = "13";
             this.btTable13.UseVisualStyleBackColor = false;
             // 
@@ -535,7 +535,7 @@
             this.btTable14.Location = new System.Drawing.Point(472, 521);
             this.btTable14.Name = "btTable14";
             this.btTable14.Size = new System.Drawing.Size(53, 51);
-            this.btTable14.TabIndex = 34;
+            this.btTable14.TabIndex = 14;
             this.btTable14.Text = "14";
             this.btTable14.UseVisualStyleBackColor = false;
             // 
@@ -548,7 +548,7 @@
             this.btTable15.Location = new System.Drawing.Point(561, 521);
             this.btTable15.Name = "btTable15";
             this.btTable15.Size = new System.Drawing.Size(53, 51);
-            this.btTable15.TabIndex = 35;
+            this.btTable15.TabIndex = 15;
             this.btTable15.Text = "15";
             this.btTable15.UseVisualStyleBackColor = false;
             // 
@@ -561,7 +561,7 @@
             this.btTable26.Location = new System.Drawing.Point(456, 269);
             this.btTable26.Name = "btTable26";
             this.btTable26.Size = new System.Drawing.Size(88, 51);
-            this.btTable26.TabIndex = 41;
+            this.btTable26.TabIndex = 26;
             this.btTable26.Text = "26";
             this.btTable26.UseVisualStyleBackColor = false;
             // 
@@ -574,7 +574,7 @@
             this.btTable25.Location = new System.Drawing.Point(397, 335);
             this.btTable25.Name = "btTable25";
             this.btTable25.Size = new System.Drawing.Size(88, 51);
-            this.btTable25.TabIndex = 40;
+            this.btTable25.TabIndex = 25;
             this.btTable25.Text = "25";
             this.btTable25.UseVisualStyleBackColor = false;
             // 
@@ -587,7 +587,7 @@
             this.btTable24.Location = new System.Drawing.Point(335, 403);
             this.btTable24.Name = "btTable24";
             this.btTable24.Size = new System.Drawing.Size(88, 51);
-            this.btTable24.TabIndex = 39;
+            this.btTable24.TabIndex = 24;
             this.btTable24.Text = "24";
             this.btTable24.UseVisualStyleBackColor = false;
             // 
@@ -600,7 +600,7 @@
             this.btTable10.Location = new System.Drawing.Point(26, 521);
             this.btTable10.Name = "btTable10";
             this.btTable10.Size = new System.Drawing.Size(53, 51);
-            this.btTable10.TabIndex = 30;
+            this.btTable10.TabIndex = 100;
             this.btTable10.Text = "10";
             this.btTable10.UseVisualStyleBackColor = false;
             // 
@@ -613,7 +613,7 @@
             this.btTable9.Location = new System.Drawing.Point(26, 444);
             this.btTable9.Name = "btTable9";
             this.btTable9.Size = new System.Drawing.Size(53, 51);
-            this.btTable9.TabIndex = 29;
+            this.btTable9.TabIndex = 9;
             this.btTable9.Text = "9";
             this.btTable9.UseVisualStyleBackColor = false;
             // 
@@ -626,7 +626,7 @@
             this.btTable8.Location = new System.Drawing.Point(26, 362);
             this.btTable8.Name = "btTable8";
             this.btTable8.Size = new System.Drawing.Size(53, 51);
-            this.btTable8.TabIndex = 28;
+            this.btTable8.TabIndex = 8;
             this.btTable8.Text = "8";
             this.btTable8.UseVisualStyleBackColor = false;
             // 
@@ -639,7 +639,7 @@
             this.btTable7.Location = new System.Drawing.Point(26, 287);
             this.btTable7.Name = "btTable7";
             this.btTable7.Size = new System.Drawing.Size(53, 51);
-            this.btTable7.TabIndex = 27;
+            this.btTable7.TabIndex = 7;
             this.btTable7.Text = "7";
             this.btTable7.UseVisualStyleBackColor = false;
             // 
@@ -652,7 +652,7 @@
             this.btTable4.Location = new System.Drawing.Point(138, 116);
             this.btTable4.Name = "btTable4";
             this.btTable4.Size = new System.Drawing.Size(83, 72);
-            this.btTable4.TabIndex = 8;
+            this.btTable4.TabIndex = 4;
             this.btTable4.Text = "4";
             this.btTable4.UseVisualStyleBackColor = false;
             // 
@@ -665,7 +665,7 @@
             this.btTable3.Location = new System.Drawing.Point(32, 116);
             this.btTable3.Name = "btTable3";
             this.btTable3.Size = new System.Drawing.Size(83, 72);
-            this.btTable3.TabIndex = 7;
+            this.btTable3.TabIndex = 3;
             this.btTable3.Text = "3";
             this.btTable3.UseVisualStyleBackColor = false;
             // 
@@ -678,7 +678,7 @@
             this.btTable2.Location = new System.Drawing.Point(138, 26);
             this.btTable2.Name = "btTable2";
             this.btTable2.Size = new System.Drawing.Size(83, 72);
-            this.btTable2.TabIndex = 6;
+            this.btTable2.TabIndex = 2;
             this.btTable2.Text = "2";
             this.btTable2.UseVisualStyleBackColor = false;
             // 
@@ -691,7 +691,7 @@
             this.btTable1.Location = new System.Drawing.Point(32, 26);
             this.btTable1.Name = "btTable1";
             this.btTable1.Size = new System.Drawing.Size(83, 72);
-            this.btTable1.TabIndex = 5;
+            this.btTable1.TabIndex = 1;
             this.btTable1.Text = "1";
             this.btTable1.UseVisualStyleBackColor = false;
             // 

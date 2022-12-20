@@ -14,17 +14,16 @@ namespace АРМ_курсовая
     public class LogIn
     {
         private List<Account> Accounts = new List<Account>();
-        String path = @"C:\Users\Admin\source\repos\3 семестр\WaiterAutomatedWorkplace\dataFiles\WaitersData.json";
 
         public LogIn()
         {
-            if (File.Exists(path))
+            if (File.Exists("WorkersData.json"))
             {
-                Accounts = JsonConvert.DeserializeObject<List<Account>>(File.ReadAllText(path));
+                Accounts = JsonConvert.DeserializeObject<List<Account>>(File.ReadAllText("WorkersData.json"));
             }
             else
             {
-                throw new FileNotFoundException("'WaitersData.json' не существует.");
+                throw new FileNotFoundException("'WorkersData.json' не существует.");
             }
 
         }
@@ -45,7 +44,7 @@ namespace АРМ_курсовая
                 if (account.Login == login && account.Hash.SequenceEqual(Hash))
                 {
                     flag = true;
-                    a = account;//
+                    a = account;
                     break;
                 }
                 else

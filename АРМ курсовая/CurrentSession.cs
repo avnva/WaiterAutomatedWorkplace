@@ -56,8 +56,7 @@ namespace АРМ_курсовая
             bool flag = true;
             foreach (Account i in Accounts)
             {
-                if (currentAccount.Login == i.Login ||
-                currentAccount.Hash.SequenceEqual(i.Hash))
+                if (currentAccount.Login == i.Login)
                 {
                     flag = false;
                     break;
