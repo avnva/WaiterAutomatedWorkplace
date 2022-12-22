@@ -17,11 +17,11 @@ namespace АРМ_курсовая.Resources
         [JsonProperty("bill")]
         public float totalBill { get; set; }
 
-        [JsonProperty("discount")]
-        public float discount { get; set; }
-
         [JsonProperty("quests")]
         public List<Quest> Quests { get; set; }
+
+        //[JsonProperty("discount")]
+        public float discount { get; set; }
 
         public int countQuests;
         public List<Quest> quest;

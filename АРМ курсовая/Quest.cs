@@ -9,15 +9,32 @@ namespace АРМ_курсовая
     public class Quest
     {
         public float bill;
-        List<Dish> dishes = new List<Dish>();
+        public List<Dish> Dishes = new List<Dish>();
+        public Dish CurrentDish;
+        CurrentSession СurrentSession = new CurrentSession();
 
-        private void AddDish()
+        public Quest()
         {
+            Dishes = new List<Dish>();
+        }
 
+        public Quest(Dish _currentDish)
+        {
+            Dishes = new List<Dish>();
+            CurrentDish = _currentDish;
+        }
+        public void AddDishes(Dish dish)
+        {
+            Dishes.Add(dish);
+            bill += dish.Cost;
         }
         private void DeleteDish()
         {
 
         }
+        //public void Load()
+        //{
+        //    СurrentSession.LoadChanges(out Quests, "OrdersData.json");
+        //}
     }
 }

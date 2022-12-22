@@ -34,11 +34,6 @@ namespace АРМ_курсовая
             menu.Load();
         }
 
-        //public MainFormAdminViewModel(Account CurrentAccount)
-        //{
-        //    currentSession = new CurrentSession(CurrentAccount);
-        //    currentSession.Load();
-        //}
         public void DeleteAccount(string Login)
         {
             foreach (Account account in currentSession.Accounts)

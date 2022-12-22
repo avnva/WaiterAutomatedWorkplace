@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="AdminOptions\MainFormAdminViewModel.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="OrderForBinding.cs" />
     <Compile Include="SignIn\Account.cs" />
     <Compile Include="CurrentSession.cs" />
     <Compile Include="Dish.cs" />
