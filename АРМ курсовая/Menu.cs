@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using АРМ_курсовая.Resources;
+using АРМ_курсовая;
 
 namespace АРМ_курсовая
 {
@@ -11,7 +11,7 @@ namespace АРМ_курсовая
     {
         public List<Dish> Dishes;
         public Dish CurrentDish;
-        CurrentSession СurrentSession = new CurrentSession();
+        CurrentSession currentSession = new CurrentSession();
 
         public Menu()
         {
@@ -38,7 +38,7 @@ namespace АРМ_курсовая
                 if (flag)
                 {
                     Dishes.Add(dish);
-                    СurrentSession.SaveChanges(Dishes, "DishesData.json");
+                currentSession.SaveChanges(Dishes, "DishesData.json");
                 }
                 else
                     throw new ArgumentException("Не удалось добавить блюдо, так как такое блюдо уже существует.");
@@ -54,7 +54,7 @@ namespace АРМ_курсовая
                         Dishes[i].Name = dish.Name;
                         Dishes[i].Cost = dish.Cost;
                         Dishes[i].Category = dish.Category;
-                        СurrentSession.SaveChanges(Dishes, "DishesData.json");
+                        currentSession.SaveChanges(Dishes, "DishesData.json");
                     }
                     else
                         throw new ArgumentException("Такое блюдо уже существует!");
@@ -65,12 +65,12 @@ namespace АРМ_курсовая
         public void DeleteDish(int number)
         {
             Dishes.RemoveAt(number);
-            СurrentSession.SaveChanges(Dishes, "DishesData.json");
+            currentSession.SaveChanges(Dishes, "DishesData.json");
         }
 
-            public void Load()
+        public void Load()
         {
-            СurrentSession.LoadChanges(out Dishes, "DishesData.json");
+            currentSession.LoadChanges(out Dishes, "DishesData.json");
         }
     }
 }

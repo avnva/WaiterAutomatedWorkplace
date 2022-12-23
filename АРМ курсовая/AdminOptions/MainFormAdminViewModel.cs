@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using АРМ_курсовая.Resources;
+using АРМ_курсовая;
 
 namespace АРМ_курсовая
 {
@@ -81,7 +81,6 @@ namespace АРМ_курсовая
             {
                 MessageBox.Show("Такое блюдо не существует!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
     }
 }

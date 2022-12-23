@@ -4,38 +4,34 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using АРМ_курсовая.Resources;
+using АРМ_курсовая;
 
 namespace АРМ_курсовая
 {
     public partial class MainFormWaiter : Form
     {
         public MainFormWaiterViewModel ViewModel;
-        public Account CurrentAccount;
-        public Order NewOrder;
-        public Dish CurrentDish;
-        public Quest currentQuest;
-        private List<Dish> Dishes;
-        public Dish GetCurrentDish
-        {
-            get { return CurrentDish; }
-            set { CurrentDish = value; }
-        }
-        public MainFormWaiter(Account currentAccount, Dish dish)
+        int index = 0;
+        
+
+        public MainFormWaiter(Account currentAccount)
         {
             InitializeComponent();
-            ViewModel = new MainFormWaiterViewModel(currentAccount, dish);
-            CurrentAccount = currentAccount;
-            this.lblLogin.Text = $"{CurrentAccount.Login}";
-            pnlTables.Visible = false;
-            pnlMenu.Visible = false;
+            ViewModel = new MainFormWaiterViewModel(currentAccount);
             ViewModel = new MainFormWaiterViewModel();
-            //UpdateDGMenu();
             SetDGSelectedDishes();
+            menuQuests.Items[0].Click += new EventHandler(itemQuest_Click);
+            lblLogin.Text = $"{currentAccount.Login}";
+            pnlTables.Visible = false;
+            btAddQuestAtTheSelectedTable.Visible = false;
         }
+
+        //Настройка таблицы выбранных блюд
         private void SetDGSelectedDishes()
         {
             dataGVSelectedDishes.ColumnCount = 3;
@@ -46,23 +42,38 @@ namespace АРМ_курсовая
             dataGVSelectedDishes.Columns[2].Name = "Cost";
             dataGVSelectedDishes.Columns[2].HeaderText = "Сумма";
         }
+        private void dataGVDish_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (Dish i in ViewModel.menu.Dishes)
+            {
+                if (i.Name == dataGVDish.CurrentCell.Value.ToString())
+                {
+                    ViewModel.currentDish = i;
+                    lblNameDish.Text = i.Name;
+                    lblNameDish.Visible = true;
+                    break;
+                }
+            }
+        }
         private bool CheckMatchDishesDG(Dish dish, int quantity)
-        { 
-            for (int i = 0; i < dataGVSelectedDishes.RowCount - 1; i++)
+        {
+            for (int i = 0; i < dataGVSelectedDishes.RowCount; i++)
             {
                 if (dataGVSelectedDishes[0, i].Value.ToString() == dish.Name)
                 {
                     int currentQuantity = Convert.ToInt32(dataGVSelectedDishes[1, i].Value);
                     dataGVSelectedDishes[1, i].Value = currentQuantity + quantity;
+                    dataGVSelectedDishes[2, i].Value = dish.Cost * (currentQuantity + quantity);
                     return true;
                 }
             }
             return false;
         }
+
+        //Настройка таблицы меню
         private void UpdateDGMenu(string category)
         {
             dataGVDish.DataSource = dishForBindingBindingSource;
-            //ViewModel.currentSession.Dishes.Sort(new CompareApplicantsByID());
             foreach (Dish _dish in ViewModel.menu.Dishes)
             {
                 if (_dish.Category == category)
@@ -74,21 +85,6 @@ namespace АРМ_курсовая
             dataGVDish.RowHeadersWidth = 55;
             dataGVDish.CellClick += dataGVDish_CellContentClick;
         }
-        private void dataGVDish_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            foreach (Dish i in ViewModel.menu.Dishes)
-            {
-                if (i.Name == dataGVDish.CurrentCell.Value.ToString())
-                {
-                    //Dish currentDish = new Dish(i.Name, i.Cost, i.Category);
-                    lblNameDish.Text = i.Name;
-                    lblNameDish.Visible = true;
-                    //ViewModel.AddDish(currentQuest, currentDish);
-                    break;
-                }
-            }
-
-        }
         //установка номеров строк
         private void dataGridView_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
@@ -96,27 +92,8 @@ namespace АРМ_курсовая
             if (headValue == null || !headValue.Equals((e.RowIndex + 1).ToString()))
                 ((DataGridView)sender).Rows[e.RowIndex].HeaderCell.Value = ((e.RowIndex + 1).ToString());
         }
-
-        private void btCloseShift_Click(object sender, EventArgs e)
-        {
-            Hide();
-            LogInForm loginform = new LogInForm();
-            loginform.ShowDialog();
-            Close();
-        }
-
-        private void btAddQuest_Click(object sender, EventArgs e)
-        {
-            pnlTables.Visible = true;
-            pnlMenu.Visible = false;
-            Quest currentQuest = new Quest(null);
-            ViewModel.Dishes.Clear();
-            //List<Dish> Dishes = new List<Dish>();
-            //currentQuest = new Quest();
-            //MainFormWaiterViewModel ViewModel = new MainFormWaiterViewModel(NewOrder);
-            //MainFormWaiterViewModel.AddOrder(NewOrder);
-        }
-
+        
+        //Настройка панели с картой столов
         private void pnlTables_Paint(object sender, PaintEventArgs e)
         {
             Button[] tables = this.pnlTables.Controls.OfType<Button>().ToArray<Button>();
@@ -129,17 +106,45 @@ namespace АРМ_курсовая
         private void TablesBtn_Click(object sender, EventArgs e)
         {
             Button click = sender as Button;
-            // if quests != 0 - за столом уже есть гости, вы уверены, что хотите добавить еще?
-            string message = $"Стол № {click.Text}\n" +
-                $"Статус: {ViewModel.tables[Convert.ToInt32(click.TabIndex)].status}\n" +
-                $"Количество мест: {ViewModel.tables[Convert.ToInt32(click.TabIndex)].numberOfSeats}\n" +
-                $"Добавить гостя?";
-            if (MessageBox.Show(message, "Информация", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            ViewModel.NumberEmptySeats = ViewModel.tables[Convert.ToInt32(click.TabIndex)].numberOfSeats;
+            if (ViewModel.tables[Convert.ToInt32(click.TabIndex)].status == true)
             {
-                pnlTables.Visible = false;
-                pnlMenu.Visible = true;
-                lblNumberTable.Text = click.TabIndex.ToString();
+                ViewModel.NumberEmptySeats = ViewModel.CheckTables(Convert.ToInt32(click.TabIndex));
+                if (ViewModel.NumberEmptySeats != 0)
+                {
+                    if (MessageBox.Show("Этот стол уже занят. Вы уверены, что хотите добавить еще одного гостя?" +
+                        $"Количество свободных мест {ViewModel.NumberEmptySeats}", "Информация", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                    {
+                        ViewModel.NumberEmptySeats -= 1;
+                        pnlTables.Visible = false;
+                        btAddQuestAtTheSelectedTable.Visible = true;
+                        lblNumberTable.Text = click.TabIndex.ToString();
+                        lblEmptySeats.Text = ViewModel.NumberEmptySeats.ToString();
+                        ViewModel.FindOrder(Convert.ToInt32(click.TabIndex));
+                        ViewModel.currentQuest = new Quest();
+                    }
+                }
+                else
+                    MessageBox.Show("За этим столом не осталось свободных мест", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+                string message = $"Стол № {click.Text}\n" +
+                    $"Количество мест: {ViewModel.tables[Convert.ToInt32(click.TabIndex)].numberOfSeats}\n" +
+                    $"Добавить гостя?";
+                if (MessageBox.Show(message, "Информация", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                {
+                    ViewModel.NumberEmptySeats -= 1;
+                    pnlTables.Visible = false;
+                    btAddQuestAtTheSelectedTable.Visible = true;
+                    lblNumberTable.Text = click.TabIndex.ToString();
+                    lblEmptySeats.Text = ViewModel.NumberEmptySeats.ToString();
+                    ViewModel.currentNumberTable = Convert.ToInt32(click.TabIndex) - 1;
+                    ViewModel.currentOrder = new Order();
+                    ViewModel.currentQuest = new Quest();
+                }
+            }
+
         }
         private void Sort_tables(Button[] tables)
         {
@@ -157,34 +162,90 @@ namespace АРМ_курсовая
                 }
             }
         }
+        private void btCloseShift_Click(object sender, EventArgs e)
+        {
+            Hide();
+            LogInForm loginform = new LogInForm();
+            loginform.ShowDialog();
+            Close();
+        }
+
+        private void btAddQuest_Click(object sender, EventArgs e)
+        {
+            pnlTables.Visible = true;
+            btAddQuestAtTheSelectedTable.Visible = false;
+            index = 0;
+        }
 
         private void btAddDishToQuest_Click(object sender, EventArgs e)
         {
-            bool Flag = true;
-            foreach(Dish i in ViewModel.menu.Dishes)
+            if (ViewModel.currentDish != null)
             {
-                if (i.Name == lblNameDish.Text)
+                foreach (Dish i in ViewModel.menu.Dishes)
                 {
-                    for (int j = 0; j < DishCounter.Value; j++)
+                    if (i.Name == ViewModel.currentDish.Name)
                     {
-                        ViewModel.Dishes.Add(i);    
-                    }
-                    if (dataGVSelectedDishes.Rows.Count > 1)
-                    {
-                        if (CheckMatchDishesDG(i, Convert.ToInt32(DishCounter.Value)) == true) 
+                        for (int j = 0; j < DishCounter.Value; j++)
                         {
-                            Flag = false;
+                            ViewModel.AddDishes(i);
                         }
-                    }
-                    if (Flag)
-                    {
+                        if (CheckMatchDishesDG(i, Convert.ToInt32(DishCounter.Value)) == true)
+                        {
+                            break;
+                        }
                         dataGVSelectedDishes.Rows.Add(i.Name, Convert.ToInt32(DishCounter.Value), i.Cost * Convert.ToInt32(DishCounter.Value));
+                        break;
                     }
                 }
+                DishCounter.Value = 1;
+                lblNameDish.Text = "";
+                ViewModel.currentDish = null;
+                ViewModel.SaveQuests(index);
             }
-            DishCounter.Value = 1;
-            lblNameDish.Visible = false;
-            //ViewModel.AddDish(), lblNameDish.Text.ToString())
+            else
+                MessageBox.Show("Блюдо не выбрано!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        }
+
+        private void UpdatedataGVSelectedDishes (List <Dish> dishes)
+        {
+            int quantity = 0;
+            if (dishes.Count > 0)
+            {
+                for (int i = 0; i < dishes.Count - 1; i++)
+                {
+                    if (dishes[i] == dishes[i + 1])
+                    {
+                        quantity += 1;
+                    }
+                    else
+                    {
+                        if (i >= 1 && quantity != 0)
+                        {
+                            if (CheckMatchDishesDG(dishes[i], quantity + 1) == false)
+                            {
+                                dataGVSelectedDishes.Rows.Add(dishes[i].Name, quantity + 1, dishes[i].Cost);
+                            }
+                        }
+                        else
+                        {
+                            dataGVSelectedDishes.Rows.Add(dishes[i].Name, 1, dishes[i].Cost);
+                        }
+                        quantity = 0;
+                    }
+                }
+                if (quantity != 0)
+                {
+                    if (CheckMatchDishesDG(dishes[dishes.Count - 1], quantity + 1) == false)
+                    {
+                        dataGVSelectedDishes.Rows.Add(dishes[dishes.Count - 1].Name, quantity + 1, dishes[dishes.Count - 1].Cost);
+                    }
+                }
+                else
+                {
+                    dataGVSelectedDishes.Rows.Add(dishes[dishes.Count - 1].Name, 1, dishes[dishes.Count - 1].Cost);
+                }
+            }
         }
 
         private void cbCategoryDish_SelectedIndexChanged(object sender, EventArgs e)
@@ -193,9 +254,79 @@ namespace АРМ_курсовая
             UpdateDGMenu(cbCategoryDish.SelectedItem.ToString());
         }
 
-        private void btSaveQuest_Click(object sender, EventArgs e)
+        private void btAddQuestToSelectedTable_Click(object sender, EventArgs e)
+        {
+            //проверка чтобы у всех были блюда сделать
+            if (ViewModel.NumberEmptySeats != 0)
+            {
+                if (ViewModel.currentQuest.Dishes.Count != 0)
+                {
+                    int CountItems = 0;
+                    foreach (ToolStripItem toolItem in menuQuests.Items)
+                    {
+                        CountItems += 1;
+                    }
+                    ToolStripItem item = new ToolStripMenuItem();
+                    item.Text = $"Гость {CountItems + 1}";
+                    item.Name = $"Quest {CountItems + 1}";
+                    menuQuests.Items.Add(item);
+                    item.Click += new EventHandler(itemQuest_Click);
+                    ViewModel.NumberEmptySeats -= 1;
+                    lblEmptySeats.Text = ViewModel.NumberEmptySeats.ToString();
+                }
+                else
+                    MessageBox.Show("Вы не можете добавить нового гостя, пока текущему не добавлены блюда!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+                MessageBox.Show("За этим столом не осталось свободных мест", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void itemQuest_Click(object sender, EventArgs e)
+        {
+            ToolStripItem ClickItem = sender as ToolStripItem;
+            index = Convert.ToInt32(Regex.Replace(ClickItem.Name, @"[^\d]+", ""));
+
+
+            if (ClickItem.Pressed == false)
+            {
+                lblNumberQuest.Text = ClickItem.Text;
+
+                if (ViewModel.currentOrder.Quests.Count >= index)
+                {
+                    index -= 1;
+                    dataGVSelectedDishes.Rows.Clear();
+                    UpdatedataGVSelectedDishes(ViewModel.currentOrder.Quests[index].Dishes);
+                    ViewModel.currentQuest = ViewModel.currentOrder.Quests[index];
+                }
+                else
+                {
+                    index -= 1;
+                    dataGVSelectedDishes.Rows.Clear();
+                    ViewModel.currentQuest = new Quest();
+                }
+            }
+        }
+
+        private void btDeleteDish_Click(object sender, EventArgs e)
         {
 
+            if(dataGVSelectedDishes.CurrentCell != null)
+            {
+                string NameDish = dataGVSelectedDishes[0, dataGVSelectedDishes.CurrentCell.RowIndex].Value.ToString();
+                ViewModel.DeleteDish(NameDish);
+                dataGVSelectedDishes.Rows.Clear();
+                UpdatedataGVSelectedDishes(ViewModel.currentQuest.Dishes);
+                ViewModel.SaveQuests(index);
+                MessageBox.Show("Блюдо успешно удалено!", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+                MessageBox.Show("Блюдо для удаления не выбрано", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btCreateOrder_Click(object sender, EventArgs e)
+        {
+            //проверка чтобы у всех были блюда сделать
+            ViewModel.AddOrder(ViewModel.currentOrder);
         }
     }
 }

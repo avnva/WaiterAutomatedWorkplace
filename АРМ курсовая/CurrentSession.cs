@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Threading.Tasks;
-using АРМ_курсовая.Resources;
+using АРМ_курсовая;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -17,10 +17,12 @@ namespace АРМ_курсовая
     {
         public List<Account> Accounts;
         public Account CurrentAccount;
+        //public List<Order> Orders;
 
         public CurrentSession()
         {
             Accounts = new List<Account>();
+            //Orders = new List<Order>();
         }
 
         public CurrentSession(Account _currentAccount)

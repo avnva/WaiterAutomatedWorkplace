@@ -33,7 +33,7 @@ namespace АРМ_курсовая
                 Hide();
                 if (CurrentAccount.Role == Role.Waiter) 
                 {
-                    MainFormWaiter waiterForm = new MainFormWaiter(CurrentAccount, null);
+                    MainFormWaiter waiterForm = new MainFormWaiter(CurrentAccount);
                     waiterForm.ShowDialog();
                 }
                 else

@@ -58,6 +58,7 @@
       <DependentUpon>MainFormAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="AdminOptions\MainFormAdminViewModel.cs" />
+    <Compile Include="AllOrders.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="OrderForBinding.cs" />
     <Compile Include="SignIn\Account.cs" />

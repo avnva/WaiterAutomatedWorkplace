@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace АРМ_курсовая.Resources
+namespace АРМ_курсовая
 {
     public class Order
     {
-        [JsonProperty("status")]
-        public bool isTaken { get; set; }
+        [JsonProperty("isPaid")]
+        public bool isPaid { get; set; }
 
         [JsonProperty("bill")]
         public float totalBill { get; set; }
@@ -20,34 +20,30 @@ namespace АРМ_курсовая.Resources
         [JsonProperty("quests")]
         public List<Quest> Quests { get; set; }
 
-        //[JsonProperty("discount")]
+        [JsonProperty("table")]
+        public int NumberTable { get; set; }
+
+        //[JsonProperty("table")]
+        //public string Waiter { get; set; } 
+
+        [JsonIgnore]
         public float discount { get; set; }
 
-        public int countQuests;
-        public List<Quest> quest;
+        [JsonIgnore]
         public Quest CurrentQuest;
-        //public Waiter CurrentWaiter;
-        //public List <Quest> Quests;
 
         public Order()
         {
-            isTaken = false;
-            countQuests = 0;
+            isPaid = false;
             totalBill = 0;
             discount = 0;
-            quest = null;
             Quests = new List<Quest>();
         }
-        public Order(Quest _currentQuest)
+        public Order(Quest _currentQuest, int _numberTable)
         {
             Quests = new List<Quest>();
             CurrentQuest = _currentQuest;
-            this.isTaken = isTaken;
-            //this.countQuests = _countQuests;
-            this.totalBill = totalBill;
-            //Discount = discount_;
-            //Quest = quest_;
-            //quests = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText("QuestsData.json"));
+            NumberTable = _numberTable;
         }
         private float Discount
         {
@@ -62,16 +58,16 @@ namespace АРМ_курсовая.Resources
                 discount = value;
             }
         }
-        public List<Quest> Quest
-        {
-            get { return quest; }
-            set { quest = value; }
-        }
 
         public void AddQuest(Quest quest)
         {
             Quests.Add(quest);
+            totalBill += quest.Bill;
+        }
 
+        public void EditQuest(Quest quest, int index)
+        {
+            Quests[index] = quest;
         }
 
         public void DeleteQuest(Quest quest)
@@ -81,16 +77,15 @@ namespace АРМ_курсовая.Resources
 
         private void ChangeStatus()
         {
-            if (isTaken==true)
-                isTaken = false;
+            if (isPaid == true)
+                isPaid = false;
             else
-                isTaken = true;
+                isPaid = true;
         }
         
         private void MakeDiscount(float bill)
         {
             bill = bill - (bill / 100 * Discount);
         }
-
     }
 }
