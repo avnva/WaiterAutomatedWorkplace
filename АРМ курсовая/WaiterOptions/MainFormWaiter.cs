@@ -23,7 +23,6 @@ namespace АРМ_курсовая
         {
             InitializeComponent();
             ViewModel = new MainFormWaiterViewModel(currentAccount);
-            ViewModel = new MainFormWaiterViewModel();
             SetDGSelectedDishes();
             menuQuests.Items[0].Click += new EventHandler(itemQuest_Click);
             lblLogin.Text = $"{currentAccount.Login}";
@@ -31,8 +30,20 @@ namespace АРМ_курсовая
             pnlAddQuest.Visible = false;
             btCreateOrder.Visible = false;
             cbCategoryDish.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbDiscount.DropDownStyle = ComboBoxStyle.DropDownList;
         }
-
+        private void UpdateDGOrders(Status status)
+        {
+            dataGVOrders.DataSource = orderForBindingBindingSource;
+            dataGVOrders.Rows.Clear();
+            foreach (Order _order in ViewModel.allOrders.Orders)
+            {
+                if (_order.WaiterLogin == ViewModel.currentSession.CurrentAccount.Login && _order.Status == status)
+                    orderForBindingBindingSource.Add(new OrderForBinding(_order.Status, _order.NumberTable, _order.Quests.Count, _order.TotalBill, _order.WaiterLogin, _order.Time));
+            }
+            dataGVOrders.RowPrePaint += dataGridView_RowPrePaint;
+            dataGVOrders.RowHeadersWidth = 55;
+        }
         //Настройка таблицы выбранных блюд
         private void SetDGSelectedDishes()
         {
@@ -126,8 +137,8 @@ namespace АРМ_курсовая
                     lblEmptySeats.Text = ViewModel.NumberEmptySeats.ToString();
                     ViewModel.currentNumberTable = Convert.ToInt32(click.TabIndex);
                     index = 0;
-                    ViewModel.currentOrder = new Order();
-                    ViewModel.currentOrder.NumberTable = ViewModel.currentNumberTable;
+                    //ViewModel.currentOrder = new Order();
+                    //ViewModel.currentOrder.NumberTable = ViewModel.currentNumberTable;
                     ViewModel.currentQuest = new Quest();
                     BlockButtons();
                 }
@@ -329,23 +340,26 @@ namespace АРМ_курсовая
         {
             if (ViewModel.NumberEmptySeats != 0)
             {
-                if (ViewModel.CheckQuests() && ViewModel.currentOrder.Quests.Count != 0)
+                if (ViewModel.currentOrder != null)
                 {
-                    int CountItems = 0;
-                    foreach (ToolStripItem toolItem in menuQuests.Items)
+                    if (ViewModel.CheckQuests())
                     {
-                        CountItems += 1;
-                    }
-                    ToolStripItem item = new ToolStripMenuItem();
-                    item.Text = $"Гость {CountItems + 1}";
-                    item.Name = $"Quest {CountItems + 1}";
-                    menuQuests.Items.Add(item);
-                    item.Click += new EventHandler(itemQuest_Click);
-                    ViewModel.NumberEmptySeats -= 1;
-                    lblEmptySeats.Text = ViewModel.NumberEmptySeats.ToString();
-                    ViewModel.currentQuest = new Quest();
-                    ViewModel.currentOrder.Quests.Add(ViewModel.currentQuest);
-                    ViewModel.currentQuest = ViewModel.currentOrder.Quests[index];
+                        int CountItems = 0;
+                        foreach (ToolStripItem toolItem in menuQuests.Items)
+                        {
+                            CountItems += 1;
+                        }
+                        ToolStripItem item = new ToolStripMenuItem();
+                        item.Text = $"Гость {CountItems + 1}";
+                        item.Name = $"Quest {CountItems + 1}";
+                        menuQuests.Items.Add(item);
+                        item.Click += new EventHandler(itemQuest_Click);
+                        ViewModel.NumberEmptySeats -= 1;
+                        lblEmptySeats.Text = ViewModel.NumberEmptySeats.ToString();
+                        ViewModel.currentQuest = new Quest();
+                        ViewModel.currentOrder.Quests.Add(ViewModel.currentQuest);
+                        ViewModel.currentQuest = ViewModel.currentOrder.Quests[index];
+                    } 
                 }
                 else
                     MessageBox.Show("Вы не можете добавить нового гостя, пока текущему не добавлены блюда!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -369,7 +383,7 @@ namespace АРМ_курсовая
                 lblNumberQuest.Text = ClickItem.Text;
                 ClickItem.BackColor = Color.FromArgb(0,0,55) ;
                 ClickItem.ForeColor = Color.Azure;
-                //ClickItem.FontColor = Color.Azure;
+
                 if (ViewModel.currentOrder.Quests.Count >= index)
                 {
                     index -= 1;
@@ -409,6 +423,7 @@ namespace АРМ_курсовая
         {
             if (ViewModel.CheckQuests())
             {
+                //ViewModel.currentOrder = new Order();
                 ViewModel.AddOrder(ViewModel.currentOrder);
                 MessageBox.Show("Заказ сохранен!", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 pnlAddQuest.Visible = false;
@@ -426,7 +441,7 @@ namespace АРМ_курсовая
 
         private void btDeleteQuest_Click(object sender, EventArgs e)
         {
-            if (ViewModel.currentOrder.Quests.Count > 1)
+            if (ViewModel.currentOrder != null && ViewModel.currentOrder.Quests.Count > 1)
             {
                 ViewModel.DeleteQuest();
                 ViewModel.NumberEmptySeats += 1;
@@ -476,6 +491,209 @@ namespace АРМ_курсовая
                 pnlAddQuest.Visible = false;
                 UnblockButtons();
             }
+        }
+
+        private void btPayOrder_Click(object sender, EventArgs e)
+        {
+            pnlOrders.Visible = true;
+            pnlAddQuest.Visible = false;
+            pnlTables.Visible = false;
+            lblPay.Visible = true;
+            btPayTable.Visible = true;
+            numericTable.Visible = true;
+            pnlPayTable.Visible = false;
+            BlockButtons();
+            UpdateDGOrders(АРМ_курсовая.Status.Активен);
+        }
+
+        private void btBack_Click(object sender, EventArgs e)
+        {
+            pnlOrders.Visible = false;
+            pnlPayTable.Visible = false;
+            pnlAddQuest.Visible = false;
+            pnlTables.Visible = false;
+            UnblockButtons();
+        }
+
+        private void btPayTable_Click(object sender, EventArgs e)
+        {
+           bool Flag = false;
+           for (int i=0; i < ViewModel.allOrders.Orders.Count; i++)
+           {
+                if (ViewModel.allOrders.Orders[i].NumberTable == Convert.ToInt32(numericTable.Value) && ViewModel.allOrders.Orders[i].Status == АРМ_курсовая.Status.Активен)
+                {
+                    Flag = true;
+                    ViewModel.currentOrder = ViewModel.allOrders.Orders[i];
+                    pnlPayTable.Visible = true;
+                    int CountQuest = ViewModel.currentOrder.Quests.Count;
+                    lblTable.Text = $"Стол№ {ViewModel.currentOrder.NumberTable}";
+                    lblNumberQuests.Text = $"Гостей всего: {CountQuest}";
+                    lblCost.Text = $"Общая сумма: {ViewModel.currentOrder.TotalBill}";
+                    Label[] labelQuest = new Label[CountQuest];
+                    Label[] labelCost = new Label[CountQuest];
+                    for (int j = 0; j < CountQuest; j++)
+                    {
+                        labelQuest[j] = new Label();
+                        labelQuest[j].Name = $"Quest{j}";
+                        labelQuest[j].Location = new Point(65, 110 + j * 40);
+                        labelQuest[j].Text = $"Гость {j+1}:";
+                        labelQuest[j].Visible = true;
+                        pnlPayTable.Controls.Add(labelQuest[j]);
+                        labelCost[j] = new Label();
+                        labelCost[j].Name = $"Cost{j}";
+                        labelCost[j].Location = new Point(170, 110 + j * 40);
+                        labelCost[j].Text = ViewModel.currentOrder.Quests[j].Bill.ToString();
+                        labelCost[j].Visible = true;
+                        pnlPayTable.Controls.Add(labelCost[j]);
+                    }
+                }
+           }
+           if (!Flag)
+           {
+                MessageBox.Show("Такого заказа не существует!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           }
+        }
+
+        private void btMakeDiscount_Click(object sender, EventArgs e)
+        {
+            if(lblDiscount.Visible == true)
+            {
+                if (cbDiscount.SelectedItem != null)
+                {
+                    float discount = Convert.ToInt32(Regex.Replace(cbDiscount.SelectedItem.ToString(), @"[^\d]+", ""));
+                    ViewModel.BringBackCost(discount);
+                    UpdateCostLbl();
+                }
+                lblDiscount.Visible = false;
+                cbDiscount.Visible = false;
+            }
+            else
+            {
+                lblDiscount.Visible = true;
+                cbDiscount.Visible = true;
+                cbDiscount.Enabled = true;
+            }
+        }
+        private void UpdateCostLbl()
+        {
+            lblCost.Text = $"Общая сумма: {ViewModel.currentOrder.TotalBill}";
+            foreach (Control lblCost in pnlPayTable.Controls)
+            {
+                if (lblCost.GetType() == typeof(Label))
+                {
+                    for (int i = 0; i < ViewModel.currentOrder.Quests.Count; i++)
+                    {
+                        if (lblCost.Name == $"Cost{i}")
+                        {
+                            lblCost.Text = ViewModel.currentOrder.Quests[i].Bill.ToString();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void RemoveLbl(int index)
+        {
+            foreach (Control lbl in pnlPayTable.Controls)
+            {
+                if (lbl.GetType() == typeof(Label))
+                {
+                    if (lbl.Name == $"Cost{index}" || lbl.Name == $"Quest{index}")
+                    {
+                        pnlPayTable.Controls.Remove(lbl);
+                    }
+                }
+            }
+        }
+        private void cbDiscount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            float discount = Convert.ToInt32(Regex.Replace(cbDiscount.SelectedItem.ToString(), @"[^\d]+", ""));
+            ViewModel.MakeDiscount(discount);
+            UpdateCostLbl();
+            cbDiscount.Enabled = false;
+        }
+
+        private void btSeparateBill_Click(object sender, EventArgs e)
+        {
+            lblJoin.Visible = true;
+            checkedListBoxBill.Visible = true;
+            for (int i = 0; i < ViewModel.currentOrder.Quests.Count; i++)
+            {
+                checkedListBoxBill.Items.Insert(0, $"Гость {i + 1}");
+            }
+        }
+
+        private void btPay_Click(object sender, EventArgs e)
+        {
+            bool Flag = true;
+            foreach (Control control in pnlPayTable.Controls)
+            {
+                if (control as CheckBox != null)
+                {
+                    if ((control as CheckBox).Checked)
+                    {
+                        int index = Convert.ToInt32(Regex.Replace(control.Text, @"[^\d]+", "")) - 1;
+                        checkedListBoxBill.Items.Remove(control);
+                        Flag = false;
+                        RemoveLbl(index);
+                    }
+                }
+            }
+            if (Flag)
+            {
+                for (int i = 0; i < ViewModel.currentOrder.Quests.Count; i++)
+                {
+                    RemoveLbl(i);
+                }
+            }
+            ViewModel.ChangeStatus();
+            MessageBox.Show("Заказ оплачен!", "Оплата", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            pnlAddQuest.Visible = false;
+            pnlOrders.Visible = false;
+            pnlPayTable.Visible = false;
+            pnlTables.Visible = false;
+            lblDiscount.Visible = false;
+            lblJoin.Visible = false;
+            cbDiscount.Visible = false;
+            btMakeDiscount.Visible = false;
+            checkedListBoxBill.Items.Clear();
+            UnblockButtons();
+        }
+
+        private void btCurrentOrders_Click(object sender, EventArgs e)
+        {
+            UpdateDGOrders(АРМ_курсовая.Status.Активен);
+            pnlOrders.Visible = true;
+            pnlAddQuest.Visible = false;
+            pnlTables.Visible = false;
+            lblPay.Visible = false;
+            btPayTable.Visible = false;
+            numericTable.Visible = false;
+            pnlPayTable.Visible = false;
+        }
+
+        private void btMakeChages_Click(object sender, EventArgs e)
+        {
+            UpdateDGOrders(АРМ_курсовая.Status.Активен);
+            pnlOrders.Visible = true;
+            pnlAddQuest.Visible = false;
+            pnlTables.Visible = false;
+            lblPay.Visible = false;
+            btPayTable.Visible = false;
+            numericTable.Visible = false;
+            pnlPayTable.Visible = false;
+        }
+
+        private void btClosedOrders_Click(object sender, EventArgs e)
+        {
+            UpdateDGOrders(АРМ_курсовая.Status.Завершен);
+            pnlOrders.Visible = true;
+            pnlAddQuest.Visible = false;
+            pnlTables.Visible = false;
+            lblPay.Visible = false;
+            btPayTable.Visible = false;
+            numericTable.Visible = false;
+            pnlPayTable.Visible = false;
         }
     }
 }

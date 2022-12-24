@@ -43,9 +43,19 @@ namespace АРМ_курсовая
         {
             Dishes.Remove(dish);
         }
-        //public void Load()
-        //{
-        //    СurrentSession.LoadChanges(out Quests, "OrdersData.json");
-        //}
+
+        public void MakeDiscount(Quest quest, float discount)
+        {
+            quest.Bill = quest.Bill - (quest.Bill / 100 * discount);
+        }
+        public void BringBackCost(Quest quest, float discount)
+        {
+            quest.Bill = 0;
+            for (int i = 0; i <quest.Dishes.Count; i++)
+            {
+                quest.Bill += quest.Dishes[i].Cost
+;            }
+            
+        }
     }
 }

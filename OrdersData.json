@@ -1,1 +1,1 @@
-[{"isPaid":false,"bill":200.0,"quests":[{"bill":450.0,"dishes":[{"dishName":"Мохито","cost":200,"category":"Напиток"},{"dishName":"Цезарь","cost":250,"category":"Салат"}]},{"bill":1050.0,"dishes":[{"dishName":"Барбекю","cost":350,"category":"Пицца"},{"dishName":"Барбекю","cost":350,"category":"Пицца"},{"dishName":"Барбекю","cost":350,"category":"Пицца"}]}],"table":25}]
+[{"status":1,"bill":180.0,"quests":[{"bill":180.0,"dishes":[{"dishName":"Мохито","cost":200,"category":"Напиток"}]}],"table":20,"time":"2022-12-24T21:12:56.7497078+07:00","waiter":"Waiter"}]

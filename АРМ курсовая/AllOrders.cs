@@ -35,6 +35,39 @@ namespace АРМ_курсовая
             currentSession.SaveChanges(Orders, "OrdersData.json");
 
         }
+
+        public int CheckOrder(Order order)
+        {
+            bool flag = false;
+            int index = -1;
+            for (int i = 0; i < Orders.Count; i++)
+            {
+                Order newOrder = Orders[i];
+                if (newOrder.Status == order.Status &&
+                    newOrder.Time == order.Time && 
+                    newOrder.WaiterLogin == order.WaiterLogin)
+                {
+                    for (int j = 0; j < order.Quests.Count; j++)
+                    {
+                        for (int k = 0; k < order.Quests[j].Dishes.Count; k++)
+                        {
+                            if (newOrder.Quests[j].Dishes[k].Name == order.Quests[j].Dishes[k].Name &&
+                                newOrder.Quests[j].Dishes[k].Cost == order.Quests[j].Dishes[k].Cost &&
+                                newOrder.Quests[j].Dishes[k].Category == order.Quests[j].Dishes[k].Category)
+                            {
+                                flag = true;
+                            }
+                            else flag = false;
+                        }
+                    }
+                }
+                if (flag)
+                {
+                    index = i; break;
+                }
+            }
+            return index;
+        }
         public bool DeleteOrder(Order order)
         {
             bool flag = false;
@@ -48,23 +81,16 @@ namespace АРМ_курсовая
             if (flag) currentSession.SaveChanges(Orders, "OrdersData.json");
             return flag;
         }
-        //public void EditDish(Dish dish, int number)
-        //{
-        //    for (int i = 0; i < Dishes.Count; i++)
-        //    {
-        //        if (i == number - 1)
-        //        {
-        //            if (Dishes[i].Name != dish.Name || Dishes[i].Cost != dish.Cost || Dishes[i].Category != dish.Category)
-        //            {
-        //                Dishes[i].Name = dish.Name;
-        //                Dishes[i].Cost = dish.Cost;
-        //                Dishes[i].Category = dish.Category;
-        //                currentSession.SaveChanges(Dishes, "DishesData.json");
-        //            }
-        //            else
-        //                throw new ArgumentException("Такое блюдо уже существует!");
-        //        }
-        //    }
-        //}
+        public void EditOrder(Order order, int index)
+        {
+            for (int i = 0; i < Orders.Count; i++)
+            {
+                if (i == index)
+                {
+                    Orders[i] = order;
+                }
+            }
+            currentSession.SaveChanges(Orders, "OrdersData.json");
+        }
     }
 }

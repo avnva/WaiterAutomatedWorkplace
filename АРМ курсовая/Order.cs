@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,21 @@ using System.Threading.Tasks;
 
 namespace АРМ_курсовая
 {
+    public enum Status : byte
+    {
+        //[Description("Worker can add, delete and find applicants")]
+        Активен = 0,
+        //[Description("Admin can add, delete workers, add, delete and find applicants")]
+        Завершен = 1
+    };
     public class Order
     {
-        [JsonProperty("isPaid")]
-        public bool isPaid { get; set; }
+
+        [JsonProperty("status")]
+        public Status Status { get; set; }
 
         [JsonProperty("bill")]
-        public float totalBill { get; set; }
+        public float TotalBill { get; set; }
 
         [JsonProperty("quests")]
         public List<Quest> Quests { get; set; }
@@ -23,71 +32,75 @@ namespace АРМ_курсовая
         [JsonProperty("table")]
         public int NumberTable { get; set; }
 
+        [JsonProperty ("time")]
+        public DateTime Time { get; set; }
+
+        [JsonProperty("waiter")]
+        public string WaiterLogin { get; set; }
         //[JsonProperty("table")]
         //public string Waiter { get; set; } 
 
-        [JsonIgnore]
-        public float discount { get; set; }
-
-        [JsonIgnore]
-        public Quest CurrentQuest;
+        //[JsonIgnore]
+        //public float discount { get; set; }
 
         public Order()
         {
-            isPaid = false;
-            totalBill = 0;
-            discount = 0;
+            Status = 0;
+            TotalBill = 0;
+            //discount = 0;
             Quests = new List<Quest>();
             NumberTable = 0;
+            Time = DateTime.Now;
         }
-        public Order(Quest _currentQuest, int _numberTable)
+        public Order(int _numbertable, string _waiterlogin)
         {
             Quests = new List<Quest>();
-            CurrentQuest = _currentQuest;
-            NumberTable = _numberTable;
+            //currentquest = _currentquest;
+            NumberTable = _numbertable;
+            WaiterLogin = _waiterlogin;
+
         }
-        private float Discount
-        {
-            get
-            {
-                return discount;
-            }
-            set
-            {
-                if (value < 0 && value > 100)
-                    throw new ArgumentException();
-                discount = value;
-            }
-        }
+        //private float Discount
+        //{
+        //    get
+        //    {
+        //        return discount;
+        //    }
+        //    set
+        //    {
+        //        if (value < 0 && value > 100)
+        //            throw new ArgumentException();
+        //        discount = value;
+        //    }
+        //}
 
         public void AddQuest(Quest quest)
         {
             Quests.Add(quest);
-            totalBill += quest.Bill;
+            TotalBill += quest.Bill;
         }
 
         public void EditQuest(Quest quest, int index)
         {
+            TotalBill -= Quests[index].Bill;
             Quests[index] = quest;
+            TotalBill += Quests[index].Bill;
         }
 
         public void DeleteQuest(Quest quest)
         {
             Quests.Remove(quest);
-            totalBill -= quest.Bill;
+            TotalBill -= quest.Bill;
         }
 
-        private void ChangeStatus()
-        {
-            if (isPaid == true)
-                isPaid = false;
-            else
-                isPaid = true;
-        }
-        
-        private void MakeDiscount(float bill)
-        {
-            bill = bill - (bill / 100 * Discount);
-        }
+        //private void ChangeStatus()
+        //{
+        //    if (isPaid == true)
+        //        isPaid = false;
+        //    else
+        //        isPaid = true;
+        //}
+
+
     }
 }

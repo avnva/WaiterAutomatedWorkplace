@@ -15,35 +15,22 @@ namespace АРМ_курсовая
         public AllOrders allOrders;
         public Order currentOrder;
         public Quest currentQuest;
+        public Dish currentDish;
         public int currentNumberTable = 0;
         public int NumberEmptySeats = 0;
 
-        //public Order newOrder = new Order();
-        //public Quest newQuest = new Quest();
-        public CurrentSession currentSession = new CurrentSession();
-        public Dish currentDish;
+        public CurrentSession currentSession;
+        
         public  List<Table> tables = new List<Table>();
         Table firstType = new Table(8);
         Table secondType = new Table(2);
         Table thirdType = new Table(5);
         public Menu menu;
-        
-        //public Order currentOrder;
-        //public List<Dish> Dishes = new List<Dish>();
-        //public List<Quest> Quests;
-        //public List <Order> Orders = new List<Order>(); 
-        //public List <Dish> dishes = new List<Dish>();
 
-        //public MainFormWaiterViewModel(Quest NewQuest)
-        //{
-        //    newOrder = new Order(NewQuest);
-        //    //currentSession.Load();
-        //}
-
-
-        public MainFormWaiterViewModel()
+        public MainFormWaiterViewModel(Account CurrentAccount)
         {
-            for (int i = 0; i < 7 ; i++)
+            currentSession = new CurrentSession(CurrentAccount);
+            for (int i = 0; i < 7; i++)
             {
                 tables.Add(firstType);
             }
@@ -66,15 +53,7 @@ namespace АРМ_курсовая
                 MessageBox.Show(ex.Message, "Критическая ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(1);
             }
-        }
-        public MainFormWaiterViewModel(Account CurrentAccount)
-        {
-            currentSession = new CurrentSession(CurrentAccount);
-
-            //currentSession.Load();
-            //menu = new Menu();
-            //menu.Load();
-            //LoadOrders();
+            allOrders.LoadOrders();
         }
         
         public int CheckTable(int indexTable)
@@ -99,10 +78,11 @@ namespace АРМ_курсовая
 
         public void AddOrder(Order order)
         {
+            order.Time = DateTime.Now;
             allOrders.LoadOrders();
             if (allOrders.Orders == null)
             {
-                allOrders = new AllOrders(order);
+                allOrders = new AllOrders();
             }
             allOrders.AddOrder(order);
         }
@@ -111,8 +91,13 @@ namespace АРМ_курсовая
             allOrders.LoadOrders();
             allOrders.DeleteOrder(order);
         }
+        public void EditOrder(Order order, int index) 
+        {
+            //allOrders.LoadOrders();
+            allOrders.EditOrder(order, index);
+        }
         public void FindOrder(int indexTable)
-        {//totalbill
+        {
             allOrders.LoadOrders();
             for (int i = 0; i < allOrders.Orders.Count; i++)
             {
@@ -122,20 +107,30 @@ namespace АРМ_курсовая
                 }
             }
         }
+        public void ChangeStatus()
+        {
+            int index = allOrders.CheckOrder(currentOrder);
+            currentOrder.Status = Status.Завершен;
+            EditOrder(currentOrder, index);
+        }
+
 
 
         public void AddQuest(Quest quest)
         {
-            if (currentOrder.Quests == null)
+            if (currentOrder == null)
             {
-                currentOrder = new Order(quest, currentNumberTable);
+                currentOrder = new Order(currentNumberTable, currentSession.CurrentAccount.Login);
             }
             currentOrder.AddQuest(quest);
-            currentOrder.totalBill += quest.Bill;
+            //currentOrder.TotalBill += quest.Bill;
         }
         public void EditQuest(Quest quest, int index)
         {
-            currentOrder.EditQuest(quest, index);
+
+            //currentOrder.Quests[index] = quest;
+            //currentOrder.TotalBill 
+             currentOrder.EditQuest(quest, index);
         }
         public void DeleteQuest()
         {
@@ -143,9 +138,14 @@ namespace АРМ_курсовая
         }
         public void SaveQuests(int index)
         {
-            if (currentOrder.Quests.Count > index)
+            if (currentOrder != null)
             {
-                EditQuest(currentQuest, index);
+                if (currentOrder.Quests.Count > index)
+                {
+                    EditQuest(currentQuest, index);
+                }
+                else
+                    AddQuest(currentQuest);
             }
             else
                 AddQuest(currentQuest);
@@ -160,7 +160,37 @@ namespace АРМ_курсовая
                 }
             }
             return true;
+
         }
+        public void MakeDiscount(float discount)
+        {
+            allOrders.LoadOrders();
+            int ind = allOrders.CheckOrder(currentOrder);
+
+            for (int i = 0; i < currentOrder.Quests.Count; i++)
+            {
+                currentOrder.TotalBill -= currentOrder.Quests[i].Bill;
+                currentQuest = currentOrder.Quests[i];
+                currentQuest.MakeDiscount(currentQuest, discount);
+                currentOrder.TotalBill += currentQuest.Bill;
+            }
+            EditOrder(currentOrder, ind);
+        }
+        public void BringBackCost(float discount)
+        {
+            allOrders.LoadOrders();
+            int ind = allOrders.CheckOrder(currentOrder);
+
+            for (int i = 0; i < currentOrder.Quests.Count; i++)
+            {
+                currentOrder.TotalBill -= currentOrder.Quests[i].Bill;
+                currentQuest = currentOrder.Quests[i];
+                currentQuest.BringBackCost(currentQuest, discount);
+                currentOrder.TotalBill += currentQuest.Bill;
+            }
+            EditOrder(currentOrder, ind);
+        }
+
 
 
         public void AddDishes(Dish dish)
