@@ -36,6 +36,7 @@ namespace АРМ_курсовая
 
         public void DeleteAccount(string Login)
         {
+            bool flag = false;
             foreach (Account account in currentSession.Accounts)
             {
                 if (account.Login == Login)
@@ -43,6 +44,7 @@ namespace АРМ_курсовая
                     try
                     {
                         currentSession.DeleteAccount(account);
+                        flag = true;
                         MessageBox.Show("Аккаунт успешно удален", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
@@ -51,6 +53,10 @@ namespace АРМ_курсовая
                         MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+            if (!flag)
+            {
+                MessageBox.Show("Такой аккаунт не существует!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void AddDish(Dish dish)

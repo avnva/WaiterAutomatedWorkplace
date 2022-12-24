@@ -116,6 +116,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Dish.datasource" />
     <None Include="Properties\DataSources\DishForBinding.datasource" />
+    <None Include="Properties\DataSources\OrderForBinding.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

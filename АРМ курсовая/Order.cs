@@ -38,6 +38,7 @@ namespace АРМ_курсовая
             totalBill = 0;
             discount = 0;
             Quests = new List<Quest>();
+            NumberTable = 0;
         }
         public Order(Quest _currentQuest, int _numberTable)
         {
@@ -73,6 +74,7 @@ namespace АРМ_курсовая
         public void DeleteQuest(Quest quest)
         {
             Quests.Remove(quest);
+            totalBill -= quest.Bill;
         }
 
         private void ChangeStatus()

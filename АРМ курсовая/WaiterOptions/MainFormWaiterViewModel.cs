@@ -77,15 +77,22 @@ namespace АРМ_курсовая
             //LoadOrders();
         }
         
-        public int CheckTables(int indexTable)
+        public int CheckTable(int indexTable)
         {
             allOrders.LoadOrders();
-            for (int i = 0; i < allOrders.Orders.Count; i++)
+            if (allOrders.Orders != null)
             {
-                if (allOrders.Orders[i].NumberTable == indexTable)
+                for (int i = 0; i < allOrders.Orders.Count; i++)
                 {
-                    NumberEmptySeats = tables[indexTable].numberOfSeats - allOrders.Orders[i].Quests.Count;
+                    if (allOrders.Orders[i].NumberTable == indexTable)
+                    {
+                        NumberEmptySeats = tables[indexTable].numberOfSeats - allOrders.Orders[i].Quests.Count;
+                    }
                 }
+            }
+            else
+            {
+                NumberEmptySeats = tables[indexTable].numberOfSeats;
             }
             return NumberEmptySeats;
         }
@@ -105,7 +112,7 @@ namespace АРМ_курсовая
             allOrders.DeleteOrder(order);
         }
         public void FindOrder(int indexTable)
-        {
+        {//totalbill
             allOrders.LoadOrders();
             for (int i = 0; i < allOrders.Orders.Count; i++)
             {
@@ -124,14 +131,15 @@ namespace АРМ_курсовая
                 currentOrder = new Order(quest, currentNumberTable);
             }
             currentOrder.AddQuest(quest);
+            currentOrder.totalBill += quest.Bill;
         }
         public void EditQuest(Quest quest, int index)
         {
             currentOrder.EditQuest(quest, index);
         }
-        public void DeleteQuest(Quest quest)
+        public void DeleteQuest()
         {
-            currentOrder.DeleteQuest(quest);
+            currentOrder.DeleteQuest(currentQuest);
         }
         public void SaveQuests(int index)
         {
@@ -141,6 +149,17 @@ namespace АРМ_курсовая
             }
             else
                 AddQuest(currentQuest);
+        }
+        public bool CheckQuests()
+        {
+            for (int i = 0; i < currentOrder.Quests.Count; i++)
+            {
+                if (currentOrder.Quests[i].Dishes.Count == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
 

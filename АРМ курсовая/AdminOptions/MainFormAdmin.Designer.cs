@@ -65,15 +65,15 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.dataGVDishes = new System.Windows.Forms.DataGridView();
-            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dishForBindingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btBack = new System.Windows.Forms.Button();
             this.pnlDeleteWorker = new System.Windows.Forms.Panel();
             this.tbLogin = new System.Windows.Forms.TextBox();
             this.btDelete = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dishForBindingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlMain.SuspendLayout();
             this.pnlEditWorkers.SuspendLayout();
             this.pnlEditMenu.SuspendLayout();
@@ -82,8 +82,8 @@
             this.pnlEditDish.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numEditDish)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVDishes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dishForBindingBindingSource)).BeginInit();
             this.pnlDeleteWorker.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dishForBindingBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -528,38 +528,6 @@
             this.dataGVDishes.Size = new System.Drawing.Size(462, 343);
             this.dataGVDishes.TabIndex = 1;
             // 
-            // categoryDataGridViewTextBoxColumn
-            // 
-            this.categoryDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
-            this.categoryDataGridViewTextBoxColumn.Frozen = true;
-            this.categoryDataGridViewTextBoxColumn.HeaderText = "Категория";
-            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
-            this.categoryDataGridViewTextBoxColumn.ReadOnly = true;
-            this.categoryDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Название";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // costDataGridViewTextBoxColumn
-            // 
-            this.costDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
-            this.costDataGridViewTextBoxColumn.HeaderText = "Цена";
-            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
-            this.costDataGridViewTextBoxColumn.ReadOnly = true;
-            this.costDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // dishForBindingBindingSource
-            // 
-            this.dishForBindingBindingSource.DataSource = typeof(АРМ_курсовая.DishForBinding);
-            // 
             // btBack
             // 
             this.btBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
@@ -614,6 +582,38 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Введите логин сотрудника:";
             // 
+            // categoryDataGridViewTextBoxColumn
+            // 
+            this.categoryDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
+            this.categoryDataGridViewTextBoxColumn.Frozen = true;
+            this.categoryDataGridViewTextBoxColumn.HeaderText = "Категория";
+            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
+            this.categoryDataGridViewTextBoxColumn.ReadOnly = true;
+            this.categoryDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Название";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // costDataGridViewTextBoxColumn
+            // 
+            this.costDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
+            this.costDataGridViewTextBoxColumn.HeaderText = "Цена";
+            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
+            this.costDataGridViewTextBoxColumn.ReadOnly = true;
+            this.costDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // dishForBindingBindingSource
+            // 
+            this.dishForBindingBindingSource.DataSource = typeof(АРМ_курсовая.DishForBinding);
+            // 
             // MainFormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -622,10 +622,10 @@
             this.ClientSize = new System.Drawing.Size(481, 530);
             this.Controls.Add(this.btBack);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.pnlEditDish);
             this.Controls.Add(this.pnlAddDish);
             this.Controls.Add(this.pnlDeleteWorker);
             this.Controls.Add(this.pnlMain);
+            this.Controls.Add(this.pnlEditDish);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.ForeColor = System.Drawing.Color.Azure;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -645,9 +645,9 @@
             this.pnlEditDish.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numEditDish)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVDishes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dishForBindingBindingSource)).EndInit();
             this.pnlDeleteWorker.ResumeLayout(false);
             this.pnlDeleteWorker.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dishForBindingBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

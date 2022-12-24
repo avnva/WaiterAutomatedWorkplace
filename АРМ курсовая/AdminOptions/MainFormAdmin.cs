@@ -109,7 +109,7 @@ namespace АРМ_курсовая
         }
         private void btDeleteCurrentAccount_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Вы уверены, что хотите удалить этот аккаунт?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (MessageBox.Show("Вы уверены, что хотите удалить этот аккаунт?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 Hide();
                 ViewModel.DeleteAccount(CurrentAccount.Login);
@@ -191,13 +191,13 @@ namespace АРМ_курсовая
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
         private void btDeleteDish_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Вы уверены, что хотите удалить блюдо?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (MessageBox.Show("Вы уверены, что хотите удалить блюдо?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 ViewModel.DeleteDish(Convert.ToInt32(numEditDish.Value));
                 dishForBindingBindingSource.Clear();
@@ -207,7 +207,7 @@ namespace АРМ_курсовая
 
         private void btDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Вы уверены, что хотите удалить этот аккаунт?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (MessageBox.Show("Вы уверены, что хотите удалить этот аккаунт?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 ViewModel.DeleteAccount(tbLogin.Text);
             }

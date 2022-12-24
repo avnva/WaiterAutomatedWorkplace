@@ -38,6 +38,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbl = new System.Windows.Forms.Label();
             this.lbShiftOpen = new System.Windows.Forms.Label();
@@ -83,7 +87,8 @@
             this.btTable3 = new System.Windows.Forms.Button();
             this.btTable2 = new System.Windows.Forms.Button();
             this.btTable1 = new System.Windows.Forms.Button();
-            this.btAddQuestAtTheSelectedTable = new System.Windows.Forms.Panel();
+            this.pnlAddQuest = new System.Windows.Forms.Panel();
+            this.btDeleteQuest = new System.Windows.Forms.Button();
             this.btCreateOrder = new System.Windows.Forms.Button();
             this.btDeleteDish = new System.Windows.Forms.Button();
             this.btAddQuestToSelectedTable = new System.Windows.Forms.Button();
@@ -95,40 +100,50 @@
             this.btAddDishToQuest = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGVDish = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dishForBindingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cbCategoryDish = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblEmptySeats = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNumberTable = new System.Windows.Forms.Label();
             this.lblNumberQuest = new System.Windows.Forms.Label();
             this.menuQuests = new System.Windows.Forms.MenuStrip();
             this.Quest1TSMItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblEmptySeats = new System.Windows.Forms.Label();
+            this.btCancelOrder = new System.Windows.Forms.Button();
+            this.pnlOrders = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.countQuestsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.billDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderForBindingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dishForBindingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label8 = new System.Windows.Forms.Label();
             this.pnInformation.SuspendLayout();
             this.Panel.SuspendLayout();
             this.pnStatistics.SuspendLayout();
             this.pnAboutQuests.SuspendLayout();
             this.pnlTables.SuspendLayout();
-            this.btAddQuestAtTheSelectedTable.SuspendLayout();
+            this.pnlAddQuest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVSelectedDishes)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DishCounter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVDish)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dishForBindingBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             this.menuQuests.SuspendLayout();
+            this.pnlOrders.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderForBindingBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dishForBindingBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl
             // 
             this.lbl.AutoSize = true;
             this.lbl.Font = new System.Drawing.Font("Yu Gothic UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbl.ForeColor = System.Drawing.Color.White;
+            this.lbl.ForeColor = System.Drawing.Color.Azure;
             this.lbl.Location = new System.Drawing.Point(6, 24);
             this.lbl.Name = "lbl";
             this.lbl.Size = new System.Drawing.Size(53, 25);
@@ -139,7 +154,7 @@
             // 
             this.lbShiftOpen.AutoSize = true;
             this.lbShiftOpen.Font = new System.Drawing.Font("Yu Gothic UI Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbShiftOpen.ForeColor = System.Drawing.Color.White;
+            this.lbShiftOpen.ForeColor = System.Drawing.Color.Azure;
             this.lbShiftOpen.Location = new System.Drawing.Point(40, 61);
             this.lbShiftOpen.Name = "lbShiftOpen";
             this.lbShiftOpen.Size = new System.Drawing.Size(115, 21);
@@ -153,7 +168,7 @@
             this.pnInformation.Controls.Add(this.btCloseShift);
             this.pnInformation.Controls.Add(this.lbShiftOpen);
             this.pnInformation.Controls.Add(this.btSetting);
-            this.pnInformation.ForeColor = System.Drawing.Color.White;
+            this.pnInformation.ForeColor = System.Drawing.Color.Azure;
             this.pnInformation.Location = new System.Drawing.Point(0, 0);
             this.pnInformation.Name = "pnInformation";
             this.pnInformation.Size = new System.Drawing.Size(207, 158);
@@ -165,6 +180,7 @@
             // 
             this.lblLogin.AutoSize = true;
             this.lblLogin.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblLogin.ForeColor = System.Drawing.Color.Azure;
             this.lblLogin.Location = new System.Drawing.Point(78, 24);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(24, 25);
@@ -179,7 +195,7 @@
             this.btCloseShift.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Crimson;
             this.btCloseShift.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btCloseShift.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btCloseShift.ForeColor = System.Drawing.Color.White;
+            this.btCloseShift.ForeColor = System.Drawing.Color.Azure;
             this.btCloseShift.Image = ((System.Drawing.Image)(resources.GetObject("btCloseShift.Image")));
             this.btCloseShift.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btCloseShift.Location = new System.Drawing.Point(2, 120);
@@ -199,7 +215,7 @@
             this.btSetting.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MidnightBlue;
             this.btSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btSetting.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btSetting.ForeColor = System.Drawing.Color.White;
+            this.btSetting.ForeColor = System.Drawing.Color.Azure;
             this.btSetting.Image = ((System.Drawing.Image)(resources.GetObject("btSetting.Image")));
             this.btSetting.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btSetting.Location = new System.Drawing.Point(2, 84);
@@ -224,7 +240,7 @@
             // 
             this.pnStatistics.Controls.Add(this.btClosedOrders);
             this.pnStatistics.Font = new System.Drawing.Font("Yu Gothic UI Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.pnStatistics.ForeColor = System.Drawing.Color.White;
+            this.pnStatistics.ForeColor = System.Drawing.Color.Azure;
             this.pnStatistics.Location = new System.Drawing.Point(0, 389);
             this.pnStatistics.Name = "pnStatistics";
             this.pnStatistics.Size = new System.Drawing.Size(207, 74);
@@ -237,6 +253,7 @@
             this.btClosedOrders.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.btClosedOrders.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btClosedOrders.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btClosedOrders.ForeColor = System.Drawing.Color.Azure;
             this.btClosedOrders.Image = ((System.Drawing.Image)(resources.GetObject("btClosedOrders.Image")));
             this.btClosedOrders.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btClosedOrders.Location = new System.Drawing.Point(0, 28);
@@ -254,7 +271,7 @@
             this.pnAboutQuests.Controls.Add(this.btPayOrder);
             this.pnAboutQuests.Controls.Add(this.btAddQuest);
             this.pnAboutQuests.Font = new System.Drawing.Font("Yu Gothic UI Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.pnAboutQuests.ForeColor = System.Drawing.Color.White;
+            this.pnAboutQuests.ForeColor = System.Drawing.Color.Azure;
             this.pnAboutQuests.Location = new System.Drawing.Point(2, 160);
             this.pnAboutQuests.Name = "pnAboutQuests";
             this.pnAboutQuests.Size = new System.Drawing.Size(207, 229);
@@ -267,6 +284,7 @@
             this.btMakeChages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.btMakeChages.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btMakeChages.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btMakeChages.ForeColor = System.Drawing.Color.Azure;
             this.btMakeChages.Image = ((System.Drawing.Image)(resources.GetObject("btMakeChages.Image")));
             this.btMakeChages.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btMakeChages.Location = new System.Drawing.Point(0, 170);
@@ -284,6 +302,7 @@
             this.btCurrentOrders.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.btCurrentOrders.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btCurrentOrders.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btCurrentOrders.ForeColor = System.Drawing.Color.Azure;
             this.btCurrentOrders.Image = ((System.Drawing.Image)(resources.GetObject("btCurrentOrders.Image")));
             this.btCurrentOrders.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btCurrentOrders.Location = new System.Drawing.Point(0, 128);
@@ -299,6 +318,7 @@
             this.btPayOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.btPayOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btPayOrder.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btPayOrder.ForeColor = System.Drawing.Color.Azure;
             this.btPayOrder.Image = ((System.Drawing.Image)(resources.GetObject("btPayOrder.Image")));
             this.btPayOrder.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btPayOrder.Location = new System.Drawing.Point(98, 28);
@@ -314,7 +334,7 @@
             this.btAddQuest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.btAddQuest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btAddQuest.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btAddQuest.ForeColor = System.Drawing.Color.White;
+            this.btAddQuest.ForeColor = System.Drawing.Color.Azure;
             this.btAddQuest.Image = ((System.Drawing.Image)(resources.GetObject("btAddQuest.Image")));
             this.btAddQuest.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btAddQuest.Location = new System.Drawing.Point(0, 28);
@@ -739,30 +759,45 @@
             this.btTable1.Text = "1";
             this.btTable1.UseVisualStyleBackColor = false;
             // 
-            // btAddQuestAtTheSelectedTable
+            // pnlAddQuest
             // 
-            this.btAddQuestAtTheSelectedTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
-            this.btAddQuestAtTheSelectedTable.Controls.Add(this.btCreateOrder);
-            this.btAddQuestAtTheSelectedTable.Controls.Add(this.btDeleteDish);
-            this.btAddQuestAtTheSelectedTable.Controls.Add(this.btAddQuestToSelectedTable);
-            this.btAddQuestAtTheSelectedTable.Controls.Add(this.label7);
-            this.btAddQuestAtTheSelectedTable.Controls.Add(this.dataGVSelectedDishes);
-            this.btAddQuestAtTheSelectedTable.Controls.Add(this.panel2);
-            this.btAddQuestAtTheSelectedTable.Controls.Add(this.panel1);
-            this.btAddQuestAtTheSelectedTable.Controls.Add(this.menuQuests);
-            this.btAddQuestAtTheSelectedTable.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btAddQuestAtTheSelectedTable.Location = new System.Drawing.Point(215, 12);
-            this.btAddQuestAtTheSelectedTable.Name = "btAddQuestAtTheSelectedTable";
-            this.btAddQuestAtTheSelectedTable.Size = new System.Drawing.Size(757, 587);
-            this.btAddQuestAtTheSelectedTable.TabIndex = 7;
-            this.btAddQuestAtTheSelectedTable.Visible = false;
+            this.pnlAddQuest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
+            this.pnlAddQuest.Controls.Add(this.btCancelOrder);
+            this.pnlAddQuest.Controls.Add(this.btDeleteQuest);
+            this.pnlAddQuest.Controls.Add(this.btCreateOrder);
+            this.pnlAddQuest.Controls.Add(this.btDeleteDish);
+            this.pnlAddQuest.Controls.Add(this.btAddQuestToSelectedTable);
+            this.pnlAddQuest.Controls.Add(this.label7);
+            this.pnlAddQuest.Controls.Add(this.dataGVSelectedDishes);
+            this.pnlAddQuest.Controls.Add(this.panel2);
+            this.pnlAddQuest.Controls.Add(this.panel1);
+            this.pnlAddQuest.Controls.Add(this.menuQuests);
+            this.pnlAddQuest.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pnlAddQuest.Location = new System.Drawing.Point(215, 12);
+            this.pnlAddQuest.Name = "pnlAddQuest";
+            this.pnlAddQuest.Size = new System.Drawing.Size(757, 587);
+            this.pnlAddQuest.TabIndex = 7;
+            this.pnlAddQuest.Visible = false;
+            // 
+            // btDeleteQuest
+            // 
+            this.btDeleteQuest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(35)))));
+            this.btDeleteQuest.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btDeleteQuest.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btDeleteQuest.Location = new System.Drawing.Point(9, 243);
+            this.btDeleteQuest.Name = "btDeleteQuest";
+            this.btDeleteQuest.Size = new System.Drawing.Size(162, 50);
+            this.btDeleteQuest.TabIndex = 16;
+            this.btDeleteQuest.Text = "Удалить гостя";
+            this.btDeleteQuest.UseVisualStyleBackColor = false;
+            this.btDeleteQuest.Click += new System.EventHandler(this.btDeleteQuest_Click);
             // 
             // btCreateOrder
             // 
             this.btCreateOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(35)))));
             this.btCreateOrder.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btCreateOrder.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btCreateOrder.Location = new System.Drawing.Point(10, 251);
+            this.btCreateOrder.Location = new System.Drawing.Point(10, 340);
             this.btCreateOrder.Name = "btCreateOrder";
             this.btCreateOrder.Size = new System.Drawing.Size(162, 38);
             this.btCreateOrder.TabIndex = 15;
@@ -896,6 +931,7 @@
             0,
             0});
             this.DishCounter.Name = "DishCounter";
+            this.DishCounter.ReadOnly = true;
             this.DishCounter.Size = new System.Drawing.Size(120, 29);
             this.DishCounter.TabIndex = 11;
             this.DishCounter.Value = new decimal(new int[] {
@@ -984,37 +1020,6 @@
             this.dataGVDish.Size = new System.Drawing.Size(339, 265);
             this.dataGVDish.TabIndex = 8;
             // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.nameDataGridViewTextBoxColumn.FillWeight = 189.6907F;
-            this.nameDataGridViewTextBoxColumn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Название";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.nameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.nameDataGridViewTextBoxColumn.Width = 170;
-            // 
-            // costDataGridViewTextBoxColumn
-            // 
-            this.costDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
-            this.costDataGridViewTextBoxColumn.FillWeight = 10.30928F;
-            this.costDataGridViewTextBoxColumn.HeaderText = "Цена";
-            this.costDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
-            this.costDataGridViewTextBoxColumn.ReadOnly = true;
-            this.costDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // dishForBindingBindingSource
-            // 
-            this.dishForBindingBindingSource.DataSource = typeof(АРМ_курсовая.DishForBinding);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -1066,10 +1071,33 @@
             this.panel1.Size = new System.Drawing.Size(167, 130);
             this.panel1.TabIndex = 5;
             // 
+            // lblEmptySeats
+            // 
+            this.lblEmptySeats.AutoSize = true;
+            this.lblEmptySeats.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblEmptySeats.ForeColor = System.Drawing.Color.Azure;
+            this.lblEmptySeats.Location = new System.Drawing.Point(60, 92);
+            this.lblEmptySeats.Name = "lblEmptySeats";
+            this.lblEmptySeats.Size = new System.Drawing.Size(37, 30);
+            this.lblEmptySeats.TabIndex = 5;
+            this.lblEmptySeats.Text = "---";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.ForeColor = System.Drawing.Color.Azure;
+            this.label3.Location = new System.Drawing.Point(4, 71);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(131, 21);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Свободных мест:";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.Color.Azure;
             this.label2.Location = new System.Drawing.Point(3, 2);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 30);
@@ -1080,6 +1108,7 @@
             // 
             this.lblNumberTable.AutoSize = true;
             this.lblNumberTable.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblNumberTable.ForeColor = System.Drawing.Color.Azure;
             this.lblNumberTable.Location = new System.Drawing.Point(92, 2);
             this.lblNumberTable.Name = "lblNumberTable";
             this.lblNumberTable.Size = new System.Drawing.Size(37, 30);
@@ -1090,6 +1119,7 @@
             // 
             this.lblNumberQuest.AutoSize = true;
             this.lblNumberQuest.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblNumberQuest.ForeColor = System.Drawing.Color.Azure;
             this.lblNumberQuest.Location = new System.Drawing.Point(3, 41);
             this.lblNumberQuest.Name = "lblNumberQuest";
             this.lblNumberQuest.Size = new System.Drawing.Size(82, 30);
@@ -1106,6 +1136,7 @@
             this.menuQuests.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.menuQuests.Location = new System.Drawing.Point(0, 0);
             this.menuQuests.Name = "menuQuests";
+            this.menuQuests.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.menuQuests.Size = new System.Drawing.Size(757, 28);
             this.menuQuests.Stretch = false;
             this.menuQuests.TabIndex = 12;
@@ -1113,32 +1144,153 @@
             // 
             // Quest1TSMItem
             // 
+            this.Quest1TSMItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
             this.Quest1TSMItem.Checked = true;
             this.Quest1TSMItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.Quest1TSMItem.ForeColor = System.Drawing.Color.Navy;
+            this.Quest1TSMItem.ForeColor = System.Drawing.Color.Azure;
             this.Quest1TSMItem.Name = "Quest1TSMItem";
             this.Quest1TSMItem.Size = new System.Drawing.Size(70, 24);
             this.Quest1TSMItem.Text = "Гость 1";
             // 
-            // label3
+            // btCancelOrder
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(4, 71);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(131, 21);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Свободных мест:";
+            this.btCancelOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(35)))));
+            this.btCancelOrder.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btCancelOrder.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btCancelOrder.Location = new System.Drawing.Point(9, 297);
+            this.btCancelOrder.Name = "btCancelOrder";
+            this.btCancelOrder.Size = new System.Drawing.Size(162, 38);
+            this.btCancelOrder.TabIndex = 17;
+            this.btCancelOrder.Text = "Отменить заказ";
+            this.btCancelOrder.UseVisualStyleBackColor = false;
+            this.btCancelOrder.Click += new System.EventHandler(this.btCancelOrder_Click);
             // 
-            // lblEmptySeats
+            // pnlOrders
             // 
-            this.lblEmptySeats.AutoSize = true;
-            this.lblEmptySeats.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblEmptySeats.Location = new System.Drawing.Point(60, 92);
-            this.lblEmptySeats.Name = "lblEmptySeats";
-            this.lblEmptySeats.Size = new System.Drawing.Size(37, 30);
-            this.lblEmptySeats.TabIndex = 5;
-            this.lblEmptySeats.Text = "---";
+            this.pnlOrders.Controls.Add(this.label8);
+            this.pnlOrders.Controls.Add(this.dataGridView1);
+            this.pnlOrders.Location = new System.Drawing.Point(214, 12);
+            this.pnlOrders.Name = "pnlOrders";
+            this.pnlOrders.Size = new System.Drawing.Size(768, 589);
+            this.pnlOrders.TabIndex = 8;
+            this.pnlOrders.Visible = false;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Yu Gothic UI Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle10.NullValue = null;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.countQuestsDataGridViewTextBoxColumn,
+            this.billDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.orderForBindingBindingSource;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Yu Gothic UI Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
+            this.dataGridView1.GridColor = System.Drawing.Color.Azure;
+            this.dataGridView1.Location = new System.Drawing.Point(17, 39);
+            this.dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Yu Gothic UI Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridView1.RowHeadersWidth = 62;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridView1.Size = new System.Drawing.Size(738, 265);
+            this.dataGridView1.TabIndex = 9;
+            // 
+            // countQuestsDataGridViewTextBoxColumn
+            // 
+            this.countQuestsDataGridViewTextBoxColumn.DataPropertyName = "CountQuests";
+            this.countQuestsDataGridViewTextBoxColumn.HeaderText = "CountQuests";
+            this.countQuestsDataGridViewTextBoxColumn.Name = "countQuestsDataGridViewTextBoxColumn";
+            this.countQuestsDataGridViewTextBoxColumn.Width = 123;
+            // 
+            // billDataGridViewTextBoxColumn
+            // 
+            this.billDataGridViewTextBoxColumn.DataPropertyName = "Bill";
+            this.billDataGridViewTextBoxColumn.HeaderText = "Bill";
+            this.billDataGridViewTextBoxColumn.Name = "billDataGridViewTextBoxColumn";
+            this.billDataGridViewTextBoxColumn.Width = 53;
+            // 
+            // orderForBindingBindingSource
+            // 
+            this.orderForBindingBindingSource.DataSource = typeof(АРМ_курсовая.OrderForBinding);
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.nameDataGridViewTextBoxColumn.FillWeight = 189.6907F;
+            this.nameDataGridViewTextBoxColumn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Название";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.nameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.nameDataGridViewTextBoxColumn.Width = 170;
+            // 
+            // costDataGridViewTextBoxColumn
+            // 
+            this.costDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
+            this.costDataGridViewTextBoxColumn.FillWeight = 10.30928F;
+            this.costDataGridViewTextBoxColumn.HeaderText = "Цена";
+            this.costDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
+            this.costDataGridViewTextBoxColumn.ReadOnly = true;
+            this.costDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // dishForBindingBindingSource
+            // 
+            this.dishForBindingBindingSource.DataSource = typeof(АРМ_курсовая.DishForBinding);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(302, 5);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(195, 30);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Работа с заказами";
             // 
             // MainFormWaiter
             // 
@@ -1146,10 +1298,11 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(984, 611);
-            this.Controls.Add(this.btAddQuestAtTheSelectedTable);
-            this.Controls.Add(this.pnlTables);
             this.Controls.Add(this.pnAboutQuests);
             this.Controls.Add(this.Panel);
+            this.Controls.Add(this.pnlOrders);
+            this.Controls.Add(this.pnlAddQuest);
+            this.Controls.Add(this.pnlTables);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Font = new System.Drawing.Font("Yu Gothic UI Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.AliceBlue;
@@ -1169,18 +1322,22 @@
             this.pnAboutQuests.ResumeLayout(false);
             this.pnlTables.ResumeLayout(false);
             this.pnlTables.PerformLayout();
-            this.btAddQuestAtTheSelectedTable.ResumeLayout(false);
-            this.btAddQuestAtTheSelectedTable.PerformLayout();
+            this.pnlAddQuest.ResumeLayout(false);
+            this.pnlAddQuest.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVSelectedDishes)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DishCounter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVDish)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dishForBindingBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.menuQuests.ResumeLayout(false);
             this.menuQuests.PerformLayout();
+            this.pnlOrders.ResumeLayout(false);
+            this.pnlOrders.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderForBindingBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dishForBindingBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1231,7 +1388,7 @@
         private System.Windows.Forms.Button btTable3;
         private System.Windows.Forms.Button btTable2;
         private System.Windows.Forms.Button btTable1;
-        private System.Windows.Forms.Panel btAddQuestAtTheSelectedTable;
+        private System.Windows.Forms.Panel pnlAddQuest;
         private System.Windows.Forms.Label lblNumberTable;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
@@ -1257,6 +1414,15 @@
         private System.Windows.Forms.Button btCreateOrder;
         private System.Windows.Forms.Label lblEmptySeats;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btDeleteQuest;
+        private System.Windows.Forms.Button btCancelOrder;
+        private System.Windows.Forms.Panel pnlOrders;
+        private System.Windows.Forms.BindingSource orderForBindingBindingSource;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn countQuestsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dishesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn billDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label8;
     }
 }
 

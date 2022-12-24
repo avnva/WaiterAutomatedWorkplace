@@ -8,13 +8,13 @@ namespace АРМ_курсовая
 {
     internal class OrderForBinding
     {
+        public int NumberTable { get; set; }
         public int CountQuests { get; set; }
-        public Quest Dishes { get; set; }
         public float Bill { get; set; }
-        public OrderForBinding(int countQuest, Quest dishes, float bill)
+        public OrderForBinding(int numberTable, int countQuest, float bill)
         {
+            NumberTable = numberTable;
             CountQuests = countQuest;
-            Dishes = dishes;
             Bill = bill;
         }
     }
