@@ -133,22 +133,6 @@
         B3hDfJPY3DZciXwAo9EfERnjJmku0iQAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="btSetting.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vAAADrwBlbxySQAAAmpJREFUSEullj9oU1EUh0MQB5FSRKSIkziIk4hDKVKKlODoINJBSnEspYiDiIiQ
-        QUQ6ODg6OIg4iIiIgzg4FKdSOpUOxclBShGRIiKlid/33rnmvZdEmviDj3vvOeee++7fpPa/arVaB9rt
-        dh1WYYP2YcojcDBChhdJGrAMr2AvcKDP8AgickjxtQ9J0k9LETa8SDJnJgb6SXEFzsMybW3O5FKEDi4S
-        LJBgB9TrMDvo5dyUDfwlzGXhc9Om4VyYks3Op8AB5uA7dbUJI7SNWaLUtmVMdO8I4wxsGgQrBI6BA0zT
-        3oE9eEf7DExS3wVjt8FTZB1X+y3UI21HON39or7CGqTlULtwEa5BOj1JDviL0lkdjbQd4bxpVHxFpmrd
-        BHCWpstyj3IKPK767lCM608Jnf5JcP1OQ3GaKWGpHu03cAxGaR+nHIcbMJYlTsJgUpfBKaVN26+2wL4f
-        ITJWhOMBdCm+0rV8Dk14D24wRa5KPV+SqvDZsTj1VN+mOhFhxtWxeTSzDY0Yq5Y/KGYitCwcPkwvDazo
-        LkRULtru0wedSST3dE1RRlQP4ZyMYIukntecmPvhT/HelfD2EQFOvThlmQ93SdhfFGKsusnlk1MUzuvg
-        aahqHU5EWDrOE+DGV7WC/0KEloXTa58pvqioDZjH3oAm+BzkHlSJn42UZeG4SmB2/FKHQevI+zMSKcvC
-        cQgewyI8hd+wH7n2t8GnYjHS/VsEegyfQV/FV/sRw/2YkGChOP1edfhG8+8BGEh0fALp+fWG3gKfZp+M
-        dIv9iWxEl8FER/92zMInaIY52X2SXUIvZvePSZdqtT/KDw8DrAWLWgAAAABJRU5ErkJggg==
-</value>
-  </data>
   <data name="btClosedOrders.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -238,18 +222,6 @@
   <metadata name="menuQuests.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>229, 17</value>
   </metadata>
-  <metadata name="Status.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="NumberTable.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Time.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="orderForBindingBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>349, 17</value>
-  </metadata>
   <data name="btBack.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -266,6 +238,18 @@
         YII=
 </value>
   </data>
+  <metadata name="Status.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="NumberTable.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Time.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="orderForBindingBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>349, 17</value>
+  </metadata>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

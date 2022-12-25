@@ -77,20 +77,25 @@ namespace АРМ_курсовая
         public void AddQuest(Quest quest)
         {
             Quests.Add(quest);
-            TotalBill += quest.Bill;
+            //TotalBill += quest.Bill;
         }
 
         public void EditQuest(Quest quest, int index)
         {
-            TotalBill -= Quests[index].Bill;
             Quests[index] = quest;
-            TotalBill += Quests[index].Bill;
         }
 
         public void DeleteQuest(Quest quest)
         {
             Quests.Remove(quest);
-            TotalBill -= quest.Bill;
+            //TotalBill -= quest.Bill;
+        }
+        public void CountTotalBill()
+        {
+            for (int i = 0; i < Quests.Count; i++)
+            {
+                TotalBill += Quests[i].Bill;
+            }
         }
 
         //private void ChangeStatus()

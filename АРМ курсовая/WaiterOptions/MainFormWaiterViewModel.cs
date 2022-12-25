@@ -18,6 +18,7 @@ namespace АРМ_курсовая
         public Dish currentDish;
         public int currentNumberTable = 0;
         public int NumberEmptySeats = 0;
+        public float AverageBill = 0;
 
         public CurrentSession currentSession;
         
@@ -30,15 +31,15 @@ namespace АРМ_курсовая
         public MainFormWaiterViewModel(Account CurrentAccount)
         {
             currentSession = new CurrentSession(CurrentAccount);
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 6; i++)
             {
                 tables.Add(firstType);
             }
-            for (int i = 7; i < 23; i++)
+            for (int i = 6; i < 22; i++)
             {
                 tables.Add(secondType);
             }
-            for (int i = 23; i < 29; i++)
+            for (int i = 22; i < 29; i++)
             {
                 tables.Add(thirdType);
             }
@@ -63,7 +64,7 @@ namespace АРМ_курсовая
             {
                 for (int i = 0; i < allOrders.Orders.Count; i++)
                 {
-                    if (allOrders.Orders[i].NumberTable == indexTable)
+                    if (allOrders.Orders[i].NumberTable == indexTable && allOrders.Orders[i].Status == Status.Активен)
                     {
                         NumberEmptySeats = tables[indexTable].numberOfSeats - allOrders.Orders[i].Quests.Count;
                     }
@@ -84,28 +85,35 @@ namespace АРМ_курсовая
             {
                 allOrders = new AllOrders();
             }
+            order.CountTotalBill();
             allOrders.AddOrder(order);
         }
         public void DeleteOrder(Order order)
         {
+            int index = allOrders.CheckOrder(currentOrder);
             allOrders.LoadOrders();
-            allOrders.DeleteOrder(order);
+            allOrders.DeleteOrder(index);
+            currentOrder.TotalBill = 0;
         }
         public void EditOrder(Order order, int index) 
         {
-            //allOrders.LoadOrders();
             allOrders.EditOrder(order, index);
+            order.CountTotalBill();
         }
         public void FindOrder(int indexTable)
         {
             allOrders.LoadOrders();
             for (int i = 0; i < allOrders.Orders.Count; i++)
             {
-                if (allOrders.Orders[i].NumberTable == indexTable)
+                if (allOrders.Orders[i].NumberTable == indexTable && 
+                    allOrders.Orders[i].WaiterLogin == currentSession.CurrentAccount.Login &&
+                    allOrders.Orders[i].Status == Status.Активен)
                 {
                     currentOrder = allOrders.Orders[i];
+                    break;
                 }
             }
+            //MessageBox.Show("Такой заказ не существует", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         public void ChangeStatus()
         {
@@ -113,7 +121,12 @@ namespace АРМ_курсовая
             currentOrder.Status = Status.Завершен;
             EditOrder(currentOrder, index);
         }
-
+        public float CountingAverageBill(Status status)
+        {
+            allOrders.LoadOrders();
+            AverageBill = allOrders.CountingAverageBill(status);
+            return AverageBill;        
+        }
 
 
         public void AddQuest(Quest quest)
@@ -127,10 +140,7 @@ namespace АРМ_курсовая
         }
         public void EditQuest(Quest quest, int index)
         {
-
-            //currentOrder.Quests[index] = quest;
-            //currentOrder.TotalBill 
-             currentOrder.EditQuest(quest, index);
+            currentOrder.EditQuest(quest, index);
         }
         public void DeleteQuest()
         {
@@ -160,7 +170,6 @@ namespace АРМ_курсовая
                 }
             }
             return true;
-
         }
         public void MakeDiscount(float discount)
         {
@@ -169,11 +178,13 @@ namespace АРМ_курсовая
 
             for (int i = 0; i < currentOrder.Quests.Count; i++)
             {
-                currentOrder.TotalBill -= currentOrder.Quests[i].Bill;
+                
                 currentQuest = currentOrder.Quests[i];
                 currentQuest.MakeDiscount(currentQuest, discount);
-                currentOrder.TotalBill += currentQuest.Bill;
+                
             }
+            currentOrder.TotalBill = 0;
+            currentOrder.CountTotalBill();
             EditOrder(currentOrder, ind);
         }
         public void BringBackCost(float discount)
@@ -183,11 +194,13 @@ namespace АРМ_курсовая
 
             for (int i = 0; i < currentOrder.Quests.Count; i++)
             {
-                currentOrder.TotalBill -= currentOrder.Quests[i].Bill;
+                
                 currentQuest = currentOrder.Quests[i];
                 currentQuest.BringBackCost(currentQuest, discount);
-                currentOrder.TotalBill += currentQuest.Bill;
+                
             }
+            currentOrder.TotalBill = 0;
+            currentOrder.CountTotalBill();
             EditOrder(currentOrder, ind);
         }
 

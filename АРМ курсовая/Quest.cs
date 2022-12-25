@@ -42,6 +42,7 @@ namespace АРМ_курсовая
         public void DeleteDish(Dish dish)
         {
             Dishes.Remove(dish);
+            Bill -= dish.Cost;
         }
 
         public void MakeDiscount(Quest quest, float discount)

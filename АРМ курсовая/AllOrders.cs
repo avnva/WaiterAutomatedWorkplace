@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -68,18 +69,19 @@ namespace АРМ_курсовая
             }
             return index;
         }
-        public bool DeleteOrder(Order order)
+        public void DeleteOrder(int index)
         {
             bool flag = false;
             for (int i = 0; i < Orders.Count; i++)
             {
-                if (Orders[i].Equals(order))
+                if (i == index)
                 {
-                    flag = Orders.Remove(Orders[i]);
+                    Orders.Remove(Orders[i]);
+                    flag = true;
                 }
             }
             if (flag) currentSession.SaveChanges(Orders, "OrdersData.json");
-            return flag;
+            //return flag;
         }
         public void EditOrder(Order order, int index)
         {
@@ -91,6 +93,22 @@ namespace АРМ_курсовая
                 }
             }
             currentSession.SaveChanges(Orders, "OrdersData.json");
+        }
+        public float CountingAverageBill(Status status)
+        {
+            float Bill = 0;
+            int Count = 0;
+            float Average = 0;
+            for (int i = 0; i < Orders.Count; i++)
+            {
+                if (Orders[i].Status == status)
+                {
+                    Bill += Orders[i].TotalBill;
+                    Count += 1;
+                }
+            }
+            Average = Bill / Count;
+            return Average;
         }
     }
 }
