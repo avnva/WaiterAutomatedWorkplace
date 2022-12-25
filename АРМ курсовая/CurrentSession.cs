@@ -17,12 +17,10 @@ namespace АРМ_курсовая
     {
         public List<Account> Accounts;
         public Account CurrentAccount;
-        //public List<Order> Orders;
 
         public CurrentSession()
         {
             Accounts = new List<Account>();
-            //Orders = new List<Order>();
         }
 
         public CurrentSession(Account _currentAccount)
@@ -87,6 +85,5 @@ namespace АРМ_курсовая
             if (flag) SaveChanges(Accounts, "WorkersData.json");
             return flag;
         }
-
     }
 }

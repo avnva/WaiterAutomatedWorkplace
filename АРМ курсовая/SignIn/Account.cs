@@ -11,9 +11,7 @@ namespace АРМ_курсовая
 {
     public enum Role : byte
     {
-        //[Description("Worker can add, delete and find applicants")]
         Waiter = 0,
-        //[Description("Admin can add, delete workers, add, delete and find applicants")]
         Admin = 1
     };
     public class Account

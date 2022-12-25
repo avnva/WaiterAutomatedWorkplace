@@ -22,21 +22,38 @@ namespace АРМ_курсовая
             Program.PreviousPage = this;
             ViewModel = new MainFormAdminViewModel(currentAccount, dish);
             CurrentAccount = currentAccount;
-            pnlEditDish.Visible = false;
+            ClosePanels();
             pnlMain.Visible = true;
-            pnlAddDish.Visible = false;
-            pnlDeleteWorker.Visible = false;
-            btBack.Visible = false;
             UpdateDGMenu();
             cbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
-
         }
 
+        private void ClosePanels()
+        {
+            pnlEditDish.Visible = false;
+            pnlMain.Visible = false;
+            pnlAddDish.Visible = false;
+            pnlDeleteWorker.Visible = false;
+
+            btBack.Visible = false;
+            btMakeChanges.Visible = false;
+            btAddNewDish.Visible = false;
+            btEdit.Visible = false;
+            btDeleteDish.Visible = false;
+
+            lblEdit.Visible = false;
+            lblAdd.Visible = false;
+            lblNumberDish.Visible = false;
+
+            tbNewNameDish.Text = "";
+            numCost.Value = 1;
+            cbCategory.SelectedItem = null;
+        }
         //обновление базы данных
         private void UpdateDGMenu()
         {
+            dishForBindingBindingSource.Clear();
             dataGVDishes.DataSource = dishForBindingBindingSource;
-            //ViewModel.currentSession.Dishes.Sort(new CompareApplicantsByID());
             foreach (Dish _dish in ViewModel.menu.Dishes)
             {
                 dishForBindingBindingSource.Add(new DishForBinding(_dish.Category, _dish.Name, _dish.Cost));
@@ -55,41 +72,25 @@ namespace АРМ_курсовая
 
         private void btAddDishToMenu_Click(object sender, EventArgs e)
         {
-            pnlMain.Visible = false;
+            ClosePanels();
             pnlAddDish.Visible = true;
-            pnlEditDish.Visible = false;
-            pnlDeleteWorker.Visible = false;
             btBack.Visible = true;
-            lblEdit.Visible = false;
             lblAdd.Visible = true;
-            lblNumberDish.Visible = false;
-            btMakeChanges.Visible = false;
             btAddNewDish.Visible = true;
-            tbNewNameDish.Text = "";
-            numCost.Value = 1;
-            cbCategory.SelectedItem = null;
         }
         private void btRemoveDishFromMenu_Click(object sender, EventArgs e)
         {
+            ClosePanels();
             btBack.Visible = true;
             pnlEditDish.Visible = true;
-            pnlMain.Visible = false;
-            pnlAddDish.Visible = false;
-            btEdit.Visible = false;
             btDeleteDish.Visible = true;
-            btMakeChanges.Visible = false;
-            btAddNewDish.Visible = true;
-            pnlDeleteWorker.Visible = false;
         }
         private void btEditDishInMenu_Click(object sender, EventArgs e)
         {
+            ClosePanels();
             btBack.Visible = true;
             pnlEditDish.Visible = true;
-            pnlMain.Visible = false;
-            pnlAddDish.Visible = false;
             btEdit.Visible = true;
-            btDeleteDish.Visible = false;
-            pnlDeleteWorker.Visible = false;
         }
         private void btAddWorker_Click(object sender, EventArgs e)
         {
@@ -99,12 +100,10 @@ namespace АРМ_курсовая
         }
         private void btDeleteWorker_Click(object sender, EventArgs e)
         {
+            ClosePanels();
             btBack.Visible = true;
             pnlEditDish.Visible = true;
-            pnlMain.Visible = false;
-            pnlAddDish.Visible = false;
             btEdit.Visible = true;
-            btDeleteDish.Visible = false;
             pnlDeleteWorker.Visible = true;
         }
         private void btDeleteCurrentAccount_Click(object sender, EventArgs e)
@@ -121,16 +120,14 @@ namespace АРМ_курсовая
         {
             Hide();
             LogInForm loginform = new LogInForm();
+            Program.PreviousPage = loginform;
             loginform.ShowDialog();
             Close();
         }
         private void btBack_Click(object sender, EventArgs e)
         {
+            ClosePanels();
             pnlMain.Visible = true;
-            pnlAddDish.Visible = false;
-            pnlEditDish.Visible = false;
-            btBack.Visible = false;
-            pnlDeleteWorker.Visible = false;
         }
 
 
@@ -140,10 +137,9 @@ namespace АРМ_курсовая
             {
                 ViewModel.AddDish(new Dish(tbNewNameDish.Text, Convert.ToInt32(numCost.Value), cbCategory.SelectedItem.ToString()));
                 MessageBox.Show("Блюдо было успешно добавлено.", "Изменение меню", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dishForBindingBindingSource.Clear();
                 UpdateDGMenu();
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -155,15 +151,10 @@ namespace АРМ_курсовая
             {
                 Convert.ToInt32(numEditDish.Value);
                 Dish i = ViewModel.menu.Dishes[Convert.ToInt32(numEditDish.Value) - 1];
-                pnlMain.Visible = false;
+                ClosePanels();
                 pnlAddDish.Visible = true;
-                pnlEditDish.Visible = false;
-                pnlDeleteWorker.Visible = false;
-                btBack.Visible = false;
                 btMakeChanges.Visible = true;
-                btAddNewDish.Visible = false;
                 lblEdit.Visible = true;
-                lblAdd.Visible = false;
                 btBack.Visible = true;
                 lblNumberDish.Visible = true;
 
@@ -174,7 +165,7 @@ namespace АРМ_курсовая
             }
             catch
             {
-                MessageBox.Show("Такое блюдо не существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Такое блюдо не существует!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -183,15 +174,13 @@ namespace АРМ_курсовая
             try
             {
                 int numberDish =  Convert.ToInt32(lblNumberDish.Text);
-                //////////////////////Строка ниже
                 ViewModel.EditDish(new Dish(tbNewNameDish.Text, Convert.ToInt32(numCost.Value), cbCategory.SelectedItem.ToString()), numberDish);
                 MessageBox.Show("Блюдо было успешно изменено.", "Изменение меню", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dishForBindingBindingSource.Clear();
                 UpdateDGMenu();
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -200,7 +189,6 @@ namespace АРМ_курсовая
             if (MessageBox.Show("Вы уверены, что хотите удалить блюдо?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 ViewModel.DeleteDish(Convert.ToInt32(numEditDish.Value));
-                dishForBindingBindingSource.Clear();
                 UpdateDGMenu();
             }
         }

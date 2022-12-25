@@ -12,42 +12,40 @@ namespace АРМ_курсовая
 {
     public class MainFormWaiterViewModel
     {
+        public CurrentSession currentSession;
+        public Menu menu;
         public AllOrders allOrders;
         public Order currentOrder;
         public Quest currentQuest;
         public Dish currentDish;
+
         public int currentNumberTable = 0;
         public int NumberEmptySeats = 0;
         public float AverageBill = 0;
-
-        public CurrentSession currentSession;
+        public int index = 0;
         
         public  List<Table> tables = new List<Table>();
-        Table firstType = new Table(8);
-        Table secondType = new Table(2);
-        Table thirdType = new Table(5);
-        public Menu menu;
+        private readonly Table firstType = new Table(8);
+        private readonly Table secondType = new Table(2);
+        private readonly Table thirdType = new Table(5);
 
         public MainFormWaiterViewModel(Account CurrentAccount)
         {
             currentSession = new CurrentSession(CurrentAccount);
+
             for (int i = 0; i < 6; i++)
-            {
                 tables.Add(firstType);
-            }
+
             for (int i = 6; i < 22; i++)
-            {
                 tables.Add(secondType);
-            }
+
             for (int i = 22; i < 29; i++)
-            {
                 tables.Add(thirdType);
-            }
-            menu = new Menu();
-            menu.Load();
+
             try
             {
                 allOrders = new AllOrders();
+                menu = new Menu();
             }
             catch (FileNotFoundException ex)
             {
@@ -55,27 +53,29 @@ namespace АРМ_курсовая
                 Environment.Exit(1);
             }
             allOrders.LoadOrders();
+            menu.Load();
         }
         
-        public int CheckTable(int indexTable)
+        public int CheckTable(int NumberTable)
         {
             allOrders.LoadOrders();
             if (allOrders.Orders != null)
             {
                 for (int i = 0; i < allOrders.Orders.Count; i++)
                 {
-                    if (allOrders.Orders[i].NumberTable == indexTable && allOrders.Orders[i].Status == Status.Активен)
+                    if (allOrders.Orders[i].NumberTable == NumberTable && allOrders.Orders[i].Status == Status.Active)
                     {
-                        NumberEmptySeats = tables[indexTable].numberOfSeats - allOrders.Orders[i].Quests.Count;
+                        NumberEmptySeats = tables[NumberTable].numberOfSeats - allOrders.Orders[i].Quests.Count;
                     }
                 }
             }
             else
             {
-                NumberEmptySeats = tables[indexTable].numberOfSeats;
+                NumberEmptySeats = tables[NumberTable].numberOfSeats;
             }
             return NumberEmptySeats;
         }
+
 
         public void AddOrder(Order order)
         {
@@ -88,37 +88,39 @@ namespace АРМ_курсовая
             order.CountTotalBill();
             allOrders.AddOrder(order);
         }
-        public void DeleteOrder(Order order)
+        public void DeleteOrder()
         {
             int index = allOrders.CheckOrder(currentOrder);
             allOrders.LoadOrders();
             allOrders.DeleteOrder(index);
-            currentOrder.TotalBill = 0;
         }
         public void EditOrder(Order order, int index) 
         {
-            allOrders.EditOrder(order, index);
             order.CountTotalBill();
+            allOrders.EditOrder(order, index);
         }
         public void FindOrder(int indexTable)
         {
+            bool Flag = true;
             allOrders.LoadOrders();
             for (int i = 0; i < allOrders.Orders.Count; i++)
             {
                 if (allOrders.Orders[i].NumberTable == indexTable && 
                     allOrders.Orders[i].WaiterLogin == currentSession.CurrentAccount.Login &&
-                    allOrders.Orders[i].Status == Status.Активен)
+                    allOrders.Orders[i].Status == Status.Active)
                 {
                     currentOrder = allOrders.Orders[i];
+                    Flag = false;
                     break;
                 }
             }
-            //MessageBox.Show("Такой заказ не существует", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (Flag)
+                throw new Exception("Такой заказ не существует!");
         }
         public void ChangeStatus()
         {
             int index = allOrders.CheckOrder(currentOrder);
-            currentOrder.Status = Status.Завершен;
+            currentOrder.Status = Status.Complete;
             EditOrder(currentOrder, index);
         }
         public float CountingAverageBill(Status status)
@@ -136,7 +138,6 @@ namespace АРМ_курсовая
                 currentOrder = new Order(currentNumberTable, currentSession.CurrentAccount.Login);
             }
             currentOrder.AddQuest(quest);
-            //currentOrder.TotalBill += quest.Bill;
         }
         public void EditQuest(Quest quest, int index)
         {
@@ -160,16 +161,40 @@ namespace АРМ_курсовая
             else
                 AddQuest(currentQuest);
         }
-        public bool CheckQuests()
+        public void CheckQuestsAdd()
         {
+            bool Flag = false;
+            if (currentOrder != null)
+            {
+                for (int i = 0; i < currentOrder.Quests.Count; i++)
+                {
+                    if (currentOrder.Quests[i].Dishes.Count == 0)
+                    {
+                        Flag = true;
+                    }
+                }
+            }
+            else
+                Flag = true;
+            if (Flag)
+            {
+                throw new Exception("Вы не можете добавить нового гостя, пока у текущего не добавлены блюда!");
+            }
+        }
+        public void CheckQuestsSave()
+        {
+            bool Flag = false;
             for (int i = 0; i < currentOrder.Quests.Count; i++)
             {
                 if (currentOrder.Quests[i].Dishes.Count == 0)
                 {
-                    return false;
+                    Flag = true;
                 }
             }
-            return true;
+            if (Flag)
+            {
+                throw new Exception("Вы не можете создать заказ, пока у гостя не добавлены блюда!");
+            }
         }
         public void MakeDiscount(float discount)
         {
@@ -183,37 +208,31 @@ namespace АРМ_курсовая
                 currentQuest.MakeDiscount(currentQuest, discount);
                 
             }
-            currentOrder.TotalBill = 0;
-            currentOrder.CountTotalBill();
             EditOrder(currentOrder, ind);
         }
-        public void BringBackCost(float discount)
+        public void BringBackCost()
         {
             allOrders.LoadOrders();
             int ind = allOrders.CheckOrder(currentOrder);
 
             for (int i = 0; i < currentOrder.Quests.Count; i++)
             {
-                
                 currentQuest = currentOrder.Quests[i];
-                currentQuest.BringBackCost(currentQuest, discount);
-                
+                currentQuest.BringBackCost(currentQuest);
             }
-            currentOrder.TotalBill = 0;
-            currentOrder.CountTotalBill();
             EditOrder(currentOrder, ind);
         }
 
 
 
-        public void AddDishes(Dish dish)
+        public void AddDish(Dish dish)
         {
             if (currentQuest.Dishes == null)
             {
-                currentQuest = new Quest(dish);
+                currentQuest = new Quest();
             }
             else
-                currentQuest.AddDishes(dish);
+                currentQuest.AddDish(dish);
         }
         public void DeleteDish(string NameDish)
         {
@@ -227,28 +246,23 @@ namespace АРМ_курсовая
                 }
             }
         }
-
-
-
-        //public void AddAccount(Account account)
-        //{
-        //    currentSession.Load();
-        //    if (currentSession.Accounts == null)
-        //    {
-        //        currentSession = new CurrentSession(account);
-        //    }
-        //    currentSession.AddAccount(account);
-        //}
-
-        //public void AddOrder(Quest quest)
-        //{
-        //    //currentSession.Load();
-        //    //currentSession.SaveChanges(Order.Quests, "QuestsData.json");
-        //    if (newOrder.Quests == null)
-        //    {
-        //        newOrder = new Order(quest);
-        //    }
-        //    newOrder.AddQuest(quest);
-        //}
+        public void CheckDish(Dish dish)
+        {
+            bool flag = true;
+            if (dish == null)
+                flag = false;
+            else
+            {
+                foreach (Dish i in menu.Dishes)
+                {
+                    if (i.Name == dish.Name)
+                    {
+                        flag = false;
+                    }
+                }
+            }
+            if (flag)
+                throw new Exception("Блюдо не выбрано!");
+        }
     }
 }

@@ -66,13 +66,39 @@ namespace АРМ_курсовая
             {
                 menu = new Menu(dish);
             }
-            menu.AddDish(dish);
+            bool flag = true;
+            foreach (Dish i in menu.Dishes)
+            {
+                if (dish.Name == i.Name)
+                {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag)
+            {
+                menu.AddDish(dish);
+            }
+            else
+                throw new Exception("Не удалось добавить блюдо, так как такое блюдо уже существует.");
         }
 
         public void EditDish(Dish dish, int number)
         {
             menu.Load();
             menu.EditDish(dish, number);
+            for (int i = 0; i < menu.Dishes.Count; i++)
+            {
+                if (i == number - 1)
+                {
+                    if (menu.Dishes[i].Name != dish.Name || menu.Dishes[i].Cost != dish.Cost || menu.Dishes[i].Category != dish.Category)
+                    {
+                        menu.EditDish(dish, number - 1);
+                    }
+                    else
+                        throw new ArgumentException("Такое блюдо уже существует!");
+                }
+            }
         }
 
         public void DeleteDish(int number)

@@ -13,7 +13,7 @@ namespace АРМ_курсовая
 {
     public class LogIn
     {
-        private List<Account> Accounts = new List<Account>();
+        private readonly List<Account> Accounts = new List<Account>();
 
         public LogIn()
         {
@@ -31,7 +31,7 @@ namespace АРМ_курсовая
         public bool CheckAccount(string login, string password, out Account a)
         {
             bool flag = false;
-            a = null;//
+            a = null;
 
             byte[] Hash;
             UnicodeEncoding ue = new UnicodeEncoding();

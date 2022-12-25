@@ -33,16 +33,15 @@ namespace АРМ_курсовая
                     ViewModel.AddAccount(new Account(tbNewName.Text, tbNewPassword.Text, Role.Waiter));
 
                 MessageBox.Show("Аккаунт успешно зарегистрирован.", "Регистрация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 Program.PreviousPage.Show();
                 Close();
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void btBack_Click(object sender, EventArgs e)
         {
             Program.PreviousPage.Show();
