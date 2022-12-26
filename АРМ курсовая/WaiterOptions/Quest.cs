@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using АРМ_курсовая.Interfaces;
 
 namespace АРМ_курсовая
 {
-    public class Quest
+    public class Quest : IQuest
     {
         [JsonProperty("bill")]
-        public float Bill;
+        public float Bill { get; set; }
         [JsonProperty ("dishes")]
-        public List<Dish> Dishes;
-
+        public List<Dish> Dishes { get; set; }
         public Quest()
         {
             Dishes = new List<Dish>();

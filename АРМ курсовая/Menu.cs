@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using АРМ_курсовая;
+using АРМ_курсовая.Interfaces;
 
 namespace АРМ_курсовая
 {
-    public class Menu
+    public class Menu : IMenu
     {
         public List<Dish> Dishes;
         public Dish CurrentDish;

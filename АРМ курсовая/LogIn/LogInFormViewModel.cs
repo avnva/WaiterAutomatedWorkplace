@@ -12,6 +12,7 @@ namespace АРМ_курсовая
 {
     public class LogInFormViewModel
     {
+        public ILogIn _LogIn;
         public LogIn logIn;
         public CurrentSession currentSession;
         public LogInFormViewModel()

@@ -37,26 +37,19 @@ namespace АРМ_курсовая
         public void DeleteAccount(string Login)
         {
             bool flag = false;
-            foreach (Account account in currentSession.Accounts)
+            currentSession.Load();
+            for (int i = 0; i < currentSession.Accounts.Count; i++)
             {
-                if (account.Login == Login)
+                if (currentSession.Accounts[i].Login == Login)
                 {
-                    try
-                    {
-                        currentSession.DeleteAccount(account);
+                        currentSession.DeleteAccount(i);
                         flag = true;
-                        MessageBox.Show("Аккаунт успешно удален", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
-                    }
-                    catch (ArgumentException ex)
-                    {
-                        MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
             }
             if (!flag)
             {
-                MessageBox.Show("Такой аккаунт не существует!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new Exception("Такой аккаунт не существует!");
             }
         }
         public void AddDish(Dish dish)
@@ -86,7 +79,6 @@ namespace АРМ_курсовая
         public void EditDish(Dish dish, int number)
         {
             menu.Load();
-            menu.EditDish(dish, number);
             for (int i = 0; i < menu.Dishes.Count; i++)
             {
                 if (i == number - 1)

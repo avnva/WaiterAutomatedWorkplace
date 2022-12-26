@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using АРМ_курсовая.Interfaces;
 
 namespace АРМ_курсовая
 {
@@ -14,7 +15,7 @@ namespace АРМ_курсовая
         Waiter = 0,
         Admin = 1
     };
-    public class Account
+    public class Account : IAccount
     {
         private string login;
         private string password;

@@ -58,9 +58,17 @@
       <DependentUpon>MainFormAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="AdminOptions\MainFormAdminViewModel.cs" />
-    <Compile Include="AllOrders.cs" />
+    <Compile Include="Interfaces\IAccount.cs" />
+    <Compile Include="Interfaces\IAllOrders.cs" />
+    <Compile Include="Interfaces\IDish.cs" />
+    <Compile Include="Interfaces\ILogIn.cs" />
+    <Compile Include="Interfaces\ICurrentSession.cs" />
+    <Compile Include="Interfaces\IMenu.cs" />
+    <Compile Include="Interfaces\IOrder.cs" />
+    <Compile Include="Interfaces\IQuest.cs" />
+    <Compile Include="WaiterOptions\AllOrders.cs" />
     <Compile Include="Menu.cs" />
-    <Compile Include="OrderForBinding.cs" />
+    <Compile Include="WaiterOptions\OrderForBinding.cs" />
     <Compile Include="SignIn\Account.cs" />
     <Compile Include="CurrentSession.cs" />
     <Compile Include="Dish.cs" />
@@ -72,15 +80,15 @@
       <DependentUpon>LogInForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LogIn\LogInFormViewModel.cs" />
-    <Compile Include="Table.cs" />
+    <Compile Include="WaiterOptions\Table.cs" />
     <Compile Include="WaiterOptions\MainFormWaiterViewModel.cs" />
-    <Compile Include="Order.cs" />
+    <Compile Include="WaiterOptions\Order.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Quest.cs" />
+    <Compile Include="WaiterOptions\Quest.cs" />
     <Compile Include="WaiterOptions\MainFormWaiter.cs">
       <SubType>Form</SubType>
     </Compile>

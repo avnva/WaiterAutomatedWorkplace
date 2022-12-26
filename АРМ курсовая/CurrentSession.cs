@@ -13,7 +13,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace АРМ_курсовая
 {
-    public class CurrentSession
+    public class CurrentSession : ICurrentSession
     {
         public List<Account> Accounts;
         public Account CurrentAccount;
@@ -72,18 +72,10 @@ namespace АРМ_курсовая
                 throw new ArgumentException("Такой логин уже используется.");
         }
 
-        public bool DeleteAccount(Account account)
+        public void DeleteAccount(int index)
         {
-            bool flag = false;
-            for (int i = 0; i < Accounts.Count; i++)
-            {
-                if (Accounts[i].Equals(account))
-                {
-                    flag = Accounts.Remove(Accounts[i]);
-                }
-            }
-            if (flag) SaveChanges(Accounts, "WorkersData.json");
-            return flag;
+            Accounts.Remove(Accounts[index]);
+            SaveChanges(Accounts, "WorkersData.json");
         }
     }
 }

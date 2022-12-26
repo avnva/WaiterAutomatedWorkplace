@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using АРМ_курсовая.Interfaces;
 
 namespace АРМ_курсовая
 {
@@ -16,7 +17,7 @@ namespace АРМ_курсовая
         Complete = 1
     };
 
-    public class Order
+    public class Order : IOrder
     {
         [JsonProperty("status")]
         public Status Status { get; set; }

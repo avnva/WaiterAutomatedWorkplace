@@ -7,10 +7,11 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using АРМ_курсовая.Interfaces;
 
 namespace АРМ_курсовая
 {
-    public class AllOrders
+    public class AllOrders : IAllOrders
     {
         public List<Order> Orders;
         public Order CurrentOrder;

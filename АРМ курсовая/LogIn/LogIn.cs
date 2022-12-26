@@ -11,7 +11,7 @@ using АРМ_курсовая;
 
 namespace АРМ_курсовая
 {
-    public class LogIn
+    public class LogIn : ILogIn
     {
         private readonly List<Account> Accounts = new List<Account>();
 

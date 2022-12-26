@@ -6,20 +6,15 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using АРМ_курсовая.Interfaces;
 
 namespace АРМ_курсовая
 {
-    public class Dish
+    public class Dish : IDish
     {
         private string name;
         private int cost;
         private string category; 
-        //public Dish() 
-        //{ 
-        //    name = string.Empty;
-        //    cost= 0;
-        //    category= string.Empty;
-        //}
         public Dish(string _name, int _cost, string _category )
         {
             Name = _name;

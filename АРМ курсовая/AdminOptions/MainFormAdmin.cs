@@ -173,7 +173,7 @@ namespace АРМ_курсовая
         {
             try
             {
-                int numberDish =  Convert.ToInt32(lblNumberDish.Text);
+                int numberDish =  Convert.ToInt32(lblNumberDish.Text) - 1;
                 ViewModel.EditDish(new Dish(tbNewNameDish.Text, Convert.ToInt32(numCost.Value), cbCategory.SelectedItem.ToString()), numberDish);
                 MessageBox.Show("Блюдо было успешно изменено.", "Изменение меню", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 UpdateDGMenu();
@@ -197,7 +197,15 @@ namespace АРМ_курсовая
         {
             if (MessageBox.Show("Вы уверены, что хотите удалить этот аккаунт?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                ViewModel.DeleteAccount(tbLogin.Text);
+                try
+                {
+                    ViewModel.DeleteAccount(tbLogin.Text);
+                    MessageBox.Show("Аккаунт успешно удален", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
         }
     }
