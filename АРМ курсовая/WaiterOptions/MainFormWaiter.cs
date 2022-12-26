@@ -123,10 +123,12 @@ namespace АРМ_курсовая
             {
                 if (dataGVSelectedDishes[0, i].Value.ToString() == dish.Name)
                 {
-                    int currentQuantity = Convert.ToInt32(dataGVSelectedDishes[1, i].Value);
-                    dataGVSelectedDishes[1, i].Value = currentQuantity + quantity;
-                    dataGVSelectedDishes[2, i].Value = dish.Cost * (currentQuantity + quantity);
-                    return true;
+                    if (int.TryParse(dataGVSelectedDishes[1, i].Value.ToString(), out int currentQuantity))
+                    {
+                        dataGVSelectedDishes[1, i].Value = currentQuantity + quantity;
+                        dataGVSelectedDishes[2, i].Value = dish.Cost * (currentQuantity + quantity);
+                        return true;
+                    }
                 }
             }
             return false;
@@ -258,11 +260,14 @@ namespace АРМ_курсовая
             {
                 for (int j = 0; j < tables.Length - i - 1; j++)
                 {
-                    if (Convert.ToInt32(tables[j].Text) > Convert.ToInt32(tables[j + 1].Text))
+                    if (int.TryParse(tables[j].Text, out int Numberj) && int.TryParse(tables[j + 1].Text, out int Numberj1))
                     {
-                        temp = tables[j];
-                        tables[j] = tables[j + 1];
-                        tables[j + 1] = temp;
+                        if (Numberj > Numberj1)
+                        {
+                            temp = tables[j];
+                            tables[j] = tables[j + 1];
+                            tables[j + 1] = temp;
+                        }
                     }
                 }
             }
@@ -628,6 +633,7 @@ namespace АРМ_курсовая
         {
             lblJoin.Visible = true;
             checkedListBoxBill.Visible = true;
+            checkedListBoxBill.Items.Clear();
             for (int i = 0; i < ViewModel.currentOrder.Quests.Count; i++)
             {
                 checkedListBoxBill.Items.Insert(i, $"Гость {i + 1}");
@@ -683,7 +689,7 @@ namespace АРМ_курсовая
                 ViewModel.FindOrder(Convert.ToInt32(numericTable.Value));
                 ViewModel.currentQuest = ViewModel.currentOrder.Quests[0];
                 ViewModel.currentNumberTable = ViewModel.currentOrder.NumberTable;
-                ViewModel.NumberEmptySeats = ViewModel.CheckTable(Convert.ToInt32(ViewModel.currentNumberTable));
+                ViewModel.NumberEmptySeats = ViewModel.CheckTable(ViewModel.currentNumberTable);
                 ViewModel.DeleteOrder();
                 UpdateMenuQuests();
 

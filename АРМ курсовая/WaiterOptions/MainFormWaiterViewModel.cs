@@ -248,20 +248,7 @@ namespace АРМ_курсовая
         }
         public void CheckDish(Dish dish)
         {
-            bool flag = true;
             if (dish == null)
-                flag = false;
-            else
-            {
-                foreach (Dish i in menu.Dishes)
-                {
-                    if (i.Name == dish.Name)
-                    {
-                        flag = false;
-                    }
-                }
-            }
-            if (flag)
                 throw new Exception("Блюдо не выбрано!");
         }
     }

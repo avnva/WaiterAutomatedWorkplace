@@ -74,6 +74,7 @@
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dishForBindingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dishBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlMain.SuspendLayout();
             this.pnlEditWorkers.SuspendLayout();
             this.pnlEditMenu.SuspendLayout();
@@ -84,6 +85,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGVDishes)).BeginInit();
             this.pnlDeleteWorker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dishForBindingBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dishBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -92,7 +94,7 @@
             this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(324, 5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(150, 19);
+            this.label2.Size = new System.Drawing.Size(218, 28);
             this.label2.TabIndex = 1;
             this.label2.Text = "Управление системой.";
             // 
@@ -232,7 +234,7 @@
             this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(125, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 30);
+            this.label1.Size = new System.Drawing.Size(316, 45);
             this.label1.TabIndex = 1;
             this.label1.Text = "Выберите действие:";
             // 
@@ -261,7 +263,7 @@
             this.lblNumberDish.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblNumberDish.Location = new System.Drawing.Point(322, 6);
             this.lblNumberDish.Name = "lblNumberDish";
-            this.lblNumberDish.Size = new System.Drawing.Size(28, 30);
+            this.lblNumberDish.Size = new System.Drawing.Size(44, 45);
             this.lblNumberDish.TabIndex = 12;
             this.lblNumberDish.Text = "...";
             this.lblNumberDish.Visible = false;
@@ -286,7 +288,7 @@
             this.lblEdit.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblEdit.Location = new System.Drawing.Point(98, 6);
             this.lblEdit.Name = "lblEdit";
-            this.lblEdit.Size = new System.Drawing.Size(225, 30);
+            this.lblEdit.Size = new System.Drawing.Size(347, 45);
             this.lblEdit.TabIndex = 10;
             this.lblEdit.Text = "Изменение блюда №";
             this.lblEdit.Visible = false;
@@ -306,7 +308,7 @@
             0,
             0});
             this.numCost.Name = "numCost";
-            this.numCost.Size = new System.Drawing.Size(212, 29);
+            this.numCost.Size = new System.Drawing.Size(212, 39);
             this.numCost.TabIndex = 9;
             this.numCost.Value = new decimal(new int[] {
             1,
@@ -340,7 +342,7 @@
             "Напиток"});
             this.cbCategory.Location = new System.Drawing.Point(227, 167);
             this.cbCategory.Name = "cbCategory";
-            this.cbCategory.Size = new System.Drawing.Size(211, 29);
+            this.cbCategory.Size = new System.Drawing.Size(211, 40);
             this.cbCategory.TabIndex = 6;
             // 
             // label6
@@ -349,7 +351,7 @@
             this.label6.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.Location = new System.Drawing.Point(8, 168);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(198, 25);
+            this.label6.Size = new System.Drawing.Size(304, 40);
             this.label6.TabIndex = 5;
             this.label6.Text = "Выберите категорию:";
             // 
@@ -359,7 +361,7 @@
             this.label5.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.Location = new System.Drawing.Point(8, 105);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(212, 25);
+            this.label5.Size = new System.Drawing.Size(323, 40);
             this.label5.TabIndex = 3;
             this.label5.Text = "Введите цену в рублях:";
             // 
@@ -368,7 +370,7 @@
             this.tbNewNameDish.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbNewNameDish.Location = new System.Drawing.Point(227, 46);
             this.tbNewNameDish.Name = "tbNewNameDish";
-            this.tbNewNameDish.Size = new System.Drawing.Size(211, 29);
+            this.tbNewNameDish.Size = new System.Drawing.Size(211, 39);
             this.tbNewNameDish.TabIndex = 2;
             // 
             // label4
@@ -377,7 +379,7 @@
             this.label4.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(8, 48);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(172, 25);
+            this.label4.Size = new System.Drawing.Size(262, 40);
             this.label4.TabIndex = 1;
             this.label4.Text = "Введите название:";
             // 
@@ -387,7 +389,7 @@
             this.lblAdd.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblAdd.Location = new System.Drawing.Point(139, 2);
             this.lblAdd.Name = "lblAdd";
-            this.lblAdd.Size = new System.Drawing.Size(211, 30);
+            this.lblAdd.Size = new System.Drawing.Size(323, 45);
             this.lblAdd.TabIndex = 0;
             this.lblAdd.Text = "Добавление блюда:";
             // 
@@ -442,7 +444,7 @@
             0,
             0});
             this.numEditDish.Name = "numEditDish";
-            this.numEditDish.Size = new System.Drawing.Size(151, 29);
+            this.numEditDish.Size = new System.Drawing.Size(151, 39);
             this.numEditDish.TabIndex = 4;
             this.numEditDish.Value = new decimal(new int[] {
             1,
@@ -456,7 +458,7 @@
             this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.Location = new System.Drawing.Point(4, 383);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(248, 30);
+            this.label8.Size = new System.Drawing.Size(381, 45);
             this.label8.TabIndex = 3;
             this.label8.Text = "Выберите номер блюда:";
             // 
@@ -466,7 +468,7 @@
             this.label7.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label7.Location = new System.Drawing.Point(144, 4);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(188, 30);
+            this.label7.Size = new System.Drawing.Size(285, 45);
             this.label7.TabIndex = 2;
             this.label7.Text = "Изменение меню:";
             // 
@@ -516,6 +518,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGVDishes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGVDishes.RowHeadersWidth = 62;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(55)))));
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -556,7 +559,7 @@
             this.tbLogin.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbLogin.Location = new System.Drawing.Point(118, 97);
             this.tbLogin.Name = "tbLogin";
-            this.tbLogin.Size = new System.Drawing.Size(251, 33);
+            this.tbLogin.Size = new System.Drawing.Size(251, 45);
             this.tbLogin.TabIndex = 2;
             // 
             // btDelete
@@ -578,7 +581,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(18, 23);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(284, 25);
+            this.label3.Size = new System.Drawing.Size(399, 37);
             this.label3.TabIndex = 0;
             this.label3.Text = "Введите логин сотрудника:";
             // 
@@ -588,15 +591,18 @@
             this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
             this.categoryDataGridViewTextBoxColumn.Frozen = true;
             this.categoryDataGridViewTextBoxColumn.HeaderText = "Категория";
+            this.categoryDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
             this.categoryDataGridViewTextBoxColumn.ReadOnly = true;
             this.categoryDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.categoryDataGridViewTextBoxColumn.Width = 150;
             // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Название";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             this.nameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -606,6 +612,7 @@
             this.costDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
             this.costDataGridViewTextBoxColumn.HeaderText = "Цена";
+            this.costDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
             this.costDataGridViewTextBoxColumn.ReadOnly = true;
             this.costDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -614,23 +621,28 @@
             // 
             this.dishForBindingBindingSource.DataSource = typeof(АРМ_курсовая.DishForBinding);
             // 
+            // dishBindingSource
+            // 
+            this.dishBindingSource.DataSource = typeof(АРМ_курсовая.Dish);
+            // 
             // MainFormAdmin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(481, 530);
             this.Controls.Add(this.btBack);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.pnlEditDish);
             this.Controls.Add(this.pnlAddDish);
             this.Controls.Add(this.pnlDeleteWorker);
             this.Controls.Add(this.pnlMain);
-            this.Controls.Add(this.pnlEditDish);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.ForeColor = System.Drawing.Color.Azure;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
             this.Name = "MainFormAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ресторан \"San Pizzerino\"";
@@ -648,6 +660,7 @@
             this.pnlDeleteWorker.ResumeLayout(false);
             this.pnlDeleteWorker.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dishForBindingBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dishBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -694,5 +707,6 @@
         private System.Windows.Forms.TextBox tbLogin;
         private System.Windows.Forms.Button btDelete;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.BindingSource dishBindingSource;
     }
 }

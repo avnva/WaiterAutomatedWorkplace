@@ -102,8 +102,7 @@ namespace АРМ_курсовая
         {
             ClosePanels();
             btBack.Visible = true;
-            pnlEditDish.Visible = true;
-            btEdit.Visible = true;
+            pnlDeleteWorker.Visible = true;
             pnlDeleteWorker.Visible = true;
         }
         private void btDeleteCurrentAccount_Click(object sender, EventArgs e)
@@ -149,6 +148,7 @@ namespace АРМ_курсовая
         {
             try
             {
+                
                 Convert.ToInt32(numEditDish.Value);
                 Dish i = ViewModel.menu.Dishes[Convert.ToInt32(numEditDish.Value) - 1];
                 ClosePanels();
@@ -173,10 +173,13 @@ namespace АРМ_курсовая
         {
             try
             {
-                int numberDish =  Convert.ToInt32(lblNumberDish.Text) - 1;
-                ViewModel.EditDish(new Dish(tbNewNameDish.Text, Convert.ToInt32(numCost.Value), cbCategory.SelectedItem.ToString()), numberDish);
-                MessageBox.Show("Блюдо было успешно изменено.", "Изменение меню", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                UpdateDGMenu();
+                if (int.TryParse(lblNumberDish.Text, out int numberDish ))
+                {
+                    numberDish -= 1;
+                    ViewModel.EditDish(new Dish(tbNewNameDish.Text, Convert.ToInt32(numCost.Value), cbCategory.SelectedItem.ToString()), numberDish);
+                    MessageBox.Show("Блюдо было успешно изменено.", "Изменение меню", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UpdateDGMenu();
+                }
             }
             catch (Exception ex)
             {
